@@ -11,3 +11,15 @@ exports.addProduct = (data) => {
         .then((docs) => docs)
         .catch((e) => e)
 }
+
+exports.updateProduct = (data) => {
+    return ProductModel.updateOne({ _id: data.id }, data)
+        .then((res) => res)
+        .catch((e) => e)
+}
+
+exports.deleteProduct = (_id) => {
+    return ProductModel.deleteOne({ _id })
+        .then((res) => res)
+        .catch((e) => e)
+}

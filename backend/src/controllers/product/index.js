@@ -15,3 +15,19 @@ exports.addProduct = async (req, res) => {
         throw new Error(e)
     }
 }
+
+exports.updateProduct = async (req, res) => {
+    try {
+        res.json(await productController.updateProduct(req.body))
+    } catch (e) {
+        throw new Error(e)
+    }
+}
+
+exports.deleteProduct = async (req, res) => {
+    try {
+        res.json(await productController.deleteProduct(req.params.id))
+    } catch (e) {
+        throw new Error(e)
+    }
+}
