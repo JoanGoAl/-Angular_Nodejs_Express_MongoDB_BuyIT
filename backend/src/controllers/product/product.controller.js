@@ -13,7 +13,7 @@ exports.addProduct = (data) => {
 }
 
 exports.updateProduct = (data) => {
-    return ProductModel.updateOne({ _id: data.id }, data)
+    return ProductModel.updateOne({ _id: data._id }, data)
         .then((res) => res)
         .catch((e) => e)
 }
