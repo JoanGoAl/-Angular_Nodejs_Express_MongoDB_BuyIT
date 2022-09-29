@@ -1,25 +1,46 @@
 const { ProductModel } = require('../../models')
 
-exports.getProducts = () => {
-    return ProductModel.find()
-        .then((docs) => docs)
-        .catch((e) => e)
+exports.getProducts = async () => {
+    try {
+        const docs = await ProductModel.find()
+        return docs
+    } catch (e) {
+        return e
+    }
 }
 
-exports.addProduct = (data) => {
-    return ProductModel.create(data)
-        .then((docs) => docs)
-        .catch((e) => e)
+exports.addProduct = async (data) => {
+    try {
+        const docs = await ProductModel.create(data)
+        return docs
+    } catch (e) {
+        return e
+    }
 }
 
-exports.updateProduct = (data) => {
-    return ProductModel.updateOne({ _id: data.id }, data)
-        .then((res) => res)
-        .catch((e) => e)
+exports.updateProduct = async (data) => {
+    try {
+        const res = await ProductModel.updateOne({ _id: data._id }, data)
+        return res
+    } catch (e) {
+        return e
+    }
 }
 
-exports.deleteProduct = (_id) => {
-    return ProductModel.deleteOne({ _id })
-        .then((res) => res)
-        .catch((e) => e)
+exports.deleteProduct = async (_id) => {
+    try {
+        const res = await ProductModel.deleteOne({ _id })
+        return res
+    } catch (e) {
+        return e
+    }
+}
+
+exports.getOneProduct = async (_id) => {
+    try {
+        const res = await ProductModel.find({ _id })
+        return res
+    } catch (e) {
+        return e
+    }
 }

@@ -31,3 +31,11 @@ exports.deleteProduct = async (req, res) => {
         throw new Error(e)
     }
 }
+
+exports.getOneProduct = async (req, res) => {
+    try {
+        res.json(await productController.getOneProduct(req.params.id))
+    } catch (e) {
+        throw new Error(e)
+    }
+}
