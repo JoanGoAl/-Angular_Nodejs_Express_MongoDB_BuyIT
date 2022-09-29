@@ -12,10 +12,10 @@ exports.getCategories = async () => {
 exports.addCategory = async (data) => {
     try {
         const createCat = await CategoryModel.create(data)
-        const addCategory = await ProductsXCategories.create({ id_category: createCat._id })
+        const addInPxC = await ProductsXCategories.create({ id_category: createCat._id })
         return {
             createCat,
-            addCategory
+            addInPxC
         }
     } catch (e) {
         return e
