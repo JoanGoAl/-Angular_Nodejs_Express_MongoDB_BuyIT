@@ -28,12 +28,12 @@
               "node_modules/primeng/resources/primeng.min.css",
               {
                 "input": "node_modules/primeng/resources/themes/md-dark-deeppurple/theme.css",
-                "bundleName": "darkTheme",
-                "inject": true
+                "bundleName": "lightTheme",
+                "inject": false
               },
               {
-                "input": "node_modules/primeng/resources/themes/md-light-deeppurple/theme.css",
-                "bundleName": "lightTheme",
+                "input": "src/app/core/services/theme/darkTheme.css",
+                "bundleName": "darkTheme",
                 "inject": false
               }
             ],

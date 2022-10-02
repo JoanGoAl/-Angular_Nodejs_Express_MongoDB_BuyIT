@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MegaMenuItem, MenuItem, PrimeIcons } from 'primeng/api'
-import { ThemeService } from 'src/app/core/services/theme.service';
+import { ThemeService } from 'src/app/core/services/theme/theme.service';
 
 @Component({
   selector: 'app-header',
@@ -14,7 +14,8 @@ export class HeaderComponent implements OnInit {
   constructor(private themeService: ThemeService) { }
 
   cgTheme() {
-    this.themeService.swithTheme('darkTheme')
+    console.log('A');
+    this.themeService.swithTheme('lightTheme')
   }
 
   ngOnInit(): void {

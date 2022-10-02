@@ -8,8 +8,14 @@ export class ThemeService {
   constructor(@Inject(DOCUMENT) private document: Document) { }
 
   swithTheme(theme: String) {
-    let lightLink = this.document.getElementById('app-theme-light') as HTMLLinkElement
-    let darktLink = this.document.getElementById('app-theme-dark') as HTMLLinkElement
+    let themeLink = this.document.getElementById('theme') as HTMLLinkElement
+
+    console.log('B');
+
+    if (themeLink) {
+      themeLink.href = `${themeLink}.css`
+      console.log(themeLink);
+    }
 
   }
 }
