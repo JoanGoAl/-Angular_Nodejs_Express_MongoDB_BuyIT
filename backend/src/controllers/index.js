@@ -1,5 +1,6 @@
 const controllers = {
-    ProductController: require('./product')
+    ProductController: require('./product'),
+    CategoryController: require('./category')
 }
 
 module.exports = controllers

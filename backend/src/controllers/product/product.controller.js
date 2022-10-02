@@ -1,25 +1,63 @@
-const { ProductModel } = require('../../models')
+const { ProductModel, ProductsXCategories, CategoryModel } = require('../../models')
 
-exports.getProducts = () => {
-    return ProductModel.find()
-        .then((docs) => docs)
-        .catch((e) => e)
+exports.getProducts = async () => {
+    try {
+        const docs = await ProductModel.find()
+        return docs
+    } catch (e) {
+        return e
+    }
 }
 
-exports.addProduct = (data) => {
-    return ProductModel.create(data)
-        .then((docs) => docs)
-        .catch((e) => e)
+exports.addProduct = async (data) => {
+    try {
+        const docs = await ProductModel.create(data)
+
+        // Arreglar el puto add product
+
+        // let idCategories = []
+        // for (let i = 0; i < data.categories.length; i++) {
+        //     let aux = await CategoryModel.find({ title: data.categories[i] })
+        //     idCategories.push(aux[0]._id);
+        // }
+
+        // let addInPxC = []
+        // for (let i = 0; i < idCategories.length; i++) {
+        //     let auxPxC = await ProductsXCategories.updateOne({ _id: idCategories[i] }, { id_products: docs._id })
+        //     addInPxC.push(auxPxC);
+        // }
+        // console.log(addInPxC);
+
+
+        return docs
+    } catch (e) {
+        return e
+    }
 }
 
-exports.updateProduct = (data) => {
-    return ProductModel.updateOne({ _id: data._id }, data)
-        .then((res) => res)
-        .catch((e) => e)
+exports.updateProduct = async (data) => {
+    try {
+        const res = await ProductModel.updateOne({ _id: data._id }, data)
+        return res
+    } catch (e) {
+        return e
+    }
 }
 
-exports.deleteProduct = (_id) => {
-    return ProductModel.deleteOne({ _id })
-        .then((res) => res)
-        .catch((e) => e)
+exports.deleteProduct = async (_id) => {
+    try {
+        const res = await ProductModel.deleteOne({ _id })
+        return res
+    } catch (e) {
+        return e
+    }
+}
+
+exports.getOneProduct = async (_id) => {
+    try {
+        const res = await ProductModel.find({ _id })
+        return res
+    } catch (e) {
+        return e
+    }
 }
