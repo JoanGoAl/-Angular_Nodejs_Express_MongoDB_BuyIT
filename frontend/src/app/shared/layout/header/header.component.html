@@ -6,7 +6,7 @@
   <div class="searhcbar">
     <!-- TODO Hacer que cuando pierda el search su focus se cierre el megamenu   -->
     <input aria-autocomplete="list" role="searchbox" (click)="hidden = !hidden" class="p-element ng-tns-c81-2 p-autocomplete-input p-inputtext p-component ng-star-inserted srch-inp" autocomplete="off" type="text" placeholder="Search">
-    <p-megaMenu [model]="items" (blur)="hidden = !hidden" [ngClass]="{'hidden': hidden }" class="megamenu" orientation="vertical"></p-megaMenu>
+    <p-megaMenu styleClass="megaMenu" [model]="items" (blur)="hidden = !hidden" [ngClass]="{'hidden': hidden }" class="megamenu" orientation="vertical"></p-megaMenu>
   </div>
   <div #topbarmenu class="layout-topbar-menu">
       <button class="p-link layout-topbar-button">
@@ -17,7 +17,7 @@
           <i class="pi pi-user"></i>
           <span>Profile</span>
       </button>
-      <button class="p-link layout-topbar-button" [routerLink]="'/documentation'">
+      <button class="p-link layout-topbar-button">
           <i class="pi pi-cog"></i>
           <span>Settings</span>
       </button>

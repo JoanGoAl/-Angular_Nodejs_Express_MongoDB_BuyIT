@@ -1,0 +1,25 @@
+.carousel-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  margin-top: 1.5%;
+  z-index: -1;
+}
+
+.card {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  height: 100px;
+  background-color: #F0F0F0;
+  width: 100px;
+  border-radius: 2;
+}
+
+.card-wrapper {
+  /* background-color: blue; */
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  text-align: center;
+}

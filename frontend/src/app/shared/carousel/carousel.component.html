@@ -1,0 +1,18 @@
+<div class="carousel-wrapper">
+  <p-carousel [value]="items" [numVisible]="3" [showIndicators]="false" [numScroll]="1" [circular]="true" [autoplayInterval]="1000" >
+    <ng-template let-item pTemplate="item">
+        <div class="product-item">
+            <div class="product-item-content">
+                <div class="p-mb-3">
+                </div>
+                <div class="card-wrapper">
+                    <p-card styleClass="card">
+                      <h5>{{ item.title }}</h5>
+                      <i class="pi {{ item.icon_url }}"></i>
+                    </p-card>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+  </p-carousel>
+</div>
