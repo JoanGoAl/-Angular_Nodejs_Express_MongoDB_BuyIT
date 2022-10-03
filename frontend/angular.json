@@ -28,13 +28,23 @@
               "node_modules/primeng/resources/primeng.min.css",
               {
                 "input": "node_modules/primeng/resources/themes/md-dark-deeppurple/theme.css",
-                "bundleName": "lightTheme",
+                "bundleName": "md-dark",
                 "inject": false
               },
               {
-                "input": "src/app/core/services/theme/darkTheme.css",
-                "bundleName": "darkTheme",
+                "input": "node_modules/primeng/resources/themes/md-light-deeppurple/theme.css",
+                "bundleName": "md-light",
                 "inject": false
+              },
+              {
+                "input": "node_modules/primeng/resources/themes/nova/theme.css",
+                "bundleName": "nova",
+                "inject": false
+              },
+              {
+                "input": "node_modules/primeng/resources/themes/tailwind-light/theme.css",
+                "bundleName": "tailwind",
+                "inject": true
               }
             ],
             "scripts": []

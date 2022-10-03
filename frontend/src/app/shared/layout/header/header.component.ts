@@ -1,46 +1,29 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { MegaMenuItem, MenuItem, PrimeIcons } from 'primeng/api'
-import { ThemeService } from 'src/app/core/services/theme/theme.service';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  styleUrls: ['./header.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class HeaderComponent implements OnInit {
 
+  hidden: boolean = true
   items!: MegaMenuItem[];
 
-  constructor(private themeService: ThemeService) { }
-
-  cgTheme() {
-    console.log('A');
-    this.themeService.swithTheme('lightTheme')
-  }
+  constructor() { }
 
   ngOnInit(): void {
     this.items = [
       {
-        label: 'Inicio',
-        icon: PrimeIcons.HOME,
-        styleClass: 'nav-items',
-      },
-      {
-        label: 'Tienda',
-        styleClass: 'nav-items',
+        label: 'Categorias',
         items: [
           [
-            {
-              label: 'Categorias',
-              items: [
-                { label: 'Ropa' },
-                { label: 'Coches' },
-                { label: 'Muebles' }
-              ]
-            },
-            {
-              label: 'Lo más buscado'
-            }
+            { label: "Moda y Accesorios" },
+            { label: "Deporte y Ocio" },
+            { label: "Electrónica" },
+            { label: 'Motor' }
           ]
         ]
       }

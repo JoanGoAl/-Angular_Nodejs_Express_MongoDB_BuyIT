@@ -7,6 +7,6 @@ router.use(bodyParser.urlencoded({ extended: true }))
 router.use(bodyParser.json())
 
 router.use('/products', require('./product.route'))
-// router.use('/categories', require('./category.router'))
+router.use('/categories', require('./category.route'))
 
 module.exports = router;
