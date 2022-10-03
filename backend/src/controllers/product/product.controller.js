@@ -9,9 +9,18 @@ exports.getProducts = async () => {
     }
 }
 
+exports.getProductsXCategories = async () => {
+    try {
+        const docs = await ProductsXCategories.find()
+        return docs
+    } catch (e) {
+        return e
+    }
+}
+
 exports.addProduct = async (data) => {
     try {
-        const docs = await ProductModel.create(data)
+        // const docs = await ProductModel.create(data)
 
         // Arreglar el puto add product
 
@@ -20,6 +29,11 @@ exports.addProduct = async (data) => {
         //     let aux = await CategoryModel.find({ title: data.categories[i] })
         //     idCategories.push(aux[0]._id);
         // }
+
+        const docs = await this.getProductsXCategories()
+
+        return docs
+
 
         // let addInPxC = []
         // for (let i = 0; i < idCategories.length; i++) {
