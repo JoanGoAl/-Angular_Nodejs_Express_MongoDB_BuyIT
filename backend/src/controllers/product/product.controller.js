@@ -9,41 +9,26 @@ exports.getProducts = async () => {
     }
 }
 
-exports.getProductsXCategories = async () => {
-    try {
-        const docs = await ProductsXCategories.find()
-        return docs
-    } catch (e) {
-        return e
-    }
-}
-
 exports.addProduct = async (data) => {
     try {
-        // const docs = await ProductModel.create(data)
+        let idCategories = []
+        for (let i = 0; i < data.categories.length; i++) {
+            let aux = await CategoryModel.find({ title: data.categories[i] })
+            idCategories.push(aux[0]._id);
+        }
 
-        // Arreglar el puto add product
+        const createProduct = await ProductModel.create(data)
 
-        // let idCategories = []
-        // for (let i = 0; i < data.categories.length; i++) {
-        //     let aux = await CategoryModel.find({ title: data.categories[i] })
-        //     idCategories.push(aux[0]._id);
-        // }
+        let addInPxC = []
+        for (let i = 0; i < idCategories.length; i++) {
+            let auxPxC = await ProductsXCategories.updateOne({ id_category: idCategories[i] }, { $push: { id_products: createProduct._id } })
+            addInPxC.push(auxPxC);
+        }
 
-        const docs = await this.getProductsXCategories()
-
-        return docs
-
-
-        // let addInPxC = []
-        // for (let i = 0; i < idCategories.length; i++) {
-        //     let auxPxC = await ProductsXCategories.updateOne({ _id: idCategories[i] }, { id_products: docs._id })
-        //     addInPxC.push(auxPxC);
-        // }
-        // console.log(addInPxC);
-
-
-        return docs
+        return {
+            createProduct,
+            addInPxC
+        }
     } catch (e) {
         return e
     }
