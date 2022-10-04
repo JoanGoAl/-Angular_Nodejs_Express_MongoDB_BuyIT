@@ -24,7 +24,7 @@ export class CategoryService {
     this.state.next(data);
   }
 
-  getCategories(): Observable<Category[]>{
+  getCategories(): Observable<Category[]> {
     return this._http.get<Category[]>(`${this.baseUrl}/getCategories`)
   }
 

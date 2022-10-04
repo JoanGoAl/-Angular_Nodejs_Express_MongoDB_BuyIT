@@ -10,7 +10,8 @@ const ProductSchema = mongoose.Schema({
     img_url: [{ type: String }],
     condition: String,
     owner: String,
-    price: String
+    price: String,
+    slug: String
 }, {
     timestamps: true,
 })
@@ -18,7 +19,7 @@ const ProductSchema = mongoose.Schema({
 mongoose.plugin(slug);
 
 ProductSchema.pre('validate', function (next) {
-    if (!this.slug) throw new Error()
+    if (!this.slug) this.slug = slugify(this.name)
     next();
 });
 

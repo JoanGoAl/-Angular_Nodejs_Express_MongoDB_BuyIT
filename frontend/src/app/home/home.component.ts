@@ -16,10 +16,11 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCategories()
+
   }
 
   getCategories() {
-    if (this._categoryService.categories.length == 0){
+    if (this._categoryService.categories.length == 0) {
       this._categoryService.getCategories().subscribe({
         next: (docs) => {
           this._categoryService.categories = docs
@@ -27,6 +28,7 @@ export class HomeComponent implements OnInit {
         }
       })
     }
+
 
     this._categoryService.state$.subscribe({
       next: (docs) => this.categories = this._categoryService.categories,
