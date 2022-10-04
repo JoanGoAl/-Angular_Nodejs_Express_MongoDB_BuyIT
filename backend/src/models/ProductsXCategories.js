@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 const ProductsXCategories = mongoose.Schema({
-    id_product: String,
+    product: String,
     id_categories: [{ type: String }]
 })
 

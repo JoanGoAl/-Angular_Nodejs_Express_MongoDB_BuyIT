@@ -18,13 +18,8 @@ const ProductSchema = mongoose.Schema({
 mongoose.plugin(slug);
 
 ProductSchema.pre('validate', function(next) {
-    if (!this.slug) throw new Error()
+    if (!this.slug) this.slug = slugify(this.name)
     next();
 });
-
-
-ProductSchema.methods.slugifyProduct = () => {
-    this.slug = slugify(this.name)
-}
 
 module.exports = mongoose.model('product', ProductSchema)
