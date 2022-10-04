@@ -1,14 +1,15 @@
 <div class="home-categories-container">
   <div class="home-categories-list">
-    <p-carousel [value]="items" [showIndicators]="false" [showNavigators]="true" [numVisible]="5" [numScroll]="1" [circular]="true">
+    <p-carousel [value]="items" [showIndicators]="false" [showNavigators]="true" [numVisible]="5" [numScroll]="1" [circular]="true" [autoplayInterval]="3000">
       <ng-template let-item pTemplate="item">
         <div class="home-categories-list-content-wrapper">
           <div class="home-categories-list-content">
             <ul>
               <li class="home-categories-list-item">
-                <a href="" title="{{ item.title }}">
+                <a class="home-category-link" href="" title="{{ item.title }}">
                   <div class="home-categories-item-icon-wrapper">
                     <i class="pi {{ item.icon_url }}"></i>
+                    <h6>{{ item.title }}</h6>
                   </div>
                 </a>
               </li>
