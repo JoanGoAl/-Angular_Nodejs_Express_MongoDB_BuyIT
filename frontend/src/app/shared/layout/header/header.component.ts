@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { MegaMenuItem, MenuItem, PrimeIcons } from 'primeng/api'
+import { MegaMenuItem } from 'primeng/api'
 
 @Component({
   selector: 'app-header',
@@ -8,7 +8,6 @@ import { MegaMenuItem, MenuItem, PrimeIcons } from 'primeng/api'
   encapsulation: ViewEncapsulation.None
 })
 export class HeaderComponent implements OnInit {
-
   hidden: boolean = true
   items!: MegaMenuItem[];
 

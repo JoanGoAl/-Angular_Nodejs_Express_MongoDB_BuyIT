@@ -1,13 +1,12 @@
 import { Category } from './../core/models/Category.model';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { CategoryService } from '../core/services';
-import { Carousel } from 'primeng/carousel';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css'],
-  encapsulation: ViewEncapsulation.None
+  styleUrls: ['./home.component.css']
 })
+<<<<<<< HEAD
 export class HomeComponent implements OnInit {
 
   constructor(private _categoryService: CategoryService) { }
@@ -36,4 +35,8 @@ export class HomeComponent implements OnInit {
     });
   }
 
+=======
+export class HomeComponent {
+  constructor() { }
+>>>>>>> e852b8a3f535158730c7ec0102b3627b7668decd
 }

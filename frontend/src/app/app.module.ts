@@ -7,37 +7,31 @@ import { HttpClientModule } from '@angular/common/http'
 
 // Components
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
-import { CarouselComponent, FooterComponent, HeaderComponent } from './shared';
+import { HomeModule } from './home/home.module';
+// import { HomeComponent } from './home/home.component';
+// import { CarouselComponent, FooterComponent, HeaderComponent } from './shared';
 
 
 // PrimeNG
 import { AccordionModule } from 'primeng/accordion'
 import { MegaMenuModule } from 'primeng/megamenu';
 import { CardModule } from 'primeng/card';
-import { CarouselModule } from 'primeng/carousel';
-import { AutoCompleteModule } from 'primeng/autocomplete';
 
-
-
-
+import { FooterComponent, HeaderComponent, SharedModule } from './shared';
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    FooterComponent,
-    HomeComponent,
-    CarouselComponent
+    FooterComponent
   ],
   imports: [
+    SharedModule,
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     AccordionModule,
     MegaMenuModule,
-    HttpClientModule,
     CardModule,
-    CarouselModule,
-    AutoCompleteModule
   ],
   providers: [],
   bootstrap: [AppComponent]

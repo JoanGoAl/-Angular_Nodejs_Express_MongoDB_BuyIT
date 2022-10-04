@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { Category } from 'src/app/core/models';
+import { CategoryService } from 'src/app/core/services';
 
 @Component({
   selector: 'app-carousel',
@@ -8,12 +9,19 @@ import { Category } from 'src/app/core/models';
   encapsulation: ViewEncapsulation.None
 })
 export class CarouselComponent implements OnInit {
-  @Input('toDisplay') items!: Array<Category>;
+  items!: Array<Category>;
 
-  constructor() { }
+  constructor(private test: CategoryService) { }
 
   ngOnInit(): void {
+<<<<<<< HEAD
     console.log(this.items)
+=======
+
+    this.test.getCategories().subscribe((docs) => {
+      this.items = docs
+    })
+>>>>>>> e852b8a3f535158730c7ec0102b3627b7668decd
   }
 
 }
