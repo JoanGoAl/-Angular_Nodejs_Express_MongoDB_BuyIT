@@ -126,8 +126,8 @@
 }
 .home-categories-list ul {
   float: left;
-  min-width: 100%;
-  width: 100%;
+  /* min-width: 100%; */
+  /* width: 100%; */
   display: flex;
   justify-content: flex-start;
   list-style-type: none;
@@ -214,4 +214,17 @@
   .home-categories-list li:hover a {
     color: inherit;
   }
+}
+
+.home-categories-list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#pr_id_1 .p-carousel-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
 }
