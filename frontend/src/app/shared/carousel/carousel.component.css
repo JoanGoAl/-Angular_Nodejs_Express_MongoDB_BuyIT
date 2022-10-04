@@ -45,15 +45,16 @@
   width: 1246px;
   max-width: 100%;
   margin: 0 auto;
-  padding-bottom: 32px;
+  padding-top: 32px;
 }
 .home-categories-list {
-  width: 100%;
+  /* width: 100%; */
   display: flex;
   align-items: center;
   margin-top: 32px;
   position: relative;
   overflow: hidden;
+  margin: 0 auto;
 }
 .home-categories-list #home-categories-list-right-arrow {
   flex-grow: 0;
@@ -131,7 +132,7 @@
   display: flex;
   justify-content: flex-start;
   list-style-type: none;
-  padding: 8px;
+  /* padding: 8px; */
 }
 .home-categories-list li {
   width: 130px;
@@ -214,4 +215,17 @@
   .home-categories-list li:hover a {
     color: inherit;
   }
+}
+
+.home-categories-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#pr_id_1 .p-carousel-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
 }
