@@ -5,12 +5,12 @@ const slug = require('mongoose-slug-generator');
 
 const ProductSchema = mongoose.Schema({
     name: String,
-    categories: [{ type: mongoose.Schema.Types.ObjectId, ref: "Category" }],
-    desciption: String,
-    slug: { type: String, slug: "name" },
+    categories: [{ type: String }],
+    description: String,
     img_url: [{ type: String }],
     condition: String,
-    owner: String
+    owner: String,
+    price: String
 }, {
     timestamps: true,
 })
