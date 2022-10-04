@@ -8,21 +8,11 @@ import { Category } from "../models";
   providedIn: "root"
 })
 export class CategoryService {
-  private state = new BehaviorSubject<Category[]>([]);
-  private baseUrl = 'http://localhost:3000/categories'
-  state$ = this.state.asObservable();
+  private baseUrl = 'http://192.168.8.159:3000/categories'
 
   constructor(
     private _http: HttpClient
   ) { }
-
-  get categories(): Category[] {
-    return this.state.getValue();
-  }
-
-  set categories(data: Category[]) {
-    this.state.next(data);
-  }
 
   getCategories(): Observable<Category[]>{
     return this._http.get<Category[]>(`${this.baseUrl}/getCategories`)

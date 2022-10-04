@@ -9,6 +9,7 @@ const ProductSchema = mongoose.Schema({
     description: String,
     img_url: [{ type: String }],
     condition: String,
+    slug: String,
     owner: String,
     price: String
 }, {
