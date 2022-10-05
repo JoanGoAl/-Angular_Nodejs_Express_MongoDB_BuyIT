@@ -10,32 +10,38 @@
   margin-top: 15px;
 }
 
-.parent > div {
+.parent>div {
   box-sizing: border-box;
   border-radius: 25px;
   padding: 10px;
   margin: 5px;
+  background-color: white;
 }
 
-.parent > div > div {
+.parent > div > div.text {
   border-radius: 20px;
   height: 100%;
   padding: 20px;
   background-color: #C2AFF0;
 }
 
+div.text > svg {
+  position: relative;
+}
+
 .div1 {
   grid-area: 1 / 1 / 6 / 6;
 }
+
 .div2 {
   grid-area: 1 / 1 / 6 / 3;
-  background-color: white;
+
 }
+
 .div3 {
   grid-area: 1 / 3 / 3 / 5;
-  background-color: blue;
 }
+
 .div4 {
   grid-area: 3 / 3 / 5 / 5;
-  background-color: yellow;
 }

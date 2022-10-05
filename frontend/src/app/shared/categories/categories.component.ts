@@ -1,3 +1,4 @@
+import { GradientGenerator } from './../../core/services/gradient.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
