@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root',
 })
-export class GradientGenerator {
+export class ColorGenerator {
 
   randomColor = () => {
     let hexString = '0123456789abcdef';

@@ -1,4 +1,4 @@
-import { GradientGenerator } from './../../core/services/gradient.service';
+import { ColorGenerator } from '../../core/services/color.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
