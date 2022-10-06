@@ -1,3 +1,4 @@
+import { ColorGenerator } from '../../core/services/color.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
