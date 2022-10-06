@@ -14,14 +14,10 @@ export class CarouselComponent implements OnInit {
   constructor(private test: CategoryService) { }
 
   ngOnInit(): void {
-<<<<<<< HEAD
-    console.log(this.items)
-=======
 
     this.test.getCategories().subscribe((docs) => {
       this.items = docs
     })
->>>>>>> e852b8a3f535158730c7ec0102b3627b7668decd
   }
 
 }

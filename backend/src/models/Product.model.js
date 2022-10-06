@@ -19,11 +19,7 @@ const ProductSchema = mongoose.Schema({
 
 mongoose.plugin(slug);
 
-<<<<<<< HEAD
 ProductSchema.pre('validate', function (next) {
-=======
-ProductSchema.pre('validate', function(next) {
->>>>>>> e852b8a3f535158730c7ec0102b3627b7668decd
     if (!this.slug) this.slug = slugify(this.name)
     next();
 });
