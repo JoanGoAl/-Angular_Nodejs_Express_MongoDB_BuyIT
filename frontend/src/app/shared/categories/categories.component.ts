@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Category } from 'src/app/core/models';
 import { CategoryService } from 'src/app/core/services';
+import { ProductService } from 'src/app/core/services/products.service';
 
 @Component({
   selector: 'app-categories',
@@ -33,9 +34,6 @@ export class CategoriesComponent implements OnInit {
       .getCategories(this.count, this.sum)
       .subscribe((docs) => {
         if (docs.length != 0) {
-          docs.forEach((item) => {
-            item.product_img = this._productService()
-          })
           this.data.push(docs);
           this.count = this.sum;
           this.sum += 3;

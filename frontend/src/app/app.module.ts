@@ -27,7 +27,7 @@ import { FooterComponent, HeaderComponent, SharedModule } from './shared';
     AppRoutingModule,
     AccordionModule,
     MegaMenuModule,
-    CardModule,
+    CardModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -7,3 +7,11 @@ exports.getProductsXcategory = async (req, res) => {
         throw new Error(e)
     }
 }
+
+exports.getProductsXcategoryByCatTitle = async (req, res) => {
+    try {
+        res.json(await productXcategoryController.getProductsXcategoryByCatTitle(req.params))
+    } catch (e) {
+        throw new Error(e)
+    }
+}

@@ -11,14 +11,15 @@ const ProductSchema = mongoose.Schema({
     condition: String,
     slug: String,
     owner: String,
-    price: String
+    price: String,
+    slug: String
 }, {
     timestamps: true,
 })
 
 mongoose.plugin(slug);
 
-ProductSchema.pre('validate', function(next) {
+ProductSchema.pre('validate', function (next) {
     if (!this.slug) this.slug = slugify(this.name)
     next();
 });
