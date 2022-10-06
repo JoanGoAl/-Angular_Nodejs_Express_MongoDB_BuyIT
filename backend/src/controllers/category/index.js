@@ -2,7 +2,15 @@ const categoryController = require('./category.controller')
 
 exports.getCategories = async (req, res) => {
     try {
-        res.json(await categoryController.getCategories())
+        if (req.query.offset && req.query.count) {
+            if (req.query.offset != -1 && req.query.count != -1) {
+                res.json(await categoryController.getCategoriesLimited(req.query.count, req.query.offset))
+            } else {
+                res.sendStatus(403)
+            }
+        } else {
+            res.json(await categoryController.getCategories())
+        }
     } catch (e) {
         throw new Error(e)
     }

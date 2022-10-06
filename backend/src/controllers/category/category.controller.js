@@ -9,6 +9,14 @@ exports.getCategories = async () => {
     }
 }
 
+exports.getCategoriesLimited = async (count, offset) => {
+    try {
+        return await CategoryModel.find().skip(count).limit(offset)
+    } catch (e) {
+        return e
+    }
+}
+
 exports.addCategory = async (data) => {
     try {
         const createCat = await CategoryModel.create(data)

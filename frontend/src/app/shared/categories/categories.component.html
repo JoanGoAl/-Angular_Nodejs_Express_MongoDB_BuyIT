@@ -1,31 +1,114 @@
-<div class="parent">
-  <div class="div2" [style.background]="'url(assets/img/blob-scene-haikei_1.svg)'">
-    <div class="centeri">
-      <div class="card">
-        <img src="https://assets.stickpng.com/images/580b57fcd9996e24bc43c270.png" class="foto" style="width:100%">
-         <header>
-           <h1>MUEBLES</h1>
-         </header>
-      </div>
-  </div>
-  </div>
-  <div class="div3" [style.background]="'url(assets/img/blob-scene-haikei.svg)'">
-    <div class="little-centeri">
-      <div class="little-card">
-        <img src="https://assets.stickpng.com/images/580b57fcd9996e24bc43c270.png" class="foto little" style="width:100%">
-         <header class="little">
-           <h1 class="little">NIKE AM90id</h1>
-         </header>
-      </div>
-  </div>
-  </div>
-  <div class="div4" [style.background]="'url(assets/img/blob-scene-haikei.svg)'">
-    <div class="little-centeri">
-      <div class="little-card">
-        <img src="https://assets.stickpng.com/images/580b57fcd9996e24bc43c270.png" class="foto little" style="width:100%">
-         <header class="little">
-           <h1 class="little">NIKE AM90id</h1>
-         </header>
-      </div>
+<div
+  class="search-result"
+  infinite-scroll
+  [infiniteScrollDistance]="scrollDistance"
+  [infiniteScrollUpDistance]="scrollDistance"
+  [infiniteScrollThrottle]="throttle"
+  (scrolled)="onScrollDown()"
+>
+  <div *ngFor="let item of data; index as index">
+    <ng-container
+      [ngTemplateOutlet]="data[index].length != 2 ? triple : double"
+      [ngTemplateOutletContext]="{ index, item: data[index] }"
+    ></ng-container>
   </div>
 </div>
+
+<ng-template #triple let-index="index" let-item="item">
+  <div
+    [ngClass]="
+      index % 2 == 0 ? 'grid category-grid' : 'grid category-grid-reverse'
+    "
+  >
+    <div
+      [ngClass]="index % 2 == 0 ? 'big-cat' : 'big-cat-reverse'"
+      [style.background]="'url(assets/img/blob-scene-haikei_1.svg)'"
+    >
+      <div class="centeri">
+        <div class="card">
+          <img
+            src="http://cdn.shopify.com/s/files/1/0520/3286/4435/products/1_9d0dfae9-05e1-4961-b327-3ffaf09ace90.png?v=1657435953"
+            class="foto"
+            style="width: 100%"
+          />
+          <header>
+            <h1>{{ item[0].title }}</h1>
+          </header>
+        </div>
+      </div>
+    </div>
+    <div
+      [ngClass]="index % 2 == 0 ? 'small-up-cat' : 'small-up-cat-reverse'"
+      [style.background]="'url(assets/img/blob-scene-haikei.svg)'"
+    >
+      <div class="little-centeri">
+        <div class="little-card">
+          <img
+            src="http://cdn.shopify.com/s/files/1/0520/3286/4435/products/1_9d0dfae9-05e1-4961-b327-3ffaf09ace90.png?v=1657435953"
+            class="foto little"
+            style="width: 100%"
+          />
+          <header class="little">
+            <h1 class="little">{{ item[1].title }}</h1>
+          </header>
+        </div>
+      </div>
+    </div>
+    <div
+      [ngClass]="index % 2 == 0 ? 'small-down-cat' : 'small-down-cat-reverse'"
+      [style.background]="'url(assets/img/blob-scene-haikei.svg)'"
+    >
+      <div class="little-centeri">
+        <div class="little-card">
+          <img
+            src="http://cdn.shopify.com/s/files/1/0520/3286/4435/products/1_9d0dfae9-05e1-4961-b327-3ffaf09ace90.png?v=1657435953"
+            class="foto little"
+            style="width: 100%"
+          />
+          <header class="little">
+            <h1 class="little">{{ item[2].title }}</h1>
+          </header>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #double let-item="item">
+  <div class="grid double-category">
+    <div
+      class="db-cat-left"
+      [style.background]="'url(assets/img/blob-scene-haikei.svg)'"
+    >
+      <div class="centeri">
+        <div class="card">
+          <img
+            src="http://cdn.shopify.com/s/files/1/0520/3286/4435/products/1_9d0dfae9-05e1-4961-b327-3ffaf09ace90.png?v=1657435953"
+            class="foto"
+            style="width: 100%"
+          />
+          <header>
+            <h1>{{ item[0].title }}</h1>
+          </header>
+        </div>
+      </div>
+    </div>
+    <div
+      class="db-cat-right"
+      [style.background]="'url(assets/img/blob-scene-haikei.svg)'"
+    >
+      <div class="centeri">
+        <div class="card">
+          <img
+            src="http://cdn.shopify.com/s/files/1/0520/3286/4435/products/1_9d0dfae9-05e1-4961-b327-3ffaf09ace90.png?v=1657435953"
+            class="foto"
+            style="width: 100%"
+          />
+          <header>
+            <h1>{{ item[1].title }}</h1>
+          </header>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

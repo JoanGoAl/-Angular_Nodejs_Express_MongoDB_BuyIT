@@ -11,11 +11,11 @@ import { CategoryService } from 'src/app/core/services';
 export class CarouselComponent implements OnInit {
   items!: Array<Category>;
 
-  constructor(private test: CategoryService) { }
+  constructor(private catSercice: CategoryService) { }
 
   ngOnInit(): void {
 
-    this.test.getCategories().subscribe((docs) => {
+    this.catSercice.getCategories().subscribe((docs) => {
       this.items = docs
     })
   }

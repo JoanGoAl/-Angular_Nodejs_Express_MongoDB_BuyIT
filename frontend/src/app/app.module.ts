@@ -7,10 +7,6 @@ import { HttpClientModule } from '@angular/common/http'
 
 // Components
 import { AppComponent } from './app.component';
-import { HomeModule } from './home/home.module';
-// import { HomeComponent } from './home/home.component';
-// import { CarouselComponent, FooterComponent, HeaderComponent } from './shared';
-
 
 // PrimeNG
 import { AccordionModule } from 'primeng/accordion'
