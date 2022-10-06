@@ -18,11 +18,13 @@ import { MegaMenuModule } from 'primeng/megamenu';
 import { CardModule } from 'primeng/card';
 
 import { FooterComponent, HeaderComponent, SharedModule } from './shared';
+import { ShopComponent } from './shop/shop.component';
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    ShopComponent
   ],
   imports: [
     SharedModule,
