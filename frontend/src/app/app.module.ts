@@ -8,6 +8,7 @@ import { HttpClientModule } from '@angular/common/http'
 // Components
 import { AppComponent } from './app.component';
 import { HomeModule } from './home/home.module';
+import { ShopModule } from './shop/shop.module';
 // import { HomeComponent } from './home/home.component';
 // import { CarouselComponent, FooterComponent, HeaderComponent } from './shared';
 
@@ -18,13 +19,11 @@ import { MegaMenuModule } from 'primeng/megamenu';
 import { CardModule } from 'primeng/card';
 
 import { FooterComponent, HeaderComponent, SharedModule } from './shared';
-import { ShopComponent } from './shop/shop.component';
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    FooterComponent,
-    ShopComponent
+    FooterComponent
   ],
   imports: [
     SharedModule,
@@ -33,7 +32,7 @@ import { ShopComponent } from './shop/shop.component';
     AppRoutingModule,
     AccordionModule,
     MegaMenuModule,
-    CardModule,
+    CardModule
   ],
   providers: [],
   bootstrap: [AppComponent]

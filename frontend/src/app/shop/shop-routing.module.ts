@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { ShopComponent } from './shop.component';
 
 const routes: Routes = [
+    { path: '', component: ShopComponent },
     { path: ':category', component: ShopComponent }
 ];
 
