@@ -34,6 +34,9 @@ export class CategoriesComponent implements OnInit {
       .getCategories(this.count, this.sum)
       .subscribe((docs) => {
         if (docs.length != 0) {
+          // docs.forEach((item) => {
+          //   this._productService.getRandomProduct().subscribe((imgSrc) => item.product_img = imgSrc)
+          // })
           this.data.push(docs);
           this.count = this.sum;
           this.sum += 3;
