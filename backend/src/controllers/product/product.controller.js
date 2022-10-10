@@ -11,14 +11,13 @@ exports.getProducts = async () => {
 
 exports.addProduct = async (data) => {
     try {
-        if (data.categories) {
-            let idCategories = []
-            for (let i = 0; i < data.categories.length; i++) {
-                let aux = await CategoryModel.find({ title: data.categories[i] })
-                idCategories.push(aux[0]._id);
-            }
+        let idCategories = []
+        for (let i = 0; i < data.categories.length; i++) {
+            let aux = await CategoryModel.find({ title: data.categories[i] })
+            idCategories.push(aux[0]._id);
         }
-        
+
+
         const createProduct = await ProductModel.create(data)
 
         let addInPxC = []
