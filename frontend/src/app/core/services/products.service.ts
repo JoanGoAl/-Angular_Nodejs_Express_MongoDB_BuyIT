@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from '@angular/common/http'
-import { BehaviorSubject, Observable } from "rxjs";
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http'
+import { Observable } from "rxjs";
 import { Product } from "../models";
 
 
@@ -18,9 +18,12 @@ export class ProductService {
         return this._http.get<Product[]>(`${this.baseUrl}/getProducts`)
     }
 
-    getRandomProduct(): Observable<Product[]> {
-      // Modificar getProduct para que si no se le pasa nada devuelva uno random
-      return this._http.get<Product[]>(`${this.baseUrl}/getOneProduct`)
+    getRandomProduct(name: string): Observable<Product[]> {
+      let params = new HttpHeaders().set('title', name)
+
+      return this._http.get<Product[]>(`${this.baseUrl}/getOneProduct`, {
+        headers: params
+      })
     }
 
 }

@@ -242,3 +242,23 @@ img,
   align-items: center;
   justify-content: center;
 }
+
+.single-category {
+  display: grid;
+  grid-template-columns: (4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  width: 1400px;
+  height: 400px;
+  margin: 0 auto;
+  margin-top: 10%;
+  padding: 10px;
+}
+
+.sg-cat {
+  grid-area: 1 / 1 / 5 / 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

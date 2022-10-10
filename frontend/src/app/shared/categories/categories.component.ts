@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { Category, Product } from 'src/app/core/models';
 import { CategoryService } from 'src/app/core/services';
 import { ProductService } from 'src/app/core/services/products.service';
@@ -9,8 +9,10 @@ import { ProductService } from 'src/app/core/services/products.service';
   styleUrls: ['./categories.component.css'],
 })
 export class CategoriesComponent implements OnInit {
-  // Data tiene que ser un array con arrays dentro de tres posiciones de categorias
-  // [[{ name: "Coches", img: "example" }, { name: "Coches", img: "example" }, { name: "Coches", img: "example" }]]
+  @ViewChild('single') single!: TemplateRef<any>;
+  @ViewChild('double') double!: TemplateRef<any>;
+  @ViewChild('triple') triple!: TemplateRef<any>;
+
   data: Array<Category[]> = [];
 
   sum = 3;
@@ -35,18 +37,35 @@ export class CategoriesComponent implements OnInit {
       .subscribe((docs) => {
         if (docs.length != 0) {
           docs.forEach((item: Category) => {
-            this._productService.getRandomProduct().subscribe((product) => {
-              item.product_img = product[0].imgUrl[0]
+            // Test Pipe
+            this._productService.getRandomProduct(<string>item.title).subscribe((product) => {
+              console.log(product);
+
+              // item.product_img = product.map((productImg) => {
+              //   return productImg.imgUrl[0]
+              // })
+
             })
           })
-
-          console.log(docs);
 
           this.data.push(docs);
           this.count = this.sum;
           this.sum += 3;
         }
       });
+  }
+
+  getTemplate(length: number) {
+    switch (length) {
+      case 1:
+        return this.single
+      case 2:
+        return this.double
+      case 3:
+        return this.triple;
+    }
+
+    return null;
   }
 
   ngOnInit(): void {

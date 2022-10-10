@@ -8,7 +8,7 @@
 >
   <div *ngFor="let item of data; index as index">
     <ng-container
-      [ngTemplateOutlet]="data[index].length != 2 ? triple : double"
+      [ngTemplateOutlet]="getTemplate(data[index].length)"
       [ngTemplateOutletContext]="{ index, item: data[index] }"
     ></ng-container>
   </div>
@@ -44,7 +44,7 @@
       <div class="little-centeri">
         <div class="little-card">
           <img
-            src="http://cdn.shopify.com/s/files/1/0520/3286/4435/products/1_9d0dfae9-05e1-4961-b327-3ffaf09ace90.png?v=1657435953"
+            src="{{ item[1].product_img }}"
             class="foto little"
             style="width: 100%"
           />
@@ -61,7 +61,7 @@
       <div class="little-centeri">
         <div class="little-card">
           <img
-            src="http://cdn.shopify.com/s/files/1/0520/3286/4435/products/1_9d0dfae9-05e1-4961-b327-3ffaf09ace90.png?v=1657435953"
+            src="{{ item[2].product_img }}"
             class="foto little"
             style="width: 100%"
           />
@@ -106,6 +106,28 @@
           />
           <header>
             <h1>{{ item[1].title }}</h1>
+          </header>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #single let-item="item">
+  <div class="grid single-category">
+    <div
+      class="sg-cat"
+      [style.background]="'url(assets/img/blob-scene-haikei.svg)'"
+    >
+      <div class="centeri">
+        <div class="card">
+          <img
+            src="http://cdn.shopify.com/s/files/1/0520/3286/4435/products/1_9d0dfae9-05e1-4961-b327-3ffaf09ace90.png?v=1657435953"
+            class="foto"
+            style="width: 100%"
+          />
+          <header>
+            <h1>{{ item[0].title }}</h1>
           </header>
         </div>
       </div>
