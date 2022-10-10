@@ -11,12 +11,14 @@ exports.getProducts = async () => {
 
 exports.addProduct = async (data) => {
     try {
-        let idCategories = []
-        for (let i = 0; i < data.categories.length; i++) {
-            let aux = await CategoryModel.find({ title: data.categories[i] })
-            idCategories.push(aux[0]._id);
+        if (data.categories) {
+            let idCategories = []
+            for (let i = 0; i < data.categories.length; i++) {
+                let aux = await CategoryModel.find({ title: data.categories[i] })
+                idCategories.push(aux[0]._id);
+            }
         }
-
+        
         const createProduct = await ProductModel.create(data)
 
         let addInPxC = []
@@ -54,8 +56,8 @@ exports.deleteProduct = async (_id) => {
 
 exports.getOneProduct = async (_id) => {
     try {
-        const res = await ProductModel.find({ _id })
-        return res
+        if (!_id) return await ProductModel.find().limit(-1).skip(Math.floor(Math.random() * ((await ProductModel.countDocuments({}).exec()).toString() - 1 + 1) + 0))
+        return await ProductModel.find({ _id })
     } catch (e) {
         return e
     }
