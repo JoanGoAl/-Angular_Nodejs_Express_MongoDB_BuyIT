@@ -3,7 +3,7 @@ export interface Product {
   name: String
   categories: String[]
   description: String
-  img_url: String[]
+  imgUrl: String[]
   condition: String
   owner: String
 }

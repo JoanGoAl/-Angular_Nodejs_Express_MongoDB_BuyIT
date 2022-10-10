@@ -7,12 +7,11 @@ const ProductSchema = mongoose.Schema({
     name: String,
     categories: [{ type: String }],
     description: String,
-    img_url: [{ type: String }],
+    imgUrl: [{ type: String }],
     condition: String,
     slug: String,
     owner: String,
     price: String,
-    slug: String
 }, {
     timestamps: true,
 })
@@ -20,7 +19,7 @@ const ProductSchema = mongoose.Schema({
 mongoose.plugin(slug);
 
 ProductSchema.pre('validate', function (next) {
-    if (!this.slug) this.slug = slugify(this.name)
+    if (!this.slug) this.slug = slugify(this.name.toLowerCase())
     next();
 });
 

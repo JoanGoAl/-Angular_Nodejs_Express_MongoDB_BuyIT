@@ -18,4 +18,9 @@ export class ProductService {
         return this._http.get<Product[]>(`${this.baseUrl}/getProducts`)
     }
 
+    getRandomProduct(): Observable<Product[]> {
+      // Modificar getProduct para que si no se le pasa nada devuelva uno random
+      return this._http.get<Product[]>(`${this.baseUrl}/getOneProduct`)
+    }
+
 }

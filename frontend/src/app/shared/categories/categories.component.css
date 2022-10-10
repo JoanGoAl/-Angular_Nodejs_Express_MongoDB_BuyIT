@@ -1,4 +1,4 @@
-.parent {
+.category-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(4, 1fr);
@@ -7,10 +7,22 @@
   width: 1400px;
   height: 400px;
   margin: 0 auto;
-  margin-top: 15px;
+  margin-top: 5%;
 }
 
-.parent > div {
+.category-grid-reverse {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  width: 1400px;
+  height: 400px;
+  margin: 0 auto;
+  margin-top: 10%;
+}
+
+.grid > div {
   box-sizing: border-box;
   border-radius: 25px;
   padding: 10px;
@@ -18,13 +30,13 @@
   background-color: white;
 }
 
-.parent > div > div.text {
+.grid > div > div.text {
   border-radius: 20px;
   height: 100%;
   padding: 20px;
 }
 
-.div2 {
+.big-cat {
   grid-area: 1 / 1 / 6 / 3;
   /* overflow: hidden; */
   display: flex;
@@ -37,14 +49,14 @@ img {
   object-fit: contain;
 }
 
-.div3 {
+.small-up-cat {
   grid-area: 1 / 3 / 3 / 5;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.div4 {
+.small-down-cat {
   grid-area: 3 / 3 / 5 / 5;
   display: flex;
   align-items: center;
@@ -72,7 +84,7 @@ h1 {
   top: 80%;
 }
 img,
-#parent {
+#category-grid {
   cursor: pointer;
 }
 .card:hover > img {
@@ -120,6 +132,24 @@ span {
   position: relative;
 }
 
+.big-cat-reverse {
+  grid-area: 1 / 3 / 5 / 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.small-up-cat-reverse {
+  grid-area: 1 / 1 / 3 / 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.small-down-cat-reverse {
+  grid-area: 3 / 1 / 5 / 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 img.little {
   position: fixed;
@@ -142,7 +172,7 @@ h1.little {
   top: 80%;
 }
 img,
-#parent {
+#category-grid {
   cursor: pointer;
 }
 .little-card:hover > img {
@@ -184,4 +214,31 @@ img,
 
 .little-centeri {
   transform: translate(0%, 0%);
+}
+
+.double-category {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  width: 1400px;
+  height: 400px;
+  margin: 0 auto;
+  margin-top: 10%;
+  padding: 10px;
+}
+
+.db-cat-left {
+  grid-area: 1 / 1 / 5 / 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.db-cat-right {
+  grid-area: 1 / 3 / 5 / 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

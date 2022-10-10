@@ -15,6 +15,7 @@ exports.getProductsXcategoryByCatTitle = async ({ title }) => {
         const docs = await ProductsXCategories.find({ id_category: catID[0]._id })
         const idProducts = docs[0].id_products.map(item => { return { _id: item } })
         const allProducts = await ProductModel.find({ $or: idProducts })
+        
         return allProducts
     } catch (e) {
         return e

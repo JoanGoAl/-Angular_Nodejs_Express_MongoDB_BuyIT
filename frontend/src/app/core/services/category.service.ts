@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from '@angular/common/http'
+import { HttpClient, HttpParams } from '@angular/common/http'
 import { BehaviorSubject, Observable } from "rxjs";
 import { Category } from "../models";
 
@@ -14,8 +14,12 @@ export class CategoryService {
     private _http: HttpClient
   ) { }
 
-  getCategories(): Observable<Category[]> {
-    return this._http.get<Category[]>(`${this.baseUrl}/getCategories`)
-  }
+  getCategories(count: number = 0, offset: number = 0): Observable<Category[]>{
+    count = typeof count == "number" ? count : -1
+    offset = typeof offset == "number" ? offset : -1
+
+    let params = new HttpParams().set('count', count).set('offset', offset)
+
+    return this._http.get<Category[]>(`${this.baseUrl}/getCategories`, { params })}
 
 }
