@@ -16,6 +16,8 @@ export class CarouselComponent implements OnInit {
   ngOnInit(): void {
 
     this.catSercice.getCategories().subscribe((docs) => {
+      console.log(docs);
+
       this.items = docs
     })
   }
