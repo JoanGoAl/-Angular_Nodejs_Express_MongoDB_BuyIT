@@ -1,4 +1,5 @@
 import { Component, ElementRef, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { map } from 'rxjs';
 import { Category, Product } from 'src/app/core/models';
 import { CategoryService } from 'src/app/core/services';
 import { ProductService } from 'src/app/core/services/products.service';
@@ -15,7 +16,7 @@ export class CategoriesComponent implements OnInit {
 
   data: Array<Category[]> = [];
 
-  sum = 3;
+  offset = 3;
   count = 0;
   throttle = 300;
   scrollDistance = 1;
@@ -33,24 +34,19 @@ export class CategoriesComponent implements OnInit {
 
   getScrollCategories() {
     this.categoriesService
-      .getCategories(this.count, this.sum)
+      .getCategories(this.count, this.offset)
       .subscribe((docs) => {
         if (docs.length != 0) {
           docs.forEach((item: Category) => {
-            // Test Pipe
-            this._productService.getRandomProduct(<string>item.title).subscribe((product) => {
-              console.log(product);
-
-              // item.product_img = product.map((productImg) => {
-              //   return productImg.imgUrl[0]
-              // })
-
-            })
+            this._productService.getRandomProduct(<string>item.title).subscribe((d) => item.product_img = d[0])
           })
 
+          console.log(this.data);
+          console.log(this.count, this.offset);
+
+
           this.data.push(docs);
-          this.count = this.sum;
-          this.sum += 3;
+          this.count += 3;
         }
       });
   }

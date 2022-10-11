@@ -55,9 +55,11 @@ exports.deleteProduct = async (_id) => {
 exports.getOneProduct = async (_id, defaultOption = true) => {
     try {
         if (!defaultOption) {
-            return  await ProductModel.find({ categories: _id }).limit(-1).skip(Math.floor(Math.random() * ((await ProductModel.countDocuments({}).exec()).toString() - 1 + 1) + 0))
+            let difference = await ProductModel.countDocuments({ categories: _id }).exec() - 0;
+            let random = Math.floor(Math.random() * difference) + 0
+            
+            return await ProductModel.find({ categories: _id }).limit(1).skip(random)
         }
-        
         return await ProductModel.find({ _id })
     } catch (e) {
         return e
