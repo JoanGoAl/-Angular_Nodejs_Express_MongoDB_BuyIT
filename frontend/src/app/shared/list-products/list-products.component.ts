@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from 'src/app/core/models';
 import { ProductService } from 'src/app/core/services/products.service';
 import { ProductsXCategoryService } from 'src/app/core/services/productsXcategory.service';
@@ -17,7 +17,8 @@ export class ListProductsComponent implements OnInit {
   constructor(
     private aRouter: ActivatedRoute,
     private productService: ProductService,
-    private pXc: ProductsXCategoryService
+    private pXc: ProductsXCategoryService,
+    private router: Router
   ) {
     this.category = this.aRouter.snapshot.paramMap.get('category') ? this.aRouter.snapshot.paramMap.get('category') : 'allProducts'; //obtiene la 'id' del link
     if (this.category === 'allProducts') {
@@ -30,6 +31,11 @@ export class ListProductsComponent implements OnInit {
         this.products = res
       })
     }
+  }
+
+  redirect(id?: String) {
+    this.router.navigateByUrl(`shop/product/${id}`)
+    console.log()
   }
 
   ngOnInit(): void {
