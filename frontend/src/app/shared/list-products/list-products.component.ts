@@ -28,14 +28,11 @@ export class ListProductsComponent implements OnInit {
     } else {
       pXc.getPxC(this.category).subscribe(res => {
         this.products = res
-        console.log(this.products);
       })
     }
   }
 
   ngOnInit(): void {
-    console.log(this.category);
-
   }
 
 }
