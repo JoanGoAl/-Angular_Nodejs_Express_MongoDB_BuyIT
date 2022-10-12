@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faCoffee, faCouch, faDesktop, faFutbol, faMotorcycle, faShirt, faShop } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faCoffee, faCouch, faDesktop, faFutbol, faMotorcycle, faShirt, faShop } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   standalone: true,
@@ -20,5 +20,6 @@ export class IconsComponent {
     desktop: faDesktop,
     sofa: faCouch,
     moto: faMotorcycle,
+    bars: faBars
   }
 }
