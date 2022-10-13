@@ -1,4 +1,5 @@
 const cors = require('cors');
+const morgan = require('morgan')
 const bodyParser = require('body-parser')
 const router = require('express').Router()
 
@@ -10,6 +11,7 @@ router.use(function (req, res, next) {
 router.use(cors());
 router.use(bodyParser.urlencoded({ extended: true }))
 router.use(bodyParser.json())
+router.use(morgan('dev'))
 
 router.use('/products', require('./product.route'))
 router.use('/categories', require('./category.route'))

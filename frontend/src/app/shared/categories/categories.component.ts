@@ -1,6 +1,6 @@
-import { Component, ElementRef, OnInit, TemplateRef, ViewChild } from '@angular/core';
-import { map } from 'rxjs';
-import { Category, Product } from 'src/app/core/models';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
+import { Category } from 'src/app/core/models';
 import { CategoryService } from 'src/app/core/services';
 import { ProductService } from 'src/app/core/services/products.service';
 
@@ -25,7 +25,8 @@ export class CategoriesComponent implements OnInit {
 
   constructor(
     private categoriesService: CategoryService,
-    private _productService: ProductService
+    private _productService: ProductService,
+    private router: Router
     ) {}
 
   onScrollDown() {
@@ -49,6 +50,10 @@ export class CategoriesComponent implements OnInit {
           this.count += 3;
         }
       });
+  }
+
+  goFilteredProducts(title: String) {
+    this.router.navigateByUrl(`shop?cat=${title}`)
   }
 
   getTemplate(length: number) {

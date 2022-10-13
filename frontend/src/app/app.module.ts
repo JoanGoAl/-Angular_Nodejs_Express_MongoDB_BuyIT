@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { AppRoutingModule } from './app-routing.module';
 
 // Http
@@ -13,6 +14,7 @@ import { AccordionModule } from 'primeng/accordion'
 import { MegaMenuModule } from 'primeng/megamenu';
 import { CardModule } from 'primeng/card';
 
+
 import { FooterComponent, HeaderComponent, SharedModule } from './shared';
 @NgModule({
   declarations: [
@@ -23,6 +25,7 @@ import { FooterComponent, HeaderComponent, SharedModule } from './shared';
   imports: [
     SharedModule,
     BrowserModule,
+    BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,
     AccordionModule,

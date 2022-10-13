@@ -4,12 +4,12 @@ const slug = require('mongoose-slug-generator');
 
 
 const ProductSchema = mongoose.Schema({
-    name: String,
+    name: { type: String, required: true },
     categories: [{ type: String }],
     description: String,
     imgUrl: [{ type: String }],
     condition: String,
-    slug: String,
+    slug: { type: String, unique: true, required: true },
     owner: String,
     price: String,
 }, {
@@ -19,7 +19,7 @@ const ProductSchema = mongoose.Schema({
 mongoose.plugin(slug);
 
 ProductSchema.pre('validate', function (next) {
-    if (!this.slug) this.slug = slugify(this.name.toLowerCase())
+    if (this.name) this.slug = slugify(this.name, { lower: true, strict: true })
     next();
 });
 

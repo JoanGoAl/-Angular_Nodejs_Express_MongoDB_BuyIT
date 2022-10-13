@@ -65,8 +65,8 @@ img {
 
 img {
   position: fixed;
-  top: -8%;
-  left: 0%;
+  top: 5%;
+  left: 3%;
   border-radius: 50px;
   opacity: 0.9;
   transition: 0.5s;
@@ -78,19 +78,24 @@ h1 {
   color: white;
   font-family: "Big Shoulders Display";
 }
+
 .card:hover > p {
+  cursor: pointer;
   opacity: 1;
   transform: scale(1.5);
   top: 80%;
 }
+
 img,
 #category-grid {
   cursor: pointer;
 }
 .card:hover > img {
+  cursor: pointer;
   opacity: 1;
   transform: scale(1.4);
 }
+
 .card header {
   position: absolute;
   top: 135%;
@@ -102,6 +107,7 @@ img,
   transition: all 0.5s;
   opacity: 0;
 }
+
 .card:hover > header {
   opacity: 1;
   width: 450px;
@@ -110,6 +116,7 @@ img,
 }
 
 .card {
+  cursor: pointer;
   transition: transform 0.7s;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   border-radius: 500px;
@@ -120,6 +127,7 @@ img,
   width: 250px;
   height: 250px;
 }
+
 .card:hover {
   transform: scale(1.08);
 }
@@ -151,15 +159,6 @@ span {
   justify-content: center;
 }
 
-img.little {
-  position: fixed;
-  top: -8%;
-  left: 0%;
-  border-radius: 50px;
-  opacity: 0.9;
-  transition: 0.5s;
-}
-
 h1.little {
   transition: transform 2s;
   font-size: 35px;
@@ -167,29 +166,33 @@ h1.little {
   font-family: "Big Shoulders Display";
 }
 .little-card:hover > p {
+  cursor: pointer;
   opacity: 1;
   transform: scale(1.5);
   top: 80%;
 }
+
 img,
 #category-grid {
   cursor: pointer;
 }
+
 .little-card:hover > img {
+  cursor: pointer;
   opacity: 1;
   transform: scale(1.2);
 }
+
 .little-card header {
   position: absolute;
   top: 135%;
   left: 10%;
   padding: 1px;
   border-radius: 25px;
-  width: 450px;
-  height: 90px;
   transition: all 0.5s;
   opacity: 0;
 }
+
 .little-card:hover > header {
   opacity: 1;
   width: 450px;
@@ -198,6 +201,7 @@ img,
 }
 
 .little-card {
+  cursor: pointer;
   transition: transform 0.7s;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   border-radius: 500px;
@@ -261,4 +265,149 @@ img,
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+/* bigger laptops */
+@media only screen and (min-width: 1224px) {
+  .card {
+    cursor: pointer;
+    transition: transform 0.7s;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 500px;
+    margin: auto;
+    text-align: center;
+    font-family: arial;
+    background: white;
+    width: 250px;
+    height: 250px;
+  }
+}
+/* Desktops and laptops ----------- */
+@media only screen and (min-width: 850px) and (max-width: 1024px) {
+  .card {
+    cursor: pointer;
+    transition: transform 0.7s;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 500px;
+    margin: auto;
+    text-align: center;
+    font-family: arial;
+    background: white;
+    width: 250px;
+    height: 250px;
+  }
+}
+/* iPads (portrait and landscape) ----------- */
+@media only screen and (min-width: 550px) and (max-width: 800px) {
+  .grid {
+    width: 75%;
+    height: 75%;
+    padding: 15px;
+    margin-top: 15%;
+  }
+
+  .card {
+    cursor: pointer;
+    transition: transform 0.7s;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 500px;
+    margin: auto;
+    text-align: left;
+    font-family: arial;
+    width: 175px;
+    height: 175px;
+  }
+
+  .card header {
+    position: absolute;
+    top: 135%;
+    left: 10%;
+    padding: 1px;
+    border-radius: 25px;
+    width: fit-content;
+    height: fit-content;
+    transition: all 0.5s;
+    opacity: 0;
+  }
+
+  .card:hover > header {
+    opacity: 1;
+    color: black;
+    width: fit-content;
+    height: fit-content;
+    transform: translateY(-80px);
+    display: flex;
+    justify-content: center;
+  }
+
+  .little-card:hover > header {
+    opacity: 1;
+    transform: translateY(-80px);
+  }
+
+  .little-card {
+    width: 100px;
+    height: 100px;
+  }
+
+  header.little:hover {
+    width: fit-content;
+    height: fit-content;
+  }
+
+  .little-card:hover header {
+    width: fit-content;
+    height: fit-content;
+  }
+
+  header h1 {
+    color: black;
+    font-size: 16px;
+  }
+
+  .small-down-cat:hover {
+    cursor: pointer;
+    opacity: 0.7;
+  }
+
+  .small-up-cat:hover {
+    cursor: pointer;
+    opacity: 0.7;
+  }
+
+  .little-card header h1 {
+    font-size: 18px;
+    letter-spacing: -5px;
+    transform: translate(100px, -55px);
+    text-orientation: upright;
+    writing-mode: vertical-lr;
+  }
+
+  .card header h1 {
+    transform: translateY(-60%);
+  }
+
+  h1.little {
+    width: fit-content;
+    height: fit-content;
+  }
+
+  .big-cat {
+    background-size: 25px 2px;
+  }
+}
+/* mobiles (landscape and portrait) */
+@media only screen and (min-width: 320px) and (max-width: 500px) {
+  .card {
+    cursor: pointer;
+    transition: transform 0.7s;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 500px;
+    margin: auto;
+    text-align: center;
+    font-family: arial;
+    background: white;
+    width: 250px;
+    height: 250px;
+  }
 }

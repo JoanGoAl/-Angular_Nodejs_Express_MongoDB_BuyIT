@@ -10,8 +10,10 @@
     <ng-container
       [ngTemplateOutlet]="getTemplate(data[index].length)"
       [ngTemplateOutletContext]="{ index, item: data[index] }"
-    ></ng-container>
+      >
+    </ng-container>
   </div>
+  <p-scrollTop></p-scrollTop>
 </div>
 
 <ng-template #triple let-index="index" let-item="item">
@@ -22,10 +24,10 @@
   >
     <div
       [ngClass]="index % 2 == 0 ? 'big-cat' : 'big-cat-reverse'"
-      [style.background]="'url(assets/img/test.png)'"
+      [style.background]="'url(assets/img/test_2.png)'"
     >
       <div class="centeri">
-        <div class="card">
+        <div class="card" (click)="goFilteredProducts(item[0].title)">
           <img
             src="{{ item[0].product_img }}"
             class="foto"
@@ -39,34 +41,34 @@
     </div>
     <div
       [ngClass]="index % 2 == 0 ? 'small-up-cat' : 'small-up-cat-reverse'"
-      [style.background]="'url(assets/img/white.svg)'"
+      [style.background]="'url(assets/img/blob_a.svg)'"
     >
       <div class="little-centeri">
         <div class="little-card">
           <img
             src="{{ item[1].product_img }}"
-            class="foto little"
+            class="foto"
             style="width: 100%"
           />
           <header class="little">
-            <h1 class="little">{{ item[1].title }}</h1>
+            <h1 class="little-text">{{ item[1].title }}</h1>
           </header>
         </div>
       </div>
     </div>
     <div
       [ngClass]="index % 2 == 0 ? 'small-down-cat' : 'small-down-cat-reverse'"
-      [style.background]="'url(assets/img/white_2.svg)'"
+      [style.background]="'url(assets/img/blob_b.svg)'"
     >
       <div class="little-centeri">
         <div class="little-card">
           <img
             src="{{ item[2].product_img }}"
-            class="foto little"
+            class="foto"
             style="width: 100%"
           />
           <header class="little">
-            <h1 class="little">{{ item[2].title }}</h1>
+            <h1 class="little-text">{{ item[2].title }}</h1>
           </header>
         </div>
       </div>
@@ -78,7 +80,7 @@
   <div class="grid double-category">
     <div
       class="db-cat-left"
-      [style.background]="'url(assets/img/blob-scene-haikei.svg)'"
+      [style.background]="'url(assets/img/doble_lft.png)'"
     >
       <div class="centeri">
         <div class="card">
@@ -95,7 +97,7 @@
     </div>
     <div
       class="db-cat-right"
-      [style.background]="'url(assets/img/blob-scene-haikei.svg)'"
+      [style.background]="'url(assets/img/doble_lft_2.png)'"
     >
       <div class="centeri">
         <div class="card">
@@ -117,7 +119,7 @@
   <div class="grid single-category">
     <div
       class="sg-cat"
-      [style.background]="'url(assets/img/blob-scene-haikei.svg)'"
+      [style.background]="'url(assets/img/single.png)'"
     >
       <div class="centeri">
         <div class="card">
