@@ -6,13 +6,15 @@ import { CategoriesComponent } from './categories/categories.component';
 import { ListProductsComponent } from './list-products/list-products.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { DetailsProductComponent } from './details-product/details-product.component';
+import { FiltersComponent } from './filters/filters.component';
 
 @NgModule({
   declarations: [
     CarouselComponent,
     CategoriesComponent,
     ListProductsComponent,
-    DetailsProductComponent
+    DetailsProductComponent,
+    FiltersComponent
   ],
   imports: [
     CarouselModule,
@@ -22,7 +24,8 @@ import { DetailsProductComponent } from './details-product/details-product.compo
     CarouselComponent,
     CategoriesComponent,
     ListProductsComponent,
-    DetailsProductComponent
+    DetailsProductComponent,
+    FiltersComponent
   ]
 })
 

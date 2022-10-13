@@ -5,7 +5,7 @@ import { DetailsProductComponent } from '../shared/details-product/details-produ
 
 const routes: Routes = [
     { path: '', component: ShopComponent },
-    { path: ':category', component: ShopComponent },
+    { path: ':filters', component: ShopComponent },
     { path: 'product/:id', component: DetailsProductComponent }
 ];
 

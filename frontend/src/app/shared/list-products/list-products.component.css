@@ -1,12 +1,11 @@
 .container-shop {
-    width: 80%;
-    margin: 0 auto;
+    width: 100%;
 }
 
 .container-products {
-    /* height: 100%; */
     margin-top: 50px;
-    width: 100%;
+    width: 80%;
+    margin-left: 20%;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: 1fr;

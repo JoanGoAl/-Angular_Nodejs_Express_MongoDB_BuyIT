@@ -1,0 +1,8 @@
+<div class="container-filters">
+    <h3>Categoria</h3>
+    <select (change)="changeUrl($event)" name="select-category" id="select-category" value="{{prevFilters.category}}">
+        <option value="allProducts">Todas las categorias</option>
+        <!-- <option *ngFor="let item of products" ></option> -->
+        <option value="deporte">Deporte</option>
+    </select>
+</div>
