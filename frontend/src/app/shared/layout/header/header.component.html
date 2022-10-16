@@ -9,9 +9,9 @@
     <p-megaMenu styleClass="megaMenu" [model]="items" (blur)="hidden = !hidden" [ngClass]="{'hidden': hidden }" class="megamenu" orientation="vertical"></p-megaMenu>
   </div>
   <div #topbarmenu class="layout-topbar-menu">
-      <button class="p-link layout-topbar-button">
-          <i class="pi pi-calendar"></i>
-          <span>Calendar</span>
+      <button class="p-link layout-topbar-button" (click)="switchTheme()" >
+          <i id="theme" class="pi pi-moon"></i>
+          <span>Moon</span>
       </button>
       <button class="p-link layout-topbar-button">
           <i class="pi pi-user"></i>

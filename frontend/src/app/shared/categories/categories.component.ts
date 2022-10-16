@@ -26,7 +26,7 @@ export class CategoriesComponent implements OnInit {
   constructor(
     private categoriesService: CategoryService,
     private _productService: ProductService,
-    private router: Router
+    private router: Router,
     ) {}
 
   onScrollDown() {
@@ -53,7 +53,7 @@ export class CategoriesComponent implements OnInit {
   }
 
   goFilteredProducts(title: String) {
-    this.router.navigateByUrl(`shop?cat=${title}`)
+    // this.router.navigateByUrl(`shop?cat=${title}`)
   }
 
   getTemplate(length: number) {
