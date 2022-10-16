@@ -1,13 +1,12 @@
 <div class="home-categories-container">
-  <!-- Añadir al li la clase dark, cambiar a home-categories-list-content-wrapper-dark::after y home-categories-list-content-wrapper-dark::before  -->
   <div class="home-categories-list">
     <p-carousel [value]="items" [showIndicators]="false" [showNavigators]="true" [numVisible]="5" [numScroll]="1"
       [circular]="true">
       <ng-template let-item pTemplate="item">
-        <div class="home-categories-list-content-wrapper">
+        <div id="catWrapper" class="home-categories-list-content-wrapper">
           <div class="home-categories-list-content">
             <ul>
-              <li class="home-categories-list-item">
+              <li id="items-list" class="home-categories-list-item">
                 <a class="home-category-link" href="" title="{{ item.title }}">
                   <div class="home-categories-item-icon-wrapper">
                     <app-fa-icon icon="{{ item.icon }}"></app-fa-icon>

@@ -21,6 +21,17 @@ export class HeaderComponent implements OnInit {
   switchTheme() {
     let doc = this.document.getElementById('theme');
 
+    Array.from(this.document.getElementsByTagName('li')).map((item) => {
+      if (item.id == 'items-list') item.classList.toggle('dark')
+    })
+
+    Array.from(this.document.getElementsByTagName('div')).map((item) => {
+      if (item.id == "catWrapper") {
+        item.classList.toggle('home-categories-list-content-wrapper')
+        item.classList.toggle('home-categories-list-content-wrapper-dark')
+      }
+    })
+
     if (doc) {
       doc.classList.toggle('pi-moon');
       doc.classList.toggle('pi-sun');
