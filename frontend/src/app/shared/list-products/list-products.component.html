@@ -1,5 +1,5 @@
 <div class="container-shop">
-    <app-filters></app-filters>
+    <app-filters (products)="test($event)"></app-filters>
 
     <div class="container-products">
         <div *ngFor="let item of products" class="product">

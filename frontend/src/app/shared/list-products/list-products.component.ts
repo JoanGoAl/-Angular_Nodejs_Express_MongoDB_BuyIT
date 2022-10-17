@@ -17,28 +17,15 @@ export class ListProductsComponent implements OnInit {
 
   constructor(
     private aRouter: ActivatedRoute,
-    private productService: ProductService,
-    private categoryService: CategoryService,
-    private pXc: ProductsXCategoryService,
     private router: Router
   ) {
     this.aRouter.queryParams.subscribe(res => {
       this.filters = res
     })
+  }
 
-    // this.filters.category = this.aRouter.snapshot.queryParamMap.get('category') ? this.aRouter.snapshot.queryParamMap.get('category') : 'allProducts'; //obtiene la 'id' del link
-    // if (this.filters.category === 'allProducts') {
-    //   productService.getProducts().subscribe(res => {
-    //     this.products = res
-    //   })
-    // } else {
-    //   pXc.getPxC(this.filters.category).subscribe(res => {
-    //     this.products = res
-    //   })
-    // }
-
-
-
+  test(e: any) {
+    this.products = e
   }
 
   redirect(id?: String) {
