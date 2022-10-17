@@ -1,3 +1,27 @@
-<p>list-products works!</p>
+<div class="container-shop">
+    <app-filters (products)="test($event)"></app-filters>
 
-<p> {{category}} </p>
+    <div class="container-products">
+        <div *ngFor="let item of products" class="product">
+            <div class="product-content">
+                <div class="img-product">
+                    <img src="{{item.imgUrl[0]}}" alt="{{item.name}}">
+                </div>
+                <div class="title">
+                    <h2>{{item.name}}</h2>
+                </div>
+                <div class="short-description">
+                    <p> {{item.description}} </p>
+                </div>
+                <div class="contianer-footer-product">
+                    <div class="price">
+                        <h3>{{item.price}} €</h3>
+                    </div>
+                    <div class="see-button" (click)="redirect(item._id)">
+                        Ver producto
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

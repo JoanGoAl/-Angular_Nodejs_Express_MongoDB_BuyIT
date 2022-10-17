@@ -14,13 +14,10 @@ exports.addProduct = async (data) => {
         let idCategories = []
         for (let i = 0; i < data.categories.length; i++) {
             let aux = await CategoryModel.find({ title: data.categories[i] })
-
-            if (aux.length != 0)
-                idCategories.push(aux[0]._id);
+            idCategories.push(aux[0]._id);
         }
 
-        console.log('A');
-        
+
         const createProduct = await ProductModel.create(data)
 
         let addInPxC = []
@@ -61,7 +58,7 @@ exports.getOneProduct = async (_id, defaultOption = true) => {
         if (!defaultOption) {
             let difference = await ProductModel.countDocuments({ categories: _id }).exec() - 0;
             let random = Math.floor(Math.random() * difference) + 0
-            
+
             return await ProductModel.find({ categories: _id }).limit(1).skip(random)
         }
         return await ProductModel.find({ _id })

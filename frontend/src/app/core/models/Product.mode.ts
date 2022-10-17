@@ -6,4 +6,5 @@ export interface Product {
   imgUrl: String[]
   condition: String
   owner: String
+  price: String
 }
