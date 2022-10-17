@@ -2,6 +2,8 @@ import { DOCUMENT } from '@angular/common';
 import { ThemeService } from './../../../core/services/theme.service';
 import { Component, Inject, OnInit, ViewEncapsulation } from '@angular/core';
 import { MegaMenuItem } from 'primeng/api';
+import { Product } from 'src/app/core/models';
+import { ProductService } from 'src/app/core/services/products.service';
 
 @Component({
   selector: 'app-header',
@@ -10,13 +12,20 @@ import { MegaMenuItem } from 'primeng/api';
   encapsulation: ViewEncapsulation.None,
 })
 export class HeaderComponent implements OnInit {
-  hidden: boolean = true;
-  items!: MegaMenuItem[];
+  autocomplete?: string;
+  results: Array<String> = []
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
-    private themeService: ThemeService
+    private themeService: ThemeService,
+    private productService: ProductService
   ) {}
+
+    search(e: any) {
+      this.productService.productStartWith(e.query).subscribe((e) => {
+        this.results = e.map((i) => i.name)
+      })
+    }
 
   switchTheme() {
     let doc = this.document.getElementById('theme');
@@ -41,18 +50,6 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.items = [
-      {
-        label: 'Categorias',
-        items: [
-          [
-            { label: 'Moda y Accesorios' },
-            { label: 'Deporte y Ocio' },
-            { label: 'Electrónica' },
-            { label: 'Motor' },
-          ],
-        ],
-      },
-    ];
+
   }
 }

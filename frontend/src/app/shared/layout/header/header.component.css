@@ -28,6 +28,14 @@
   margin-right: 0.5rem;
 }
 
+.searhcbar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80%;
+}
+
+
 .layout-topbar .layout-topbar-button {
   display: inline-flex;
   justify-content: center;

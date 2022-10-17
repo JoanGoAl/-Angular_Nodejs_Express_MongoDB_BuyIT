@@ -8,9 +8,24 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { IconsComponent } from './icons/icons.component';
 import { ScrollTopModule } from 'primeng/scrolltop';
 import { ScrollPanelModule } from 'primeng/scrollpanel'
+
 @NgModule({
-  declarations: [CarouselComponent, CategoriesComponent, ListProductsComponent],
-  imports: [CarouselModule, InfiniteScrollModule, IconsComponent, ScrollTopModule, ScrollPanelModule],
-  exports: [CarouselComponent, CategoriesComponent, ListProductsComponent],
+  declarations: [
+    CarouselComponent,
+    CategoriesComponent,
+    ListProductsComponent
+  ],
+  imports: [
+    CarouselModule,
+    InfiniteScrollModule,
+    IconsComponent,
+    ScrollTopModule,
+    ScrollPanelModule
+  ],
+  exports: [
+    CarouselComponent,
+    CategoriesComponent,
+    ListProductsComponent
+  ],
 })
 export class SharedModule {}
