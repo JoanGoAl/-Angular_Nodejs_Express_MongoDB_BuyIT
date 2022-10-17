@@ -12,6 +12,7 @@ export class FiltersComponent implements OnInit {
 
   filters!: any
   @Output() products = new EventEmitter<Product[]>();
+  categories?: any
 
   constructor(
     private router: Router,
@@ -40,12 +41,22 @@ export class FiltersComponent implements OnInit {
     }
   }
 
+  getCategories() {
+    this.categoryService.getCategories().subscribe(res => {
+      this.categories = res
+      console.log(this.categories);
+
+    })
+  }
+
   changeCategoryUrl = (category: String) => {
     this.router.navigateByUrl(`shop/filters?category=${category}`)
   }
 
   ngOnInit(): void {
     this.getProducts("allProducts")
+    this.getCategories()
+
   }
 
 }
