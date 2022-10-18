@@ -1,13 +1,36 @@
-<div *ngIf="product">
-    <div class="container-img-details">
-        <img src="{{product.imgUrl[0]}}" alt="">
+<div class="card-wrapper">
+  <div class="card">
+    <div class="seller-info">
+      <div class="seller-img">
+        <img src="{{ product.imgUrl[0] }}" alt="">
+      </div>
+      <div class="seller-name">
+        <div class="seller-imp-info">
+          <div class="seller-name">Moisés Guerola</div>
+          <div class="seller-products">4 productos</div>
+        </div>
+      </div>
+      <div class="seller-rating"></div>
     </div>
-    <div class="container-info-details">
-        <h1> {{product.name}} </h1>
-        <h3>Descripcion: {{product.description}} </h3>
-        <h3>Condicions: {{product.condition}} </h3>
-        <h3>Vendedor: {{product.owner}} </h3>
-        <h3>Precio: {{product.price}}€ </h3>
+    <div class="card-img">
+      <!-- <img src="{{ product.imgUrl[0] }}" alt="" /> -->
+      <p-carousel [circular]="true" [value]="product.imgUrl" [numVisible]="1" [numScroll]="1">
+        <ng-template let-img pTemplate="item">
+          <div class="img-wrapper">
+            <img src="{{ img }}" alt="">
+          </div>
+        </ng-template>
+      </p-carousel>
     </div>
-
+    <div class="card-product-info">
+      <h1>{{ product.name }}</h1>
+      <h3>Descripcion: {{ product.description }}</h3>
+      <h3>Condicions: {{ product.condition }}</h3>
+      <h3>Vendedor: {{ product.owner }}</h3>
+      <h3>Precio: {{ product.price }}€</h3>
+    </div>
+    <div class="more-info">
+      <h1>A</h1>
+    </div>
+  </div>
 </div>
