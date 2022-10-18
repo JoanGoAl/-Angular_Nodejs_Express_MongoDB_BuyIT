@@ -24,7 +24,6 @@ export class DetailsProductComponent implements OnInit {
       this.product = res[0]
 
       console.table(this.product);
-
     })
 
   }
