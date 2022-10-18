@@ -16,6 +16,7 @@ import { CardModule } from 'primeng/card';
 
 
 import { FooterComponent, HeaderComponent, SharedModule } from './shared';
+import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,9 +31,9 @@ import { FooterComponent, HeaderComponent, SharedModule } from './shared';
     AppRoutingModule,
     AccordionModule,
     MegaMenuModule,
-    CardModule,
+    CardModule
   ],
   providers: [],
-  bootstrap: [ AppComponent ]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

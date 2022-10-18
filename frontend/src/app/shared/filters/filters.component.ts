@@ -13,6 +13,7 @@ export class FiltersComponent implements OnInit {
   filters!: any
   @Output() products = new EventEmitter<Product[]>();
   categories?: any
+  subscription?: any
 
   constructor(
     private router: Router,
@@ -25,27 +26,41 @@ export class FiltersComponent implements OnInit {
   }
 
   getProducts(e: any) {
-    this.changeCategoryUrl(e.target?.value || "allProducts")
+    this.changeCategoryUrl(e.target?.value || e)
+
+    // this.filters = this.aRouter.snapshot.queryParams
+    // console.log(this.filters);
+
+    // if (this.filters.category === 'allProducts') {
+    //   this.productService.getProducts().subscribe(res => {
+    //     this.products.emit(res)
+    //   })
+    // } else {
+    //   this.pXc.getPxC(this.filters.category).subscribe(res => {
+    //     this.products.emit(res)
+    //   })
+    // }
     this.aRouter.queryParams.subscribe(res => {
       this.filters = res
-    })
-    if (this.filters.category === 'allProducts') {
-      this.productService.getProducts().subscribe(res => {
-        this.products.emit(res)
-      })
-    } else {
-      this.pXc.getPxC(this.filters.category).subscribe(res => {
-        this.products.emit(res)
-      })
 
-    }
+      this.changeCategoryUrl(e.target?.value || this.filters.category)
+
+      if (this.filters.category === 'allProducts') {
+        this.productService.getProducts().subscribe(res => {
+          this.products.emit(res)
+        })
+      } else {
+        this.pXc.getPxC(this.filters.category).subscribe(res => {
+          this.products.emit(res)
+        })
+      }
+      if (!this.filters.category) this.changeCategoryUrl("allProducts")
+    })
   }
 
   getCategories() {
     this.categoryService.getCategories().subscribe(res => {
       this.categories = res
-      console.log(this.categories);
-
     })
   }
 

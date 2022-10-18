@@ -7,6 +7,9 @@ import { ListProductsComponent } from './list-products/list-products.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { DetailsProductComponent } from './details-product/details-product.component';
 import { FiltersComponent } from './filters/filters.component';
+import { ScrollTopModule } from 'primeng/scrolltop'
+import { ScrollPanelModule } from 'primeng/scrollpanel'
+import { IconsComponent } from './icons/icons.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +21,10 @@ import { FiltersComponent } from './filters/filters.component';
   ],
   imports: [
     CarouselModule,
-    InfiniteScrollModule
+    InfiniteScrollModule,
+    IconsComponent,
+    ScrollTopModule,
+    ScrollPanelModule
   ],
   exports: [
     CarouselComponent,
