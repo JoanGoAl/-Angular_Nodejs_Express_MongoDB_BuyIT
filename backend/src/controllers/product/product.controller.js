@@ -18,9 +18,7 @@ exports.addProduct = async (data) => {
             if (aux.length != 0)
                 idCategories.push(aux[0]._id);
         }
-
-        console.log('A');
-        
+                
         const createProduct = await ProductModel.create(data)
 
         let addInPxC = []
