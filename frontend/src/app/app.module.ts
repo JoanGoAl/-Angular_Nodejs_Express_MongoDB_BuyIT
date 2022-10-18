@@ -14,8 +14,12 @@ import { AccordionModule } from 'primeng/accordion'
 import { MegaMenuModule } from 'primeng/megamenu';
 import { CardModule } from 'primeng/card';
 
-
 import { FooterComponent, HeaderComponent, SharedModule } from './shared';
+
+import { FormsModule } from '@angular/forms'
+import { AutoCompleteModule } from 'primeng/autocomplete';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,6 +35,8 @@ import { FooterComponent, HeaderComponent, SharedModule } from './shared';
     AccordionModule,
     MegaMenuModule,
     CardModule,
+    FormsModule,
+    AutoCompleteModule
   ],
   providers: [],
   bootstrap: [ AppComponent ]

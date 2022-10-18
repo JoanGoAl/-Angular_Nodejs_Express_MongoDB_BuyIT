@@ -40,3 +40,9 @@ exports.getOneProduct = async (req, res) => {
         throw new Error(e)
     }
 }
+
+exports.getProductsStartsWith = async (req, res) => {
+    try {
+        res.json(await productController.getProductsStartsWith(req.query.startsWith))
+    } catch (e) { new Error(e) }
+}

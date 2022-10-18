@@ -24,4 +24,10 @@ export class ProductService {
       })
       .pipe(map((product: Product[]) => product.map((img) => img.imgUrl[0])));
   }
+
+  productStartWith(name: string): Observable<Product[]> {
+    return this._http.get<Product[]>(`${this.baseUrl}/getProductsStartsWith`, {
+      params: new HttpParams().set('startsWith', name)
+    })
+  }
 }

@@ -44,7 +44,7 @@
       [style.background]="'url(assets/img/blob_a.svg)'"
     >
       <div class="little-centeri">
-        <div class="little-card">
+        <div class="little-card" (click)="goFilteredProducts(item[1].title)">
           <img
             src="{{ item[1].product_img }}"
             class="foto"
@@ -61,7 +61,7 @@
       [style.background]="'url(assets/img/blob_b.svg)'"
     >
       <div class="little-centeri">
-        <div class="little-card">
+        <div class="little-card" (click)="goFilteredProducts(item[2].title)">
           <img
             src="{{ item[2].product_img }}"
             class="foto"
@@ -83,7 +83,7 @@
       [style.background]="'url(assets/img/doble_lft.png)'"
     >
       <div class="centeri">
-        <div class="card">
+        <div class="card" (click)="goFilteredProducts(item[0].title)">
           <img
             src="{{ item[0].product_img }}"
             class="foto"
@@ -100,7 +100,7 @@
       [style.background]="'url(assets/img/doble_lft_2.png)'"
     >
       <div class="centeri">
-        <div class="card">
+        <div class="card" (click)="goFilteredProducts(item[1].title)">
           <img
             src="{{ item[1].product_img }}"
             class="foto"
@@ -122,7 +122,7 @@
       [style.background]="'url(assets/img/single.png)'"
     >
       <div class="centeri">
-        <div class="card">
+        <div class="card" (click)="goFilteredProducts(item[0].title)">
           <img
             src="{{ item[0].product_img }}"
             class="foto"

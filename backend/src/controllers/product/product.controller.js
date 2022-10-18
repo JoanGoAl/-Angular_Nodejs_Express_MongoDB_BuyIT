@@ -69,3 +69,10 @@ exports.getOneProduct = async (_id, defaultOption = true) => {
         return e
     }
 }
+
+exports.getProductsStartsWith = async (string) => {
+    try {
+        console.log(string);
+        return await ProductModel.find({ name: { $regex: `^${string}` } })
+    } catch (e) { return e }
+}
