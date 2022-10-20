@@ -15,7 +15,7 @@
 </div>
 
 <div class="img-carousel">
-  <p-carousel [circular]="true" [value]="product.imgUrl">
+  <p-carousel [circular]="true" [value]="product.imgUrl" [showIndicators]="false">
     <ng-template let-img pTemplate="item">
       <img class="product-img" src="{{ img }}" alt="">
     </ng-template>

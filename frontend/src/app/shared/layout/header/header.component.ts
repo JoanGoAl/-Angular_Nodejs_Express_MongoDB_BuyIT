@@ -13,7 +13,7 @@ import { ProductService } from 'src/app/core/services/products.service';
 })
 export class HeaderComponent implements OnInit {
   autocomplete?: string;
-  results: String[] = []
+  results: String[] = [];
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
@@ -21,25 +21,33 @@ export class HeaderComponent implements OnInit {
     private productService: ProductService
   ) {}
 
-    search(e: any) {
-      this.productService.productStartWith(e.query).subscribe((e) => {
-        this.results = e.map((i) => i.name)
-      })
-    }
+  search(e: any) {
+    // Capitalize all string to search
+    e.query = e.query
+      .split(' ')
+      .map((str: string) => str.charAt(0).toUpperCase() + str.slice(1))
+      .join()
+      .replaceAll(',', ' ');
+
+    // Set result to autocomplete
+    this.productService.productStartWith(e.query).subscribe((e) => {
+      this.results = e.map((i) => i.name);
+    });
+  }
 
   switchTheme() {
     let doc = this.document.getElementById('theme');
 
     Array.from(this.document.getElementsByTagName('li')).map((item) => {
-      if (item.id == 'items-list') item.classList.toggle('dark')
-    })
+      if (item.id == 'items-list') item.classList.toggle('dark');
+    });
 
     Array.from(this.document.getElementsByTagName('div')).map((item) => {
-      if (item.id == "catWrapper") {
-        item.classList.toggle('home-categories-list-content-wrapper')
-        item.classList.toggle('home-categories-list-content-wrapper-dark')
+      if (item.id == 'catWrapper') {
+        item.classList.toggle('home-categories-list-content-wrapper');
+        item.classList.toggle('home-categories-list-content-wrapper-dark');
       }
-    })
+    });
 
     if (doc) {
       doc.classList.toggle('pi-moon');
@@ -49,7 +57,5 @@ export class HeaderComponent implements OnInit {
     }
   }
 
-  ngOnInit(): void {
-
-  }
+  ngOnInit(): void {}
 }

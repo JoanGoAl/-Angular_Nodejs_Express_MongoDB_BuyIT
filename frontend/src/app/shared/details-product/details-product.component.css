@@ -1,8 +1,8 @@
 .graph {
   position: absolute;
   width: 40%;
-  height: 100%;
-  left: 10%;
+  height: fit-content;
+  left: 13%;
   top: 10%;
 }
 
@@ -10,7 +10,7 @@
   position: absolute;
   width: 20%;
   height: 35.5%;
-  left: 20%;
+  left: 22%;
   top: 35%;
 
   background: #ffffff;
@@ -58,7 +58,8 @@
 }
 
 .seller-card .seller-info {
-  background-color: red;
+  display: flex;
+  flex-direction: column;
   position: absolute;
   width: 60%;
   height: 100%;
@@ -67,9 +68,12 @@
 
   font-family: 'ABeeZee';
   font-style: normal;
-  font-weight: 400;
+  font-weight: 600;
   font-size: 12px;
   line-height: 14px;
 
   color: #000000;
+}
+
+.seller-info p {
 }
