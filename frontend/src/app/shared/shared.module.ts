@@ -11,7 +11,6 @@ import { IconsComponent } from './icons/icons.component';
 import { ScrollTopModule } from 'primeng/scrolltop'
 import { ScrollPanelModule } from 'primeng/scrollpanel'
 
-
 @NgModule({
   declarations: [
     CarouselComponent,

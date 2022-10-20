@@ -13,7 +13,7 @@ import { ProductService } from 'src/app/core/services/products.service';
 })
 export class HeaderComponent implements OnInit {
   autocomplete?: string;
-  results: Array<String> = []
+  results: String[] = []
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
