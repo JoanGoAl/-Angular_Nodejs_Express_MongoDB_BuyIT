@@ -28,21 +28,30 @@ export class FiltersComponent implements OnInit {
 
   getProducts() {
     this.aRouter.url.subscribe((flt) => {
-      this.filters = Object.fromEntries(
-        atob(flt[0].path)
-          .split('?')
-          .splice(1)
-          .map((item) => item.split('&'))
-          .map((e) => e[0].split('='))
-      );
+
+      if (flt.length != 0) {
+        this.filters = Object.fromEntries(
+          atob(flt[0].path)
+            .split('?')
+            .splice(1)
+            .map((item) => item.split('&'))
+            .map((e) => e[0].split('='))
+        );
+      }
     });
+
+    console.log(typeof this.filters == "undefined");
 
 
     if (
+      typeof this.filters == "undefined" ||
       this.filters.category == 'all' ||
       typeof this.filters.category == 'undefined'
     ) {
       this.productService.getProducts().subscribe((items) => {
+        this.router.navigateByUrl(
+          `shop/${btoa(`filters?category=all`)}`
+        );
         this.products.emit(items);
       });
     }
