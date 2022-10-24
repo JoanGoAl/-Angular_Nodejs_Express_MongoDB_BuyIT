@@ -16,5 +16,5 @@ router.use(morgan('dev'))
 router.use('/products', require('./product.route'))
 router.use('/categories', require('./category.route'))
 router.use('/productsXcategory', require('./productsXcategory.route'))
-
+router.use('/auth', require('./user.routes'))
 module.exports = router;
