@@ -12,12 +12,7 @@ export class FiltersComponent implements OnInit {
 
   filters!: { category: String };
   @Output() products = new EventEmitter<Product[]>();
-<<<<<<< HEAD
-  categories?: any
-  subscription?: any
-=======
   categories!: Category[];
->>>>>>> mois-dev
 
   constructor(
     private router: Router,
