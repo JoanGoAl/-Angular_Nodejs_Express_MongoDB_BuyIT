@@ -1,7 +1,7 @@
 <div class="container-filters" *ngIf="filters">
-    <h3>Categoria</h3>
-    <select (change)="getProducts($event)" name="select-category" id="select-category" value="{{filters.category}}">
-        <option value="allProducts">Todos los productos</option>
-        <option *ngFor="let item of categories" value="{{item.title}}"> {{item.title}} </option>
-    </select>
+        <h3>Categoria</h3>
+        <select (change)="getProducts($event)" name="select-category" id="select-category" value="{{filters.category}}">
+                <option value="allProducts"> Todas las Categorias </option>
+                <option *ngFor="let item of categories" value="{{item.title}}"> {{item.title}} </option>
+        </select>
 </div>

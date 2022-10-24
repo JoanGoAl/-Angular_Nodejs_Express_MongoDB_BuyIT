@@ -2,6 +2,8 @@ import { DOCUMENT } from '@angular/common';
 import { ThemeService } from './../../../core/services/theme.service';
 import { Component, Inject, OnInit, ViewEncapsulation } from '@angular/core';
 import { MegaMenuItem } from 'primeng/api';
+import { Product } from 'src/app/core/models';
+import { ProductService } from 'src/app/core/services/products.service';
 
 @Component({
   selector: 'app-header',
@@ -10,27 +12,42 @@ import { MegaMenuItem } from 'primeng/api';
   encapsulation: ViewEncapsulation.None,
 })
 export class HeaderComponent implements OnInit {
-  hidden: boolean = true;
-  items!: MegaMenuItem[];
+  autocomplete?: string;
+  results: String[] = [];
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
-    private themeService: ThemeService
+    private themeService: ThemeService,
+    private productService: ProductService
   ) {}
+
+  search(e: any) {
+    // Capitalize all string to search
+    e.query = e.query
+      .split(' ')
+      .map((str: string) => str.charAt(0).toUpperCase() + str.slice(1))
+      .join()
+      .replaceAll(',', ' ');
+
+    // Set result to autocomplete
+    this.productService.productStartWith(e.query).subscribe((e) => {
+      this.results = e.map((i) => i.name);
+    });
+  }
 
   switchTheme() {
     let doc = this.document.getElementById('theme');
 
     Array.from(this.document.getElementsByTagName('li')).map((item) => {
-      if (item.id == 'items-list') item.classList.toggle('dark')
-    })
+      if (item.id == 'items-list') item.classList.toggle('dark');
+    });
 
     Array.from(this.document.getElementsByTagName('div')).map((item) => {
-      if (item.id == "catWrapper") {
-        item.classList.toggle('home-categories-list-content-wrapper')
-        item.classList.toggle('home-categories-list-content-wrapper-dark')
+      if (item.id == 'catWrapper') {
+        item.classList.toggle('home-categories-list-content-wrapper');
+        item.classList.toggle('home-categories-list-content-wrapper-dark');
       }
-    })
+    });
 
     if (doc) {
       doc.classList.toggle('pi-moon');
@@ -40,19 +57,5 @@ export class HeaderComponent implements OnInit {
     }
   }
 
-  ngOnInit(): void {
-    this.items = [
-      {
-        label: 'Categorias',
-        items: [
-          [
-            { label: 'Moda y Accesorios' },
-            { label: 'Deporte y Ocio' },
-            { label: 'Electrónica' },
-            { label: 'Motor' },
-          ],
-        ],
-      },
-    ];
-  }
+  ngOnInit(): void {}
 }

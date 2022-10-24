@@ -15,10 +15,6 @@ export class ProductService {
     return this._http.get<Product[]>(`${this.baseUrl}/getProducts`);
   }
 
-  getProductById(id: String): Observable<Product[]> {
-    return this._http.get<Product[]>(`${this.baseUrl}//getOneProduct/${id}`)
-  }
-
   getRandomProduct(name: string): Observable<String[]> {
     let params = new HttpHeaders().set('title', name);
 
@@ -27,5 +23,15 @@ export class ProductService {
         headers: params,
       })
       .pipe(map((product: Product[]) => product.map((img) => img.imgUrl[0])));
+  }
+
+  getProductById(id: String): Observable<Product[]> {
+    return this._http.get<Product[]>(`${this.baseUrl}//getOneProduct/${id}`);
+  }
+
+  productStartWith(name: string): Observable<Product[]> {
+    return this._http.get<Product[]>(`${this.baseUrl}/getProductsStartsWith`, {
+      params: new HttpParams().set('startsWith', name),
+    });
   }
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Product } from 'src/app/core/models';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+import { Category, Product } from 'src/app/core/models';
 import { CategoryService, ProductService, ProductsXCategoryService } from 'src/app/core/services';
 
 @Component({
@@ -10,10 +10,14 @@ import { CategoryService, ProductService, ProductsXCategoryService } from 'src/a
 })
 export class FiltersComponent implements OnInit {
 
-  filters!: any
+  filters!: { category: String };
   @Output() products = new EventEmitter<Product[]>();
+<<<<<<< HEAD
   categories?: any
   subscription?: any
+=======
+  categories!: Category[];
+>>>>>>> mois-dev
 
   constructor(
     private router: Router,
@@ -27,35 +31,20 @@ export class FiltersComponent implements OnInit {
 
   getProducts(e: any) {
     this.changeCategoryUrl(e.target?.value || e)
-
-    // this.filters = this.aRouter.snapshot.queryParams
-    // console.log(this.filters);
-
-    // if (this.filters.category === 'allProducts') {
-    //   this.productService.getProducts().subscribe(res => {
-    //     this.products.emit(res)
-    //   })
-    // } else {
-    //   this.pXc.getPxC(this.filters.category).subscribe(res => {
-    //     this.products.emit(res)
-    //   })
-    // }
     this.aRouter.queryParams.subscribe(res => {
-      this.filters = res
-
-      this.changeCategoryUrl(e.target?.value || this.filters.category)
-
-      if (this.filters.category === 'allProducts') {
-        this.productService.getProducts().subscribe(res => {
-          this.products.emit(res)
-        })
-      } else {
-        this.pXc.getPxC(this.filters.category).subscribe(res => {
-          this.products.emit(res)
-        })
-      }
-      if (!this.filters.category) this.changeCategoryUrl("allProducts")
+      this.filters = res as { category: String }
     })
+
+    if (this.filters.category === 'allProducts') {
+      this.productService.getProducts().subscribe(res => {
+        this.products.emit(res)
+      })
+    } else {
+      this.pXc.getPxC(this.filters.category).subscribe(res => {
+        this.products.emit(res)
+      })
+
+    }
   }
 
   getCategories() {
@@ -71,7 +60,6 @@ export class FiltersComponent implements OnInit {
   ngOnInit(): void {
     this.getProducts("allProducts")
     this.getCategories()
-
   }
 
 }

@@ -1,7 +1,7 @@
-import { ThemeService } from './../../core/services/theme.service';
-import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Category } from 'src/app/core/models';
 import { CategoryService } from 'src/app/core/services';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-carousel',
@@ -14,13 +14,15 @@ export class CarouselComponent implements OnInit {
 
   constructor(
     private catSercice: CategoryService,
-    private themeService: ThemeService
+    private router: Router
   ) {}
+
+  goShopFilters(title: String) {
+    this.router.navigateByUrl(`shop?cat=${title.toLowerCase()}`);
+  }
 
   ngOnInit(): void {
     this.catSercice.getCategories().subscribe((docs) => {
-      console.log(docs);
-
       this.items = docs;
     });
   }
