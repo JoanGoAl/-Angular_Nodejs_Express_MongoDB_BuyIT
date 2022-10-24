@@ -18,7 +18,7 @@ export class CarouselComponent implements OnInit {
   ) {}
 
   goShopFilters(title: String) {
-    this.router.navigateByUrl(`shop?cat=${title.toLowerCase()}`);
+    this.router.navigateByUrl(`shop/${btoa(`filters?category=${title.toLowerCase()}`)}`);
   }
 
   ngOnInit(): void {

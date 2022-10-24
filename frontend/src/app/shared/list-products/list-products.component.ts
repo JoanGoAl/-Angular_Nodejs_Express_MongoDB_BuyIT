@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Category, Product } from 'src/app/core/models';
-import { CategoryService, ProductsXCategoryService, ProductService } from 'src/app/core/services';
 
 
 @Component({
@@ -24,7 +23,7 @@ export class ListProductsComponent implements OnInit {
     })
   }
 
-  test(e: any) {
+  setProducts(e: any) {
     this.products = e
   }
 

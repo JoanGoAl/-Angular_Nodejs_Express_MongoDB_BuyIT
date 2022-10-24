@@ -10,6 +10,9 @@ import { FiltersComponent } from './filters/filters.component';
 import { IconsComponent } from './icons/icons.component';
 import { ScrollTopModule } from 'primeng/scrolltop'
 import { ScrollPanelModule } from 'primeng/scrollpanel'
+import { PanelMenuModule } from 'primeng/panelmenu';
+import { FormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -24,7 +27,9 @@ import { ScrollPanelModule } from 'primeng/scrollpanel'
     InfiniteScrollModule,
     IconsComponent,
     ScrollTopModule,
-    ScrollPanelModule
+    ScrollPanelModule,
+    PanelMenuModule,
+    FormsModule
   ],
   exports: [
     CarouselComponent,
