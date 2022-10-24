@@ -4,9 +4,8 @@
       <span>BuyIT</span>
   </a>
   <div class="searhcbar">
-    <!-- TODO Hacer que cuando pierda el search su focus se cierre el megamenu   -->
-    <input aria-autocomplete="list" role="searchbox" (click)="hidden = !hidden" class="p-element ng-tns-c81-2 p-autocomplete-input p-inputtext p-component ng-star-inserted srch-inp" autocomplete="off" type="text" placeholder="Search">
-    <p-megaMenu styleClass="megaMenu" [model]="items" (blur)="hidden = !hidden" [ngClass]="{'hidden': hidden }" class="megamenu" orientation="vertical"></p-megaMenu>
+    <!-- [dropdown]="true" dropdownIcon="pi pi-search" [completeOnFocus]="true" -->
+    <p-autoComplete placeholder="Busca tu producto" id="auto" [size]="$any(80)" [(ngModel)]="autocomplete" [suggestions]="results" (completeMethod)="search($event)" [delay]="500"></p-autoComplete>
   </div>
   <div #topbarmenu class="layout-topbar-menu">
       <button class="p-link layout-topbar-button" (click)="switchTheme()" >

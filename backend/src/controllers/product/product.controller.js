@@ -14,9 +14,10 @@ exports.addProduct = async (data) => {
         let idCategories = []
         for (let i = 0; i < data.categories.length; i++) {
             let aux = await CategoryModel.find({ title: data.categories[i] })
-            idCategories.push(aux[0]._id);
-        }
 
+            if (aux.length != 0)
+                idCategories.push(aux[0]._id);
+        }
 
         const createProduct = await ProductModel.create(data)
 
@@ -65,4 +66,11 @@ exports.getOneProduct = async (_id, defaultOption = true) => {
     } catch (e) {
         return e
     }
+}
+
+exports.getProductsStartsWith = async (string) => {
+    try {
+        console.log(string);
+        return await ProductModel.find({ name: { $regex: `^${string}` } })
+    } catch (e) { return e }
 }

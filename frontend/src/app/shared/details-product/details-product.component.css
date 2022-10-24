@@ -1,3 +1,255 @@
-.container-img-details>img {
-    width: 200px;
+*:focus,
+*:active {
+  outline: none !important;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.graph {
+  position: absolute;
+  width: 40%;
+  height: fit-content;
+  left: 8%;
+  top: 10%;
+}
+
+.mini-graphs {
+  background-color: red;
+}
+
+.mini-graphs > .top-graph {
+  position: absolute;
+  width: 20%;
+  left: 45%;
+  top: 5%;
+}
+
+.mini-graphs .bottom-graph {
+  position: absolute;
+  width: 20%;
+  left: 80%;
+  top: 32%;
+}
+
+
+
+.img-carousel {
+  position: absolute;
+  width: 20%;
+  height: 35.5%;
+  left: 17%;
+  top: 35%;
+
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 56px;
+}
+
+
+.product-img {
+  width: 100%;
+  height: 100%;
+}
+
+#pr_id_2 .p-carousel-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.seller-card {
+  position: absolute;
+  width: 10%;
+  height: 5%;
+  left: 25%;
+  top: 29%;
+
+  background: #ffffff;
+  border-radius: 10px;
+}
+
+.seller-card .seller-avatar {
+  position: absolute;
+  width: 35px;
+  height: 35px;
+  left: 5%;
+  top: 15%;
+  border-radius: 55px;
+}
+
+.seller-avatar img {
+  width: 35px;
+  height: 35px;
+}
+
+.seller-card .seller-info {
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  width: 60%;
+  height: 100%;
+  left: 30%;
+  top: 0%;
+
+  font-family: "ABeeZee";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 14px;
+
+  color: #000000;
+}
+
+.seller-info p {
+  margin: 0;
+}
+
+.seller-info p:first-child {
+  font-size: 1.5em;
+}
+
+.seller-info p:last-child {
+  margin-left: 10px;
+}
+
+.product-info {
+  position: absolute;
+  left: 50%;
+  top: 18%;
+  width: 45%;
+  height: 40%;
+  padding: 10px;
+  border-radius: 20px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.product-info .product-name {
+  font-size: 40px;
+  font-weight: 800;
+  padding: 15px;
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+
+.product-info .product-description {
+  padding: 10px;
+  line-height: 30px;
+  width: 85%;
+  font-size: 18px;
+  float: right;
+  text-justify: auto;
+}
+
+.action-buttons {
+  display: flex;
+  align-items: center;
+  width: 40%;
+  flex-direction: row;
+  position: absolute;
+  font-size: 35px;
+  left: 52%;
+  padding: 5px;
+  top: 48%;
+}
+
+.action-buttons .like-button {
+  display: flex;
+  width: 50px;
+  height: 50px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  cursor: pointer;
+  color: rgb(223, 16, 16);
+}
+
+.action-buttons .chat-button {
+  position: absolute;
+  text-align: center;
+  justify-content: center;
+  font-size: 26px;
+  left: 80%;
+  padding: 5px;
+  margin: 10px;
+}
+
+.action-buttons .price-info {
+  top: 30%;
+  position: absolute;
+  left: 15%;
+  font-weight: 800;
+}
+
+ul.wrapper {
+  display: inline-flex;
+  list-style: none;
+}
+
+ul.wrapper .icon {
+  position: relative;
+  background: #ffffff;
+  border-radius: 50%;
+  padding: 15px;
+  margin: 10px;
+  width: 75px;
+  height: 75px;
+  font-size: 26px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.wrapper .tooltip {
+  position: absolute;
+  top: 0;
+  font-size: 22px;
+  background: #ffffff;
+  color: #ffffff;
+  padding: 8px 12px;
+  border-radius: 7px;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.wrapper .tooltip::before {
+  position: absolute;
+  content: "";
+  height: 8px;
+  width: 8px;
+  background: #ffffff;
+  bottom: -3px;
+  left: 50%;
+  transform: translate(-50%) rotate(45deg);
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.wrapper .icon:hover .tooltip {
+  top: -65px;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.wrapper .icon:hover span,
+.wrapper .icon:hover .tooltip {
+  text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.1);
+}
+
+.wrapper .chat:hover,
+.wrapper .chat:hover .tooltip,
+.wrapper .chat:hover .tooltip::before {
+  background: #2f292a;
+  color: #ffffff;
+}
+
+.like-button app-fa-icon {
+  margin-top: 5px;
 }

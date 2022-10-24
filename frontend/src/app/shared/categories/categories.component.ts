@@ -53,7 +53,7 @@ export class CategoriesComponent implements OnInit {
   }
 
   goFilteredProducts(title: String) {
-    // this.router.navigateByUrl(`shop?cat=${title}`)
+    this.router.navigateByUrl(`shop?cat=${title.toLowerCase()}`)
   }
 
   getTemplate(length: number) {

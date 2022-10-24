@@ -35,11 +35,6 @@
                 "input": "src/assets/themes/dark_theme.css",
                 "bundleName": "dark_theme",
                 "inject": false
-              },
-              {
-                "input": "node_modules/primeng/resources/themes/tailwind-light/theme.css",
-                "bundleName": "tailwind",
-                "inject": false
               }
             ],
             "scripts": []
