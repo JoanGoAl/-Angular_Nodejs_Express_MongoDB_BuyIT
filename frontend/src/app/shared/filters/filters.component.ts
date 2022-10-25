@@ -73,6 +73,9 @@ export class FiltersComponent implements OnInit {
   }
 
   changeCategoryUrl = (e: any) => {
+    console.log(e.target.value);
+
+
     this.router.navigateByUrl(
       `shop/${btoa(`filters?category=${e.target.value}`)}`
     );

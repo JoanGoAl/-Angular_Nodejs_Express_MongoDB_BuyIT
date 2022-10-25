@@ -13,18 +13,19 @@ import { AppComponent } from './app.component';
 import { AccordionModule } from 'primeng/accordion'
 import { MegaMenuModule } from 'primeng/megamenu';
 import { CardModule } from 'primeng/card';
-
-import { FooterComponent, HeaderComponent, SharedModule } from './shared';
-
-import { FormsModule } from '@angular/forms'
 import { AutoCompleteModule } from 'primeng/autocomplete';
 
+// Shared
+import { FooterComponent, HeaderComponent, SharedModule } from './shared';
+
+// Forms
+import { FormsModule } from '@angular/forms'
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
   ],
   imports: [
     SharedModule,

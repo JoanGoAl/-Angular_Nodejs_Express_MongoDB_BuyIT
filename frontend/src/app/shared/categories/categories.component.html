@@ -9,7 +9,7 @@
   <div *ngFor="let item of data; index as index">
     <ng-container
       [ngTemplateOutlet]="getTemplate(data[index].length)"
-      [ngTemplateOutletContext]="{ index, item: data[index] }"
+      [ngTemplateOutletContext]="{ index, item: data[index] | capitalizeArray }"
       >
     </ng-container>
   </div>
@@ -17,6 +17,7 @@
 </div>
 
 <ng-template #triple let-index="index" let-item="item">
+  <h3> JSON {{ item | json }}</h3>
   <div
     [ngClass]="
       index % 2 == 0 ? 'grid category-grid' : 'grid category-grid-reverse'
