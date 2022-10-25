@@ -1,70 +1,66 @@
-const mongoose = require("mongoose");
-const argon2 = require("argon2");
-const uuidV3 = require("uuid").v3;
-const jwt = require("jsonwebtoken");
+var mongoose = require("mongoose");
+var argon2 = require('argon2')
+const { v4: uuidv4 } = require('uuid');
+var uniqueValidator = require("mongoose-unique-validator");
+// var slug = require("slug");
+var jwt = require('jsonwebtoken')
 const { SECRET } = require("../config");
 
 const UserSchema = mongoose.Schema({
   uuid: { type: String, unique: true },
-  username: { type: String, required: true, unique: true },
-  password: { type: String, requred: true },
-  email: { type: String, required: true, unique: true },
-  avatar: { type: String },
-  biography: { type: String, maxLength: 300 },
-  products: [{ type: mongoose.Schema.Types.ObjectId, ref: "products" }],
-  favorites: [{ type: mongoose.Schema.Types.ObjectId, ref: "favorites" }],
-});
+  username: { type: String, unique: true, required: true },
+  email: { type: String, unique: true, required: true },
+  password: { type: String, required: true },
+  avatar: { type: String, },
+  bio: { type: String, maxLength: 300 },
+  products: [{ type: mongoose.Schema.Types.ObjectId, ref: "Product" }],
+  favorites: [{ type: mongoose.Schema.Types.ObjectId, ref: "Product" }]
+})
 
-UserSchema.pre("validate", (next) => {
-  this.uuid = uuidV3();
+UserSchema.plugin(uniqueValidator, { message: "is already taken" })
+
+UserSchema.pre("validate", async function (next) {
+  this.uuid = uuidv4();
   this.avatar = `https://api.multiavatar.com/${this.username}.png`;
-  this.passwd = this.hashPassword();
-
-  next();
-});
+  this.password = await this.hashPassword()
+  next()
+})
 
 UserSchema.methods.hashPassword = async function () {
-  let hash = await argon2.hash(this.password);
-  return hash;
-};
+  return argon2.hash(this.password)
+}
 
-UserSchema.methods.verificatePassword = async function (passwd) {
-  this.password = await argon2.verify(this.password, passwd);
-};
+UserSchema.methods.validatePassword = async function (password) {
+  try {
+    return await argon2.verify(this.password, password)
+  } catch (error) {
+    return error
+  }
+}
 
-UserSchema.methods.generateJWT = function () {
-  let now = new Date();
-  let exp = new Date(now);
-  exp.setDate(now.getDate() + 60);
+UserSchema.methods.uuidGenerate = function () {
+  this.uuid = uuidV3();
+}
 
-  return jwt.sign(
-    {
-      uuid: this.uuid,
-      username: this.username,
-      exp: parseInt(exp.getTime() / 1000),
-    },
-    SECRET
-  );
-};
+UserSchema.methods.generateToken = function () {
+  var today = new Date()
+  var exp = new Date(today)
+  exp.setDate(today.getDate() + 60)
+  return jwt.sign({
+    id: this.uuid,
+    username: this.username,
+    exp: parseInt(exp.getTime() / 1000)
+  }, secret)
+}
 
 UserSchema.methods.toAuthJSON = function () {
   return {
     username: this.username,
     email: this.email,
-    token: this.generateJWT(),
-    bio: this.biography,
-    avatar: this.avatar,
-  };
-};
+    token: this.generateToken(),
+    bio: this.bio,
+    image: this.image
+  }
+}
 
-UserSchema.methods.profileToJSON_For = function (user) {
-  return {
-    username: this.username,
-    bio: this.biography,
-    avatar: this.avatar,
-    // following: user ? user.isFollowing(this._id) : false
-  };
-};
-
-
-module.exports = mongoose.model('user', UserSchema)
+module.exports = mongoose.model("User", UserSchema);

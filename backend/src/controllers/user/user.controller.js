@@ -1,6 +1,6 @@
 const { UserModel } = require('../../models')
-var mongoose = require("mongoose");
-// const User = mongoose.model("User");
+const mongoose = require("mongoose");
+// var User = mongoose.model("User");
 
 // exports.getUser = async (_id) => {
 //     try {
@@ -9,22 +9,11 @@ var mongoose = require("mongoose");
 // }
 
 exports.register = async (req, res, next) => {
-    res.json({ hola: "hola" })
-    // try {
-    //     var user = new User();
-    //     user.username = req.body.user.username;
-    //     user.email = req.body.user.email;
-    //     user.setPassword(req.body.user.password);
-    //     console.log(user);
-
-    //     await user
-    //         .save()
-    //         .then(function () {
-    //             return res.json({ user: user.toAuthJSON() });
-    //         })
-    //         .catch(next);
-    // } catch (error) {
-    //     console.log(error);
-    //     res.status(500).send("Hubo un error");
-    // }
+    try {
+        let info = await UserModel.create(req.body)
+        res.json(info)
+    } catch (error) {
+        console.log(error);
+        res.status(500).send("Ha cascao");
+    }
 };
