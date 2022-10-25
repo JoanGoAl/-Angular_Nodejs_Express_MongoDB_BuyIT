@@ -42,10 +42,6 @@ export class CategoriesComponent implements OnInit {
             this._productService.getRandomProduct(<string>item.title).subscribe((d) => item.product_img = d[0])
           })
 
-          console.log(this.data);
-          console.log(this.count, this.offset);
-
-
           this.data.push(docs);
           this.count += 3;
         }
@@ -53,7 +49,7 @@ export class CategoriesComponent implements OnInit {
   }
 
   goFilteredProducts(title: String) {
-    this.router.navigateByUrl(`shop?cat=${title.toLowerCase()}`)
+    this.router.navigateByUrl(`shop/${btoa(`filters?category=${title.toLowerCase()}`)}`)
   }
 
   getTemplate(length: number) {

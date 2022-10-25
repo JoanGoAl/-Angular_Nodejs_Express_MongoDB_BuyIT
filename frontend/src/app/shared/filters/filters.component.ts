@@ -1,60 +1,97 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { Category, Product } from 'src/app/core/models';
-import { CategoryService, ProductService, ProductsXCategoryService } from 'src/app/core/services';
+import { Category, Filters, Product } from 'src/app/core/models';
+import {
+  CategoryService,
+  ProductService,
+  ProductsXCategoryService,
+} from 'src/app/core/services';
 
 @Component({
   selector: 'app-filters',
   templateUrl: './filters.component.html',
-  styleUrls: ['./filters.component.css']
+  styleUrls: ['./filters.component.css'],
 })
 export class FiltersComponent implements OnInit {
-
-  filters!: { category: String };
   @Output() products = new EventEmitter<Product[]>();
-  categories!: Category[];
+
+  filters!: Filters;
+  categories?: Category[];
 
   constructor(
     private router: Router,
     private aRouter: ActivatedRoute,
     private productService: ProductService,
     private categoryService: CategoryService,
-    private pXc: ProductsXCategoryService,
-  ) {
+    private pXcService: ProductsXCategoryService
+  ) {}
 
-  }
+  getProducts() {
+    this.aRouter.url.subscribe((flt) => {
 
-  getProducts(e: any) {
-    this.changeCategoryUrl(e.target?.value || e)
-    this.aRouter.queryParams.subscribe(res => {
-      this.filters = res as { category: String }
-    })
+      if (flt.length != 0) {
+        this.filters = Object.fromEntries(
+          atob(flt[0].path)
+            .split('?')
+            .splice(1)
+            .map((item) => item.split('&'))
+            .map((e) => e[0].split('='))
+        );
+      }
+    });
 
-    if (this.filters.category === 'allProducts') {
-      this.productService.getProducts().subscribe(res => {
-        this.products.emit(res)
-      })
-    } else {
-      this.pXc.getPxC(this.filters.category).subscribe(res => {
-        this.products.emit(res)
-      })
+    console.log(typeof this.filters == "undefined");
 
+
+    if (
+      typeof this.filters == "undefined" ||
+      this.filters.category == 'all' ||
+      typeof this.filters.category == 'undefined'
+    ) {
+      this.productService.getProducts().subscribe((items) => {
+        this.router.navigateByUrl(
+          `shop/${btoa(`filters?category=all`)}`
+        );
+        this.products.emit(items);
+      });
+    }
+
+    if (
+      this.filters.category != 'undefined' &&
+      this.filters.category != 'all'
+    ) {
+      this.pXcService.getPxC(this.filters.category).subscribe((items) => {
+        this.products.emit(items);
+      });
     }
   }
 
   getCategories() {
-    this.categoryService.getCategories().subscribe(res => {
-      this.categories = res
-    })
+    this.categoryService.getCategories().subscribe((res) => {
+      this.categories = res;
+    });
   }
 
-  changeCategoryUrl = (category: String) => {
-    this.router.navigateByUrl(`shop/filters?category=${category}`)
-  }
+  changeCategoryUrl = (e: any) => {
+    this.router.navigateByUrl(
+      `shop/${btoa(`filters?category=${e.target.value}`)}`
+    );
+
+    if (e.target.value == 'all' || typeof e.target.value == 'undefined') {
+      this.productService.getProducts().subscribe((items) => {
+        this.products.emit(items);
+      });
+    }
+
+    if (e.target.value != 'undefined' && e.target.value != 'all') {
+      this.pXcService.getPxC(e.target.value).subscribe((items) => {
+        this.products.emit(items);
+      });
+    }
+  };
 
   ngOnInit(): void {
-    this.getProducts("allProducts")
-    this.getCategories()
+    this.getProducts();
+    this.getCategories();
   }
-
 }
