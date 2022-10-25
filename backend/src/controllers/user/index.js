@@ -6,8 +6,18 @@ const userController = require('./user.controller')
 //     } catch (e) { return e }
 // }
 
-exports.register = async (req, res, next) => {
+exports.login = async (req, res) => {
+    let user
     try {
-        return await userController.register(req, res, next)
+        user = await userController.login(req.body)
+    } catch (err) {
+        user = err
+    }
+    res.json(user)
+}
+
+exports.register = async (req, res) => {
+    try {
+        return await userController.register(req.body, res)
     } catch (error) { return error }
 }

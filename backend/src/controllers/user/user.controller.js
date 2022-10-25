@@ -8,9 +8,24 @@ const mongoose = require("mongoose");
 //     } catch (e) { return e }
 // }
 
-exports.register = async (req, res, next) => {
+
+exports.login = async (userInfo) => {
     try {
-        let info = await UserModel.create(req.body)
+        const data = await UserModel.findOne({ "username": userInfo.username })
+        if (await data.validatePassword(userInfo.password)) {
+            console.log(await data.toAuthJSON());
+            return await data.toAuthJSON()
+        } else {
+            return { msg: "User or password are incorrects" }
+        }
+    } catch (err) {
+        return err;
+    }
+}
+
+exports.register = async (userInfo, res) => {
+    try {
+        let info = await UserModel.create(userInfo)
         res.json(info)
     } catch (error) {
         console.log(error);

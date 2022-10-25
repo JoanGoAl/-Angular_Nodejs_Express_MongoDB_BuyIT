@@ -50,7 +50,7 @@ UserSchema.methods.generateToken = function () {
     id: this.uuid,
     username: this.username,
     exp: parseInt(exp.getTime() / 1000)
-  }, secret)
+  }, SECRET)
 }
 
 UserSchema.methods.toAuthJSON = function () {
