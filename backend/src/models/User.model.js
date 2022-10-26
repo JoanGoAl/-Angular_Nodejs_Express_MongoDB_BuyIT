@@ -63,4 +63,22 @@ UserSchema.methods.toAuthJSON = function () {
   }
 }
 
+UserSchema.methods.parse = function (data, auth) {
+  let item
+  auth
+    ? item = {
+      username: data.username,
+      email: data.email,
+      products: data.products,
+      favorites: data.favorites,
+      avatar: data.avatar
+    }
+    : item = {
+      username: data.username,
+      products: data.products,
+    }
+
+  return item
+}
+
 module.exports = mongoose.model("User", UserSchema);

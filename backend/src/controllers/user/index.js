@@ -1,10 +1,14 @@
 const userController = require('./user.controller')
 
-// exports.getUser = async (req, res) => {
-//     try {
-//         return await userController.getUser(req.payload.id)
-//     } catch (e) { return e }
-// }
+exports.getUser = async (req, res) => {
+    item = {}
+    try {
+        item = await userController.getUser(req.params, req.auth)
+    } catch (e) {
+        item = e
+    }
+    res.json(item)
+}
 
 exports.login = async (req, res) => {
     let user
@@ -17,7 +21,11 @@ exports.login = async (req, res) => {
 }
 
 exports.register = async (req, res) => {
+    let user
     try {
-        return await userController.register(req.body, res)
-    } catch (error) { return error }
+        user = await userController.register(req.body, res)
+    } catch (error) {
+        user = error
+    }
+    res.json(user)
 }

@@ -5,5 +5,6 @@ let { AuthMiddleware } = require('../middlewares')
 
 router.post("/register", UserController.register)
 router.post("/login", UserController.login)
+router.get("/getUser/:username", AuthMiddleware.optional, UserController.getUser)
 
 module.exports = router
