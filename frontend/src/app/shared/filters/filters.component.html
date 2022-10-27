@@ -1,6 +1,17 @@
-<div class="container-filters">
-  <h3>Categoria</h3>
-  <select
+<div class="filters-container">
+  <p-multiSelect
+    inputId="multiselect"
+    [options]="categories | capitalizeArray"
+    [(ngModel)]="catsSelected"
+    optionLabel="title"
+    defaultLabel="Categorias"
+    [filter]="false"
+    [style]="{'width':'100%'}"
+    (onChange)="changeCategoryUrl()"
+  ></p-multiSelect>
+  <!-- <h3 class="filters-title">Categoria</h3> -->
+  <!-- <div class="select"> -->
+  <!-- <select
     (change)="changeCategoryUrl($event)"
     name="select-category"
     id="select-category"
@@ -11,5 +22,6 @@
     <option *ngFor="let item of categories" value="{{ item.title }}">
       {{ item.title | capitalize }}
     </option>
-  </select>
+  </select> -->
+  <!-- </div> -->
 </div>

@@ -1,7 +1,13 @@
 <div class="container-shop">
-    <app-filters (products)="setProducts($event)"></app-filters>
+    <div class="filters-container">
+      <app-filters (products)="setProducts($event)"></app-filters>
+    </div>
 
-    <div class="container-products">
+    <div class="products-container">
+
+    </div>
+
+    <!-- <div class="container-products">
         <div *ngFor="let item of products" class="product">
             <div class="product-content">
                 <div class="img-product">
@@ -23,5 +29,5 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 </div>

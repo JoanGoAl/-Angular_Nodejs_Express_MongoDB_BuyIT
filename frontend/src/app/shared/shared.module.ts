@@ -5,6 +5,8 @@ import { CarouselModule } from 'primeng/carousel';
 import { ScrollTopModule } from 'primeng/scrolltop'
 import { ScrollPanelModule } from 'primeng/scrollpanel'
 import { PanelMenuModule } from 'primeng/panelmenu';
+import { MultiSelectModule } from 'primeng/multiselect'
+
 
 // Components
 import { CarouselComponent } from '.';
@@ -21,7 +23,7 @@ import { FormsModule } from '@angular/forms';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 // Pipe
-import { CapitalizePipe, CapitalizeArray } from '../core/pipes'
+import { CapitalizePipe, CapitalizeArrayPipe } from '../core/pipes'
 
 @NgModule({
   declarations: [
@@ -31,7 +33,7 @@ import { CapitalizePipe, CapitalizeArray } from '../core/pipes'
     DetailsProductComponent,
     FiltersComponent,
     CapitalizePipe,
-    CapitalizeArray
+    CapitalizeArrayPipe
   ],
   imports: [
     CarouselModule,
@@ -40,7 +42,8 @@ import { CapitalizePipe, CapitalizeArray } from '../core/pipes'
     ScrollTopModule,
     ScrollPanelModule,
     PanelMenuModule,
-    FormsModule
+    FormsModule,
+    MultiSelectModule,
   ],
   exports: [
     CarouselComponent,
@@ -49,7 +52,8 @@ import { CapitalizePipe, CapitalizeArray } from '../core/pipes'
     DetailsProductComponent,
     FiltersComponent,
     CapitalizePipe,
-    CapitalizeArray
-  ]
+    CapitalizeArrayPipe
+  ],
+  providers: [ CapitalizeArrayPipe ]
 })
 export class SharedModule {}

@@ -17,7 +17,6 @@
 </div>
 
 <ng-template #triple let-index="index" let-item="item">
-  <h3> JSON {{ item | json }}</h3>
   <div
     [ngClass]="
       index % 2 == 0 ? 'grid category-grid' : 'grid category-grid-reverse'

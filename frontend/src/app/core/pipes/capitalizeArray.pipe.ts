@@ -1,23 +1,11 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({ name: 'capitalizeArray' })
-export class CapitalizeArray implements PipeTransform {
+export class CapitalizeArrayPipe implements PipeTransform {
   falseValue: Array<any> = [];
 
   transform(value: Array<any>) {
-    console.log(value[0]);
-
-    //! NO RECOGE EL DATO product_image
-
     value.map((item) => {
-      console.log(item);
-
-
-
-      /*
-       * Comprueba que todos los valores de las llaves son de tipo string
-       */
-
       this.falseValue.push(
         Object.fromEntries(
           Object.entries(item)

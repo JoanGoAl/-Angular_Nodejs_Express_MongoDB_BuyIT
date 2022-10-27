@@ -60,7 +60,10 @@ exports.getOneProduct = async (_id, defaultOption = true) => {
             let difference = await ProductModel.countDocuments({ categories: _id }).exec() - 0;
             let random = Math.floor(Math.random() * difference) + 0
             
-            return await ProductModel.find({ categories: _id }).limit(1).skip(random)
+
+            let a = await ProductModel.find({ categories: _id }).limit(1).skip(random).lean()
+
+            return await ProductModel.find({ categories: _id }).limit(1).skip(random).lean()
         }
         return await ProductModel.find({ _id })
     } catch (e) {
