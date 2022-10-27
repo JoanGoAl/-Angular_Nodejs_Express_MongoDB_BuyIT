@@ -14,8 +14,8 @@ export class ProductsXCategoryService {
         private _http: HttpClient
     ) { }
 
-    getPxC(title: String): Observable<Product[]> {
-        return this._http.get<Product[]>(`${this.baseUrl}/getProductsByCatTitle/${title}`)
+    getPxC(categories: Array<String>): Observable<Product[]> {
+        return this._http.get<Product[]>(`${this.baseUrl}/getProductsByCatTitle/${categories}`)
     }
 
 }

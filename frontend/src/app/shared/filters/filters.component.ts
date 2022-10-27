@@ -23,7 +23,7 @@ export class FiltersComponent implements OnInit {
   @Output() products = new EventEmitter<Product[]>();
 
   catsSelected: Array<any> = [];
-  filters!: Filters;
+  filters: Filters = { category: 'all' };
   categories: Category[] = [];
   model: any[] = [];
 
@@ -37,7 +37,7 @@ export class FiltersComponent implements OnInit {
 
   getProducts() {
     this.aRouter.url.subscribe((flt) => {
-      if (flt.length != 0) {
+      if (flt.length > 0) {
         this.filters = Object.fromEntries(
           atob(flt[0].path)
             .split('?')
@@ -45,8 +45,8 @@ export class FiltersComponent implements OnInit {
             .map((item) => item.split('&'))
             .map((e) => e[0].split('='))
         );
-
-        console.log(this.filters);
+      } else {
+        this.filters['category'] = 'all';
       }
     });
 
@@ -62,10 +62,10 @@ export class FiltersComponent implements OnInit {
     }
 
     if (
-      this.filters.category != 'undefined' &&
-      this.filters.category != 'all'
+      this.filters?.category != 'undefined' &&
+      this.filters?.category != 'all'
     ) {
-      this.pXcService.getPxC(this.filters.category).subscribe((items) => {
+      this.pXcService.getPxC(this.catsSelected).subscribe((items) => {
         this.products.emit(items);
       });
     }
@@ -79,21 +79,19 @@ export class FiltersComponent implements OnInit {
 
   changeCategoryUrl = () => {
     let options = this.catsSelected.map((i: Category) => i.title.toLowerCase());
+    this.router.navigateByUrl(`shop/${btoa(`filters?category=${options}`)}`);
 
-    this.router.navigateByUrl(
-      `shop/${btoa(`filters?category=${options}`)}`
-    );
+    if (options.length == 0) {
+      this.productService.getProducts().subscribe((items) => {
+        this.products.emit(items);
+      });
+    }
 
-    this.productService.getProducts().subscribe((items) => {
-      console.log(items);
-      this.products.emit(items);
-    });
-
-    // if (e.target.value != 'undefined' && e.target.value != 'all') {
-    //   this.pXcService.getPxC(e.target.value).subscribe((items) => {
-    //     this.products.emit(items);
-    //   });
-    // }
+    if (this.catsSelected.length > 0) {
+      this.pXcService.getPxC(options).subscribe((i) => {
+        this.products.emit(i);
+      });
+    }
   };
 
   ngOnInit(): void {
