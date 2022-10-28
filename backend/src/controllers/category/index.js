@@ -47,3 +47,9 @@ exports.getOneCategory = async (req, res) => {
         throw new Error(e)
     }
 }
+
+exports.getCategoryInfo = async (req, res) => {
+    try {
+        res.json(await categoryController.getCategoryInfo(req.query.categories))
+    } catch (e) { res.json(e) }
+}

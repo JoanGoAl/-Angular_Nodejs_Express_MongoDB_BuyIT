@@ -7,6 +7,7 @@ import {
 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Category, Filters, Product } from 'src/app/core/models';
+import { CapitalizeArrayPipe } from 'src/app/core/pipes';
 import {
   CategoryService,
   ProductService,
@@ -32,7 +33,8 @@ export class FiltersComponent implements OnInit {
     private aRouter: ActivatedRoute,
     private productService: ProductService,
     private categoryService: CategoryService,
-    private pXcService: ProductsXCategoryService
+    private pXcService: ProductsXCategoryService,
+    private capitalizeArrayPipe: CapitalizeArrayPipe
   ) {}
 
   getProducts() {
@@ -50,6 +52,26 @@ export class FiltersComponent implements OnInit {
       }
     });
 
+    this.filters.category == '' ? (this.filters.category = 'all') : null;
+    this.categoryService
+      .getCategoryInfo(
+        this.filters.category.includes(',')
+          ? this.filters.category.split(',')
+          : [this.filters.category]
+      )
+      .subscribe((res) => {
+        res.map((e) => this.catsSelected.push(e.value.length > 0 ? e.value[0] : []));
+        console.log(this.catsSelected);
+
+        if (
+          this.catsSelected.length > 0 &&
+          typeof this.catsSelected[0] != 'undefined'
+        )
+          this.catsSelected = this.capitalizeArrayPipe.transform(
+            this.catsSelected
+          );
+      });
+
     if (
       typeof this.filters == 'undefined' ||
       this.filters.category == 'all' ||
@@ -62,10 +84,10 @@ export class FiltersComponent implements OnInit {
     }
 
     if (
-      this.filters?.category != 'undefined' &&
-      this.filters?.category != 'all'
+      this.filters.category != 'undefined' &&
+      this.filters.category != 'all'
     ) {
-      this.pXcService.getPxC(this.catsSelected).subscribe((items) => {
+      this.pXcService.getPxC([this.filters.category]).subscribe((items) => {
         this.products.emit(items);
       });
     }
@@ -78,8 +100,9 @@ export class FiltersComponent implements OnInit {
   }
 
   changeCategoryUrl = () => {
-    let options = this.catsSelected.map((i: Category) => i.title.toLowerCase());
-    this.router.navigateByUrl(`shop/${btoa(`filters?category=${options}`)}`);
+    let options = this.catsSelected.map((i: Category) => i.title?.toLowerCase());
+    //! Arreglar cuando no hay optiones muestre todos con el ?filters=all
+    this.router.navigateByUrl(`shop/${btoa(`filters?category=${options.length > 0 ? options : 'all'}`)}`);
 
     if (options.length == 0) {
       this.productService.getProducts().subscribe((items) => {

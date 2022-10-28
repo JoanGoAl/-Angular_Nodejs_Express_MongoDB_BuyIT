@@ -1,27 +1,10 @@
-<div class="filters-container">
-  <p-multiSelect
-    inputId="multiselect"
-    [options]="categories | capitalizeArray"
-    [(ngModel)]="catsSelected"
-    optionLabel="title"
-    defaultLabel="Categorias"
-    [filter]="false"
-    [style]="{'width':'100%'}"
-    (onChange)="changeCategoryUrl()"
-  ></p-multiSelect>
-  <!-- <h3 class="filters-title">Categoria</h3> -->
-  <!-- <div class="select"> -->
-  <!-- <select
-    (change)="changeCategoryUrl($event)"
-    name="select-category"
-    id="select-category"
-    value="{{ filters.category }}"
-    [(ngModel)]="filters.category"
-  >
-    <option value="all">Todas las Categorias</option>
-    <option *ngFor="let item of categories" value="{{ item.title }}">
-      {{ item.title | capitalize }}
-    </option>
-  </select> -->
-  <!-- </div> -->
-</div>
+<p-multiSelect
+  inputId="multiselect"
+  [options]="categories | capitalizeArray"
+  [(ngModel)]="catsSelected"
+  optionLabel="title"
+  defaultLabel="Categorias"
+  [filter]="false"
+  [style]="{ width: '100%' }"
+  (onChange)="changeCategoryUrl()"
+></p-multiSelect>
