@@ -64,21 +64,18 @@ UserSchema.methods.toAuthJSON = function () {
 }
 
 UserSchema.methods.parse = function (data, auth) {
-  let item
-  auth
-    ? item = {
+  if (auth && data.username === auth.username) {
+    return {
       username: data.username,
       email: data.email,
       products: data.products,
       favorites: data.favorites,
       avatar: data.avatar
     }
-    : item = {
-      username: data.username,
-      products: data.products,
-    }
-
-  return item
+  } else return {
+    username: data.username,
+    products: data.products,
+  }
 }
 
 module.exports = mongoose.model("User", UserSchema);

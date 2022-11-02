@@ -1,12 +1,10 @@
 const { UserModel } = require('../../models')
-const mongoose = require("mongoose");
-// var User = mongoose.model("User");
 
 exports.getUser = async ({ username }, auth) => {
     let data = await UserModel.findOne({ username })
+    if (!data) return { error: 'El usuario no existe' }
     return data.parse(data, auth)
 }
-
 
 exports.login = async (userInfo) => {
     const data = await UserModel.findOne({ "username": userInfo.username })
