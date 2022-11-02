@@ -56,4 +56,4 @@ import { CapitalizePipe, CapitalizeArrayPipe } from '../core/pipes'
   ],
   providers: [ CapitalizeArrayPipe ]
 })
-export class SharedModule {}
+export class SharedModule { }

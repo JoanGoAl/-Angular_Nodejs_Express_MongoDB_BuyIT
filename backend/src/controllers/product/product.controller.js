@@ -19,7 +19,28 @@ exports.addProduct = async (data) => {
     for (let i = 0; i < data.categories.length; i++) {
       let aux = await CategoryModel.find({ title: data.categories[i] });
 
+<<<<<<< HEAD
       if (aux.length != 0) idCategories.push(aux[0]._id);
+=======
+            if (aux.length != 0)
+                idCategories.push(aux[0]._id);
+        }
+
+        const createProduct = await ProductModel.create(data)
+
+        let addInPxC = []
+        for (let i = 0; i < idCategories.length; i++) {
+            let auxPxC = await ProductsXCategories.updateOne({ id_category: idCategories[i] }, { $push: { id_products: createProduct._id } })
+            addInPxC.push(auxPxC);
+        }
+
+        return {
+            createProduct,
+            addInPxC
+        }
+    } catch (e) {
+        return e
+>>>>>>> joan-dev
     }
 
     const createProduct = await ProductModel.create(data);

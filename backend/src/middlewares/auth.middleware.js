@@ -1,4 +1,4 @@
-let jwt = require("express-jwt");
+let { expressjwt: jwt } = require("express-jwt");
 let { SECRET } = require("../config/index");
 
 let getTokenFromHeaders = (req) => {
@@ -14,17 +14,19 @@ let getTokenFromHeaders = (req) => {
 };
 
 let auth = {
-    required: jwt({
-        secret: SECRET,
-        userProperty: 'payload',
-        getToken: getTokenFromHeaders
-    }),
-    optional: jwt({
-        secret: SECRET,
-        userProperty: 'payload',
-        credentialsRequired: false,
-        getToken: getTokenFromHeaders
-    })
+  required: jwt({
+    secret: SECRET,
+    userProperty: 'payload',
+    getToken: getTokenFromHeaders,
+    algorithms: ["HS256"], //Preguntar a Yolanda, ya que sense açò em fa error
+  }),
+  optional: jwt({
+    secret: SECRET,
+    userProperty: 'payload',
+    credentialsRequired: false,
+    getToken: getTokenFromHeaders,
+    algorithms: ["HS256"], //Preguntar a Yolanda, ya que sense açò em fa error
+  })
 }
 
 module.exports = auth

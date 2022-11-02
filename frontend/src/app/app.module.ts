@@ -14,6 +14,7 @@ import { AccordionModule } from 'primeng/accordion'
 import { MegaMenuModule } from 'primeng/megamenu';
 import { CardModule } from 'primeng/card';
 import { AutoCompleteModule } from 'primeng/autocomplete';
+import { AuthComponent } from './auth/auth.component';
 
 // Shared
 import { FooterComponent, HeaderComponent, SharedModule } from './shared';
@@ -40,6 +41,6 @@ import { FormsModule } from '@angular/forms';
     AutoCompleteModule
   ],
   providers: [],
-  bootstrap: [ AppComponent ]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
