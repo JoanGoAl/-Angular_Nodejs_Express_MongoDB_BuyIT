@@ -6,7 +6,7 @@ import { ScrollTopModule } from 'primeng/scrolltop'
 import { ScrollPanelModule } from 'primeng/scrollpanel'
 import { PanelMenuModule } from 'primeng/panelmenu';
 import { MultiSelectModule } from 'primeng/multiselect'
-
+import { DataViewModule } from 'primeng/dataview'
 
 // Components
 import { CarouselComponent } from '.';
@@ -44,6 +44,7 @@ import { CapitalizePipe, CapitalizeArrayPipe } from '../core/pipes'
     PanelMenuModule,
     FormsModule,
     MultiSelectModule,
+    DataViewModule
   ],
   exports: [
     CarouselComponent,

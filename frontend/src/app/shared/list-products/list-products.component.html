@@ -1,6 +1,5 @@
-<div class="container-shop">
+<!-- <div class="container-shop">
   <div class="filters-container">
-    <app-filters (products)="setProducts($event)"></app-filters>
   </div>
 
   <div class="products-container">
@@ -31,4 +30,34 @@
 
 
 </div>
+ -->
 
+<div class="card">
+  <app-filters (products)="setProducts($event)"></app-filters>
+  <p-dataView #dv [value]="products" [paginator]="false">
+    <ng-template let-product pTemplate="gridItem">
+      <div class="col-12 md:col-4">
+        <div class="product-grid-item card">
+          <div class="product-grid-item-top">
+            <div>
+              <i class="pi pi-tag product-category-icon"></i>
+              <span class="product-category">{{product.category}}</span>
+            </div>
+            <!-- <span
+              [class]="'product-badge status-' + product.inventoryStatus.toLowerCase()">{{product.inventoryStatus}}</span> -->
+          </div>
+          <div class="product-grid-item-content">
+            <div class="product-name">{{product.name}}</div>
+            <div class="product-description">{{product.description}}</div>
+            <!-- <p-rating [ngModel]="product.rating" [readonly]="true" [cancel]="false"></p-rating> -->
+          </div>
+          <div class="product-grid-item-bottom">
+            <span class="product-price">${{product.price}}</span>
+            <!-- <p-button icon="pi pi-shopping-cart" [disabled]="product.inventoryStatus === 'OUTOFSTOCK'"></p-button> -->
+          </div>
+        </div>
+      </div>
+
+    </ng-template>
+  </p-dataView>
+</div>
