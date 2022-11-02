@@ -1,27 +1,63 @@
-<div class="container-shop">
-    <app-filters (products)="test($event)"></app-filters>
+<!-- <div class="container-shop">
+  <div class="filters-container">
+  </div>
 
+  <div class="products-container">
     <div class="container-products">
-        <div *ngFor="let item of products" class="product">
-            <div class="product-content">
-                <div class="img-product">
-                    <img src="{{item.imgUrl[0]}}" alt="{{item.name}}">
-                </div>
-                <div class="title">
-                    <h2>{{item.name}}</h2>
-                </div>
-                <div class="short-description">
-                    <p> {{item.description}} </p>
-                </div>
-                <div class="contianer-footer-product">
-                    <div class="price">
-                        <h3>{{item.price}} €</h3>
-                    </div>
-                    <div class="see-button" (click)="redirect(item._id)">
-                        Ver producto
-                    </div>
-                </div>
+      <div *ngFor="let item of products" class="product">
+        <div class="product-content">
+          <div class="img-product">
+            <img src="{{item.imgUrl[0]}}" alt="{{item.name}}">
+          </div>
+          <div class="title">
+            <h2>{{item.name}}</h2>
+          </div>
+          <div class="short-description">
+            <p> {{item.description}} </p>
+          </div>
+          <div class="contianer-footer-product">
+            <div class="price">
+              <h3>{{item.price}} €</h3>
             </div>
+            <div class="see-button" (click)="redirect(item._id)">
+              Ver producto
+            </div>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
+
+
+</div>
+ -->
+
+<div class="card">
+  <app-filters (products)="setProducts($event)"></app-filters>
+  <p-dataView #dv [value]="products" [paginator]="false">
+    <ng-template let-product pTemplate="gridItem">
+      <div class="col-12 md:col-4">
+        <div class="product-grid-item card">
+          <div class="product-grid-item-top">
+            <div>
+              <i class="pi pi-tag product-category-icon"></i>
+              <span class="product-category">{{product.category}}</span>
+            </div>
+            <!-- <span
+              [class]="'product-badge status-' + product.inventoryStatus.toLowerCase()">{{product.inventoryStatus}}</span> -->
+          </div>
+          <div class="product-grid-item-content">
+            <div class="product-name">{{product.name}}</div>
+            <div class="product-description">{{product.description}}</div>
+            <!-- <p-rating [ngModel]="product.rating" [readonly]="true" [cancel]="false"></p-rating> -->
+          </div>
+          <div class="product-grid-item-bottom">
+            <span class="product-price">${{product.price}}</span>
+            <!-- <p-button icon="pi pi-shopping-cart" [disabled]="product.inventoryStatus === 'OUTOFSTOCK'"></p-button> -->
+          </div>
+        </div>
+      </div>
+
+    </ng-template>
+  </p-dataView>
 </div>

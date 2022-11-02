@@ -9,7 +9,7 @@
   <div *ngFor="let item of data; index as index">
     <ng-container
       [ngTemplateOutlet]="getTemplate(data[index].length)"
-      [ngTemplateOutletContext]="{ index, item: data[index] }"
+      [ngTemplateOutletContext]="{ index, item: data[index] | capitalizeArray }"
       >
     </ng-container>
   </div>

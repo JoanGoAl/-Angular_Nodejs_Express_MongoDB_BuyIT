@@ -10,7 +10,7 @@
                 <a class="home-category-link" title="{{ item.title }}">
                   <div class="home-categories-item-icon-wrapper" (click)="goShopFilters(item.title)">
                     <app-fa-icon icon="{{ item.icon }}"></app-fa-icon>
-                    <h6>{{ item.title }}</h6>
+                    <h6>{{ item.title | capitalize }}</h6>
                   </div>
                 </a>
               </li>

@@ -26,11 +26,11 @@ export class CategoriesComponent implements OnInit {
   constructor(
     private categoriesService: CategoryService,
     private _productService: ProductService,
-    private router: Router,
-    ) {}
+    private router: Router
+  ) {}
 
   onScrollDown() {
-    this.getScrollCategories()
+    this.getScrollCategories();
   }
 
   getScrollCategories() {
@@ -38,30 +38,33 @@ export class CategoriesComponent implements OnInit {
       .getCategories(this.count, this.offset)
       .subscribe((docs) => {
         if (docs.length != 0) {
-          docs.forEach((item: Category) => {
-            this._productService.getRandomProduct(<string>item.title).subscribe((d) => item.product_img = d[0])
-          })
+          docs.map((i: Category) =>
+            this._productService
+              .getRandomProduct(<string>i.title)
+              .subscribe((e) => (i.product_img = e[0]))
+          );
 
-          console.log(this.data);
-          console.log(this.count, this.offset);
+          setTimeout(() => {
+            this.data.push(docs)
+          }, 100)
 
-
-          this.data.push(docs);
           this.count += 3;
         }
       });
   }
 
   goFilteredProducts(title: String) {
-    this.router.navigateByUrl(`shop?cat=${title.toLowerCase()}`)
+    this.router.navigateByUrl(
+      `shop/${btoa(`filters?category=${title.toLowerCase()}`)}`
+    );
   }
 
   getTemplate(length: number) {
     switch (length) {
       case 1:
-        return this.single
+        return this.single;
       case 2:
-        return this.double
+        return this.double;
       case 3:
         return this.triple;
     }
@@ -70,6 +73,6 @@ export class CategoriesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getScrollCategories()
+    this.getScrollCategories();
   }
 }

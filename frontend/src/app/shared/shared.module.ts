@@ -1,15 +1,29 @@
 import { NgModule } from '@angular/core';
 
-import { CarouselComponent } from '.';
+// PrimeNG
 import { CarouselModule } from 'primeng/carousel';
-import { CategoriesComponent } from './categories/categories.component';
-import { ListProductsComponent } from './list-products/list-products.component';
-import { InfiniteScrollModule } from 'ngx-infinite-scroll';
-import { DetailsProductComponent } from './details-product/details-product.component';
-import { FiltersComponent } from './filters/filters.component';
-import { IconsComponent } from './icons/icons.component';
 import { ScrollTopModule } from 'primeng/scrolltop'
 import { ScrollPanelModule } from 'primeng/scrollpanel'
+import { PanelMenuModule } from 'primeng/panelmenu';
+import { MultiSelectModule } from 'primeng/multiselect'
+import { DataViewModule } from 'primeng/dataview'
+
+// Components
+import { CarouselComponent } from '.';
+import { CategoriesComponent } from './categories';
+import { ListProductsComponent } from './list-products';
+import { DetailsProductComponent } from './details-product';
+import { FiltersComponent } from './filters';
+import { IconsComponent } from './icons';
+
+// Form
+import { FormsModule } from '@angular/forms';
+
+// Scroll
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+
+// Pipe
+import { CapitalizePipe, CapitalizeArrayPipe } from '../core/pipes'
 
 @NgModule({
   declarations: [
@@ -17,21 +31,30 @@ import { ScrollPanelModule } from 'primeng/scrollpanel'
     CategoriesComponent,
     ListProductsComponent,
     DetailsProductComponent,
-    FiltersComponent
+    FiltersComponent,
+    CapitalizePipe,
+    CapitalizeArrayPipe
   ],
   imports: [
     CarouselModule,
     InfiniteScrollModule,
     IconsComponent,
     ScrollTopModule,
-    ScrollPanelModule
+    ScrollPanelModule,
+    PanelMenuModule,
+    FormsModule,
+    MultiSelectModule,
+    DataViewModule
   ],
   exports: [
     CarouselComponent,
     CategoriesComponent,
     ListProductsComponent,
     DetailsProductComponent,
-    FiltersComponent
-  ]
+    FiltersComponent,
+    CapitalizePipe,
+    CapitalizeArrayPipe
+  ],
+  providers: [ CapitalizeArrayPipe ]
 })
 export class SharedModule { }
