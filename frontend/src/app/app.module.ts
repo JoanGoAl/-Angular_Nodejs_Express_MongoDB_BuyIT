@@ -19,7 +19,7 @@ import { AutoCompleteModule } from 'primeng/autocomplete';
 import { FooterComponent, HeaderComponent, SharedModule } from './shared';
 
 // Forms
-import { FormsModule } from '@angular/forms'
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
