@@ -13,8 +13,8 @@ import { SharedModule } from '../shared';
     declarations: [
         AuthComponent
     ],
-    providers: [
-        NoAuthGuard
-    ]
+    // providers: [
+    //     NoAuthGuard
+    // ]
 })
 export class AuthModule { }

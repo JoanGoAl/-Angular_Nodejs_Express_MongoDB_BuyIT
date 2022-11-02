@@ -1,24 +1,25 @@
 <div class="layout-topbar">
-  <a class="layout-topbar-logo" routerLink="">
-      <img src="assets/img/buyIT.png" alt="logo">
-      <span>BuyIT</span>
-  </a>
-  <div class="searhcbar">
-    <!-- [dropdown]="true" dropdownIcon="pi pi-search" [completeOnFocus]="true" -->
-    <p-autoComplete placeholder="Busca tu producto" id="auto" [size]="$any(80)" [(ngModel)]="autocomplete" [suggestions]="results" (completeMethod)="search($event)" [delay]="500"></p-autoComplete>
-  </div>
-  <div #topbarmenu class="layout-topbar-menu">
-      <button class="p-link layout-topbar-button" (click)="switchTheme()" >
-          <i id="theme" class="pi pi-moon"></i>
-          <span>Moon</span>
-      </button>
-      <button class="p-link layout-topbar-button" [routerLink]="['/shop']">
-          <i class="pi pi-shopping-cart"></i>
-          <span>Settings</span>
-      </button>
-      <button class="p-link layout-topbar-button" [routerLink]="['/auth']">
-        <i class="pi pi-user"></i>
-        <span>Profile</span>
-    </button>
-  </div>
+    <a class="layout-topbar-logo" routerLink="">
+        <img src="assets/img/buyIT.png" alt="logo">
+        <span>BuyIT</span>
+    </a>
+    <div class="searhcbar">
+        <!-- [dropdown]="true" dropdownIcon="pi pi-search" [completeOnFocus]="true" -->
+        <p-autoComplete placeholder="Busca tu producto" id="auto" [size]="$any(80)" [(ngModel)]="autocomplete"
+            [suggestions]="results" (completeMethod)="search($event)" [delay]="500"></p-autoComplete>
+    </div>
+    <div #topbarmenu class="layout-topbar-menu">
+        <button class="p-link layout-topbar-button" (click)="switchTheme()">
+            <i id="theme" class="pi pi-moon"></i>
+            <span>Moon</span>
+        </button>
+        <button class="p-link layout-topbar-button" [routerLink]="['/shop']">
+            <i class="pi pi-shopping-cart"></i>
+            <span>Settings</span>
+        </button>
+        <button class="p-link layout-topbar-button" [routerLink]="['/auth']">
+            <i class="pi pi-user"></i>
+            <span>Profile</span>
+        </button>
+    </div>
 </div>
