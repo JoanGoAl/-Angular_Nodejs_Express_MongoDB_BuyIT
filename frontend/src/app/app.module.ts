@@ -18,15 +18,14 @@ import { FooterComponent, HeaderComponent, SharedModule } from './shared';
 
 import { FormsModule } from '@angular/forms'
 import { AutoCompleteModule } from 'primeng/autocomplete';
-import { AuthComponent } from './auth/auth.component';
+// import { AuthComponent } from './auth/auth.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    FooterComponent,
-    AuthComponent
+    FooterComponent
   ],
   imports: [
     SharedModule,
