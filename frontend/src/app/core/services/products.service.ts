@@ -34,4 +34,10 @@ export class ProductService {
       params: new HttpParams().set('startsWith', name),
     });
   }
+
+  setLikeDislike(): Observable<Product[]> {
+    return this._http.get<Product[]>(`${this.baseUrl}/setLikeDislike`, {
+      params: new HttpParams().set('user_likes', 0)
+    })
+  }
 }

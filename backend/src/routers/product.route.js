@@ -8,5 +8,6 @@ router.get('/getProductsStartsWith', ProductController.getProductsStartsWith)
 router.post('/addProduct', ProductController.addProduct)
 router.put('/updateProduct', ProductController.updateProduct)
 router.delete('/deleteProduct/:id', ProductController.deleteProduct)
+router.get('/setLikeDislike', ProductController.setLikeDislike)
 
 module.exports = router

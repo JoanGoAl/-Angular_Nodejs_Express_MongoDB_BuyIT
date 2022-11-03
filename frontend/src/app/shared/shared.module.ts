@@ -23,7 +23,9 @@ import { FormsModule } from '@angular/forms';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 // Pipe
-import { CapitalizePipe, CapitalizeArrayPipe } from '../core/pipes'
+import { CapitalizePipe, CapitalizeArrayPipe } from '../core/pipes';
+import { FavoriteComponent } from './buttons/favorite/favorite.component';
+import { FollowComponent } from './buttons/follow/follow.component'
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ import { CapitalizePipe, CapitalizeArrayPipe } from '../core/pipes'
     DetailsProductComponent,
     FiltersComponent,
     CapitalizePipe,
-    CapitalizeArrayPipe
+    CapitalizeArrayPipe,
+    FavoriteComponent,
+    FollowComponent
   ],
   imports: [
     CarouselModule,

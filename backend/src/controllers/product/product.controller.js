@@ -2,6 +2,7 @@ const {
   ProductModel,
   ProductsXCategories,
   CategoryModel,
+  UserModel,
 } = require("../../models");
 
 exports.getProducts = async () => {
@@ -19,24 +20,7 @@ exports.addProduct = async (data) => {
     for (let i = 0; i < data.categories.length; i++) {
       let aux = await CategoryModel.find({ title: data.categories[i] });
 
-            if (aux.length != 0)
-                idCategories.push(aux[0]._id);
-        }
-
-        const createProduct = await ProductModel.create(data)
-
-        let addInPxC = []
-        for (let i = 0; i < idCategories.length; i++) {
-            let auxPxC = await ProductsXCategories.updateOne({ id_category: idCategories[i] }, { $push: { id_products: createProduct._id } })
-            addInPxC.push(auxPxC);
-        }
-
-        return {
-            createProduct,
-            addInPxC
-        }
-    } catch (e) {
-        return e
+      if (aux.length != 0) idCategories.push(aux[0]._id);
     }
 
     const createProduct = await ProductModel.create(data);
@@ -54,7 +38,11 @@ exports.addProduct = async (data) => {
       createProduct,
       addInPxC,
     };
-};
+  } catch (e) {
+    return e
+  }
+}
+
 
 exports.updateProduct = async (data) => {
   try {
@@ -100,3 +88,9 @@ exports.getProductsStartsWith = async (string) => {
     return e;
   }
 };
+
+exports.setLikeDislike = async (uuid) => {
+  let userFavorites = (await UserModel.findOne({ uuid }).lean()).favorites
+
+  return ProductModel.find({ _id: userFavorites })
+}
