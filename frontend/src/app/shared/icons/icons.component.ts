@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { far } from '@fortawesome/free-regular-svg-icons';
 import { faBars, faCoffee, faCouch, faDesktop, faFutbol, faHeart, faMotorcycle, faPaperPlane, faPlane, faShirt, faShop } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -12,6 +13,7 @@ import { faBars, faCoffee, faCouch, faDesktop, faFutbol, faHeart, faMotorcycle, 
 export class IconsComponent {
   @Input('icon') icon!: string;
 
+
   icons: any = {
     coffee: faCoffee,
     shop: faShop,
@@ -22,6 +24,6 @@ export class IconsComponent {
     moto: faMotorcycle,
     bars: faBars,
     heart: faHeart,
-    plane: faPaperPlane
-  }
+    plane: faPaperPlane,
+      }
 }
