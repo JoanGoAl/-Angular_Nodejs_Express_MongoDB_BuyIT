@@ -20,7 +20,7 @@ import { AutoCompleteModule } from 'primeng/autocomplete';
 import { FooterComponent, HeaderComponent, SharedModule } from './shared';
 
 // Forms
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -38,7 +38,8 @@ import { FormsModule } from '@angular/forms';
     MegaMenuModule,
     CardModule,
     FormsModule,
-    AutoCompleteModule
+    AutoCompleteModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

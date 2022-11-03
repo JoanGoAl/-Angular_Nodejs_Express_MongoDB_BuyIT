@@ -13,21 +13,22 @@ export class AuthComponent implements OnInit {
   // authType: String = '';
   // title: String = '';
   // isSubmitting = false;
-  // authForm: FormGroup;
+  form: FormGroup;
 
-  // constructor(
-  //   private router: Router,
-  //   private userService: UserService,
-  //   private fb: FormBuilder,
-  //   private cd: ChangeDetectorRef,
-  //   // private notifyService: NotificationService
-  // ) {
-  //   // use FormBuilder to create a form group
-  //   this.authForm = this.fb.group({
-  //     email: ['', [Validators.required, Validators.email]],
-  //     password: ['', [Validators.required, Validators.minLength(5)]],
-  //   });
-  // }
+  constructor(
+    //   private router: Router,
+    //   private userService: UserService,
+    private fb: FormBuilder,
+    //   private cd: ChangeDetectorRef,
+    //   // private notifyService: NotificationService
+  ) {
+    //   // use FormBuilder to create a form group
+    this.form = this.fb.group({
+      name: ['', Validators.required, Validators.minLength(3)],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(5)]],
+    });
+  }
 
   ngOnInit() {
     // // Get the last piece of the URL (it's either 'login' or 'register')
@@ -41,24 +42,24 @@ export class AuthComponent implements OnInit {
     // this.cd.markForCheck();
   }
 
-  // submitForm() {
-  //   this.isSubmitting = true;
-  //   const credentials = this.authForm.value;
+  onSubmit() {
+    //   this.isSubmitting = true;
+    //   const credentials = this.authForm.value;
 
-  //   this.userService.attemptAuth(this.authType, credentials).subscribe(
-  //     (data) => {
-  //       // this.notifyService.showSuccess('Ya estás dentro', 'Bualabob');
-  //       this.router.navigateByUrl('/');
-  //     },
-  //     (err) => {
-  //       // this.notifyService.showError(
-  //       //   'Ha habido algún error en el formulario, compruebe que los datos estén corréctamente',
-  //       //   'Bualabob'
-  //       // );
+    //   this.userService.attemptAuth(this.authType, credentials).subscribe(
+    //     (data) => {
+    //       // this.notifyService.showSuccess('Ya estás dentro', 'Bualabob');
+    //       this.router.navigateByUrl('/');
+    //     },
+    //     (err) => {
+    //       // this.notifyService.showError(
+    //       //   'Ha habido algún error en el formulario, compruebe que los datos estén corréctamente',
+    //       //   'Bualabob'
+    //       // );
 
-  //       this.isSubmitting = false;
-  //       this.cd.markForCheck();
-  //     }
-  //   );
-  // }
+    //       this.isSubmitting = false;
+    //       this.cd.markForCheck();
+    //     }
+    //   );
+  }
 }

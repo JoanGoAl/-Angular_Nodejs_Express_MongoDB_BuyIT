@@ -17,7 +17,7 @@ import { FiltersComponent } from './filters';
 import { IconsComponent } from './icons';
 
 // Form
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // Scroll
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
@@ -44,7 +44,8 @@ import { CapitalizePipe, CapitalizeArrayPipe } from '../core/pipes'
     PanelMenuModule,
     FormsModule,
     MultiSelectModule,
-    DataViewModule
+    DataViewModule,
+    ReactiveFormsModule
   ],
   exports: [
     CarouselComponent,
@@ -55,6 +56,6 @@ import { CapitalizePipe, CapitalizeArrayPipe } from '../core/pipes'
     CapitalizePipe,
     CapitalizeArrayPipe
   ],
-  providers: [ CapitalizeArrayPipe ]
+  providers: [CapitalizeArrayPipe]
 })
 export class SharedModule { }

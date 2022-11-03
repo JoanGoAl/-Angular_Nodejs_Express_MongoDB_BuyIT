@@ -12,6 +12,8 @@ import { HttpClient, HttpParams } from '@angular/common/http';
     providedIn: 'root',
 })
 export class UserService {
+    private baseUrl = 'http://localhost:3000/auth';
+
     private currentUserSubject = new BehaviorSubject<User>({} as User);
     public currentUser = this.currentUserSubject
         .asObservable()
@@ -67,9 +69,11 @@ export class UserService {
 
     attemptAuth(type: any, credentials: any): Observable<User> {
         const route = type === '/login' ? '/login' : '';
-        return this.apiService.post(`users${route}`, { user: credentials }).pipe(
+
+        return this.apiService.post(`${route}`, { user: credentials }).pipe(
             map((data) => {
-                this.setAuth(data.user);
+
+                // this.setAuth(data.user);
                 //console.log(data);
                 return data;
             })
