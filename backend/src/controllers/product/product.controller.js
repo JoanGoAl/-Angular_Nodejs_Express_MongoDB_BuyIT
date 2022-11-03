@@ -19,9 +19,6 @@ exports.addProduct = async (data) => {
     for (let i = 0; i < data.categories.length; i++) {
       let aux = await CategoryModel.find({ title: data.categories[i] });
 
-<<<<<<< HEAD
-      if (aux.length != 0) idCategories.push(aux[0]._id);
-=======
             if (aux.length != 0)
                 idCategories.push(aux[0]._id);
         }
@@ -40,7 +37,6 @@ exports.addProduct = async (data) => {
         }
     } catch (e) {
         return e
->>>>>>> joan-dev
     }
 
     const createProduct = await ProductModel.create(data);
@@ -58,9 +54,6 @@ exports.addProduct = async (data) => {
       createProduct,
       addInPxC,
     };
-  } catch (e) {
-    return e;
-  }
 };
 
 exports.updateProduct = async (data) => {
