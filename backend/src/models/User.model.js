@@ -14,15 +14,19 @@ const UserSchema = mongoose.Schema({
   avatar: { type: String, },
   bio: { type: String, maxLength: 300 },
   products: [{ type: mongoose.Schema.Types.ObjectId, ref: "Product" }],
-  favorites: [{ type: mongoose.Schema.Types.ObjectId, ref: "Product" }]
+  favorites: [{ type: mongoose.Schema.Types.ObjectId, ref: "Product" }],
+  following: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }]
 })
 
 UserSchema.plugin(uniqueValidator, { message: "is already taken" })
 
 UserSchema.pre("validate", async function (next) {
-  this.uuid = uuidv4();
-  this.avatar = `https://api.multiavatar.com/${this.username}.png`;
-  this.password = await this.hashPassword()
+  if (!this.uuid) {
+    this.avatar = `https://api.multiavatar.com/${this.username}.png`;
+    this.password = await this.hashPassword()
+    this.uuid = uuidv4();
+  }
+  
   next()
 })
 
@@ -38,16 +42,12 @@ UserSchema.methods.validatePassword = async function (password) {
   }
 }
 
-UserSchema.methods.uuidGenerate = function () {
-  this.uuid = uuidV3();
-}
-
 UserSchema.methods.generateToken = function () {
   var today = new Date()
   var exp = new Date(today)
   exp.setDate(today.getDate() + 60)
   return jwt.sign({
-    id: this.uuid,
+    uuid: this.uuid,
     username: this.username,
     exp: parseInt(exp.getTime() / 1000)
   }, SECRET)
@@ -76,6 +76,53 @@ UserSchema.methods.parse = function (data, auth) {
     username: data.username,
     products: data.products,
   }
+}
+
+UserSchema.methods.toProfileJSONFor = function(user) {
+  return {
+    username: this.username,
+    bio: this.bio,
+    avatar: this.avatar,
+    following: user ? user.isFollowing(this._id) : false
+  }
+}
+
+UserSchema.methods.favorite = function(id) {
+  if (this.favorites.indexOf(id) == -1) {
+    this.favorites.push(id)
+  }
+
+  return this.save()
+}
+
+UserSchema.methods.unfavorite = function(id) {
+  this.favorites.remove(id)
+
+  return this.save()
+}
+
+UserSchema.methods.isFavorite = function(id) {
+  return this.favorites.some(function(favoriteId) {
+    return favoriteId.toString() === id.toString()
+  })
+}
+
+UserSchema.methods.follow = function(id) {
+  if (this.following.indexOf(id) == -1) {
+    this.following.push(id)
+  }
+
+  return this.save()
+}
+
+UserSchema.methods.unfollow = function(id) {
+  this.following.remove(id)
+
+  return this.save()
+}
+
+UserSchema.methods.isFollowing = function(id) {
+  return this.following.some((followingID) => followingID.toString() == id.toString())
 }
 
 module.exports = mongoose.model("User", UserSchema);

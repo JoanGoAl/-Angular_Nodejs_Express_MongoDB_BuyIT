@@ -5,9 +5,18 @@ const {
   UserModel,
 } = require("../../models");
 
-exports.getProducts = async () => {
+exports.getProducts = async (uuid) => {
   try {
     const docs = await ProductModel.find();
+
+    if (uuid) {
+      let userFavorites = await UserModel.findOne({ uuid }).populate(
+        "favorites"
+      );
+
+      //! Acabar pintar los favoritos del usuario si existe uuid añadiendo a cada producto un liked: true o liked: false
+    }
+
     return docs;
   } catch (e) {
     return e;
@@ -39,10 +48,9 @@ exports.addProduct = async (data) => {
       addInPxC,
     };
   } catch (e) {
-    return e
+    return e;
   }
-}
-
+};
 
 exports.updateProduct = async (data) => {
   try {
@@ -74,7 +82,7 @@ exports.getOneProduct = async (_id, defaultOption = true) => {
         .skip(random)
         .lean();
     }
-    return await ProductModel.find({ _id });
+    return await ProductModel.find({ slug: _id });
   } catch (e) {
     return e;
   }
@@ -90,7 +98,7 @@ exports.getProductsStartsWith = async (string) => {
 };
 
 exports.setLikeDislike = async (uuid) => {
-  let userFavorites = (await UserModel.findOne({ uuid }).lean()).favorites
+  let userFavorites = (await UserModel.findOne({ uuid }).lean()).favorites;
 
-  return ProductModel.find({ _id: userFavorites })
-}
+  return ProductModel.find({ _id: userFavorites });
+};

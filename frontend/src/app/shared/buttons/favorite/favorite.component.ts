@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Product } from 'src/app/core/models';
 import { ProductService } from 'src/app/core/services';
 
 @Component({
@@ -7,6 +8,7 @@ import { ProductService } from 'src/app/core/services';
   styleUrls: ['./favorite.component.css']
 })
 export class FavoriteComponent implements OnInit {
+  @Input() product!: Product;
 
   constructor (private productService: ProductService) { }
 

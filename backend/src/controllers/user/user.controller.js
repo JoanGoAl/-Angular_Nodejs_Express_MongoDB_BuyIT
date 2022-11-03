@@ -8,6 +8,7 @@ exports.getUser = async ({ username }, auth) => {
 
 exports.login = async (userInfo) => {
     const data = await UserModel.findOne({ "username": userInfo.username })
+
     if (await data.validatePassword(userInfo.password)) {
         return data.toAuthJSON()
     } else {
@@ -15,7 +16,11 @@ exports.login = async (userInfo) => {
     }
 }
 
-exports.register = async (userInfo, res) => {
+exports.register = async (userInfo) => {
     let info = await UserModel.create(userInfo)
     return info
 };
+
+exports.getUserFavorites = async (uuid) => {
+    return await UserModel.findOne({ uuid }).populate('favorites')
+}

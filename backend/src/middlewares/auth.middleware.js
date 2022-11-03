@@ -18,14 +18,14 @@ let auth = {
     secret: SECRET,
     userProperty: 'payload',
     getToken: getTokenFromHeaders,
-    algorithms: ["HS256"], //Preguntar a Yolanda, ya que sense açò em fa error
+    algorithms: ["HS256"],
   }),
   optional: jwt({
     secret: SECRET,
     userProperty: 'payload',
     credentialsRequired: false,
     getToken: getTokenFromHeaders,
-    algorithms: ["HS256"], //Preguntar a Yolanda, ya que sense açò em fa error
+    algorithms: ["HS256"],
   })
 }
 

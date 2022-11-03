@@ -23,8 +23,6 @@ export class DetailsProductComponent implements OnInit {
 
     this.productService.getProductById(this.productId).subscribe((res) => {
       this.product = res[0];
-
-      console.table(this.product.imgUrl);
     });
   }
 

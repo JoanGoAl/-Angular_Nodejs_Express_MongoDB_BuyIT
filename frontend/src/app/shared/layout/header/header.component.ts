@@ -4,6 +4,7 @@ import { Component, Inject, OnInit, ViewEncapsulation } from '@angular/core';
 import { MegaMenuItem } from 'primeng/api';
 import { Product } from 'src/app/core/models';
 import { ProductService } from 'src/app/core/services/products.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -18,8 +19,11 @@ export class HeaderComponent implements OnInit {
   constructor(
     @Inject(DOCUMENT) private document: Document,
     private themeService: ThemeService,
-    private productService: ProductService
+    private productService: ProductService,
+    private router: Router
   ) {}
+
+  products!: Product[];
 
   search(e: any) {
     // Capitalize all string to search
@@ -31,6 +35,7 @@ export class HeaderComponent implements OnInit {
 
     // Set result to autocomplete
     this.productService.productStartWith(e.query).subscribe((e) => {
+      this.products = e;
       this.results = e.map((i) => i.name);
     });
   }
@@ -55,6 +60,16 @@ export class HeaderComponent implements OnInit {
 
       this.themeService.switchTheme();
     }
+  }
+
+  goProduct() {
+    let slug = this.products
+      .map((e) => (e.name == this.autocomplete ? e.slug : ''))
+      .filter((e) => e.length != 0)[0];
+
+    this.router
+      .navigateByUrl('/', { skipLocationChange: true })
+      .then(() => this.router.navigate([`/shop/product/${slug}`]));
   }
 
   ngOnInit(): void {}

@@ -1,8 +1,9 @@
+const { UserController } = require('..')
 const productController = require('./product.controller')
 
 exports.getProducts = async (req, res) => {
     try {
-        res.json(await productController.getProducts())
+        res.json(await productController.getProducts(req.auth.uuid))
     } catch (e) {
         throw new Error(e)
     }

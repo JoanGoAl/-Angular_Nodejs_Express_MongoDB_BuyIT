@@ -22,9 +22,9 @@
                 <div class="price">
                   <h3>{{ item.price }} €</h3>
                 </div>
-                <app-favorite></app-favorite>
+                <app-favorite [product]="item"></app-favorite>
               </div>
-              <div class="see-button" (click)="redirect(item._id)">
+              <div class="see-button" (click)="redirect(item.slug)">
                 Ver producto
               </div>
             </div>
