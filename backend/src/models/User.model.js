@@ -1,10 +1,9 @@
-var mongoose = require("mongoose");
-var argon2 = require('argon2')
 const { v4: uuidv4 } = require('uuid');
-var uniqueValidator = require("mongoose-unique-validator");
-// var slug = require("slug");
-var jwt = require('jsonwebtoken')
 const { SECRET } = require("../config");
+let mongoose = require("mongoose");
+let argon2 = require('argon2')
+let uniqueValidator = require("mongoose-unique-validator");
+let jwt = require('jsonwebtoken')
 
 const UserSchema = mongoose.Schema({
   uuid: { type: String, unique: true },
@@ -13,9 +12,9 @@ const UserSchema = mongoose.Schema({
   password: { type: String, required: true },
   avatar: { type: String, },
   bio: { type: String, maxLength: 300 },
-  products: [{ type: mongoose.Schema.Types.ObjectId, ref: "Product" }],
-  favorites: [{ type: mongoose.Schema.Types.ObjectId, ref: "Product" }],
-  following: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }]
+  products: [{ type: mongoose.Schema.Types.ObjectId, ref: "product" }],
+  favorites: [{ type: mongoose.Schema.Types.ObjectId, ref: "product" }],
+  following: [{ type: mongoose.Schema.Types.ObjectId, ref: 'user' }]
 })
 
 UserSchema.plugin(uniqueValidator, { message: "is already taken" })

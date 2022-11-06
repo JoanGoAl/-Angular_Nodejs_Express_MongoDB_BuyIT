@@ -8,4 +8,5 @@ export interface Product {
   owner: String
   price: String
   slug: string
+  liked?: boolean
 }

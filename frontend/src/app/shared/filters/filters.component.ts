@@ -84,6 +84,8 @@ export class FiltersComponent implements OnInit {
     ) {
       this.productService.getProducts().subscribe((items) => {
         this.router.navigateByUrl(`shop/${btoa(`filters?category=all`)}`);
+        console.log(items);
+
         this.products.emit(items);
       });
     }

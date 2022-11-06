@@ -5,16 +5,15 @@ const {
   UserModel,
 } = require("../../models");
 
-exports.getProducts = async (uuid) => {
+exports.getProducts = async (auth) => {
   try {
-    const docs = await ProductModel.find();
+    const docs = await ProductModel.find().lean();
+    if (auth) {
+      let userFavorites = (await UserModel.findOne({ uuid: auth.uuid }).populate('favorites').lean()).favorites
 
-    if (uuid) {
-      let userFavorites = await UserModel.findOne({ uuid }).populate(
-        "favorites"
-      );
-
-      //! Acabar pintar los favoritos del usuario si existe uuid añadiendo a cada producto un liked: true o liked: false
+      docs.map((e) => {
+        userFavorites.map((i) => i.slug == e.slug ? e.liked = true : null)
+      })
     }
 
     return docs;
@@ -97,8 +96,13 @@ exports.getProductsStartsWith = async (string) => {
   }
 };
 
-exports.setLikeDislike = async (uuid) => {
-  let userFavorites = (await UserModel.findOne({ uuid }).lean()).favorites;
+exports.setLikeDislike = async (product_slug, auth) => {
+  let product_id = (await ProductModel.findOne({ slug: product_slug }).lean())._id
+  let user = await UserModel.findOne({ uuid: auth.uuid })
 
-  return ProductModel.find({ _id: userFavorites });
+  if (user.favorites.includes(product_id)) {    
+    return await UserModel.findOneAndUpdate({ uuid: auth.uuid }, { $pull: { favorites: product_id } })
+  } 
+
+  return await UserModel.findOneAndUpdate({ uuid: auth.uuid }, { $push: { favorites: product_id } })
 };

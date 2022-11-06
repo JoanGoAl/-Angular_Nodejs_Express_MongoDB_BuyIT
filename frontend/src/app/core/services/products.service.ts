@@ -35,9 +35,9 @@ export class ProductService {
     });
   }
 
-  setLikeDislike(): Observable<Product[]> {
-    return this._http.get<Product[]>(`${this.baseUrl}/setLikeDislike`, {
-      params: new HttpParams().set('user_likes', 0)
+  likeDislike(slug: string): Observable<Product[]> {
+    return this._http.post<Product[]>(`${this.baseUrl}/${slug}/like`, {}, {
+      headers: new HttpHeaders().set('authorization', `Token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiZTc0ZmNiM2YtMDgwYS00NDMxLWJjYzktOWMwZWNhY2VlNWEzIiwidXNlcm5hbWUiOiJnZm1vaXMxMyIsImV4cCI6MTY3MjkxMzU3NSwiaWF0IjoxNjY3NzI5NTc1fQ.yLR--vTgexWYHUtv7YXvGMm6MRejG64TRc924JzWKo4`)
     })
   }
 }
