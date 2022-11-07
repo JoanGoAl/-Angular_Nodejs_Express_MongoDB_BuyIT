@@ -1,4 +1,3 @@
-const { UserController } = require('..')
 const productController = require('./product.controller')
 
 exports.getProducts = async (req, res) => {

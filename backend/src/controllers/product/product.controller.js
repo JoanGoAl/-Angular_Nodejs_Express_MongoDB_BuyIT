@@ -10,9 +10,8 @@ exports.getProducts = async (uuid) => {
     const docs = await ProductModel.find();
 
     if (uuid) {
-      let userFavorites = await UserModel.findOne({ uuid }).populate(
-        "favorites"
-      );
+      // let userFavorites = await UserModel.findOne({ uuid })
+      // return userFavorites.populate('favorites')
 
       //! Acabar pintar los favoritos del usuario si existe uuid añadiendo a cada producto un liked: true o liked: false
     }
