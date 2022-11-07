@@ -1,33 +1,36 @@
 const { mongo, default: mongoose } = require("mongoose");
 let { UserModel } = require("../../models");
 let ObjectId = require("mongoose").ObjectId;
+const profileController = require('./profile.controller')
 
 exports.getUser = async (req, res, next) => {
-  if (req.payload) {
-    UserModel.findById(req.payload.id).then((user) => {
-      if (!user) res.json({ profile: req.profile.toProfileJSONFor(false) });
-
-      res.json({ profile: req.profile.toProfileJSONFor(user) });
-    });
-  } else res.json({ profile: req.profile.toProfileJSONFor(false) });
+  try {
+    res.json(await profileController.getUser(req))
+  } catch (e) { res.json(e) }
 };
 
 exports.follow = async (req, res, next) => {
-  let profileID = mongoose.Types.ObjectId(req.profile._id);
+  try {
+    let result = await profileController.follow(req)
 
-  UserModel.findOne({ uuid: req.auth.uuid }).then((user) => {
-    if (!user) res.sendStatus(404)
+    if (result == 404) res.sendStatus(404)
+    else res.json(result)
 
-    user.follow(profileID).then(() => { res.json({ profile: req.profile.toProfileJSONFor(user) })})
-  })
+  } catch (e) { res.json(e) }
 };
 
 exports.unfollow = async (req, res) => {
-    let profileID = mongoose.Types.ObjectId(req.profile._id)
+  try {
+    let result = await profileController.unfollow(req)
 
-    UserModel.findOne({ uuid: req.auth.uuid }).then((user) => {
-        if (!user) res.sendStatus(404)
+    if (result == 404) res.sendStatus(404)
+    else res.json(result)
 
-        user.unfollow(profileID).then(() => { res.json({ profile: req.profile.toProfileJSONFor(user) }) })
-    })
+  } catch (e) { res.json(e) }
+}
+
+exports.getNProducts = async (req, res) => {
+  try {
+    res.json(await profileController.getNProducts(req.params.username))
+  } catch (e) { res.json(e) }
 }

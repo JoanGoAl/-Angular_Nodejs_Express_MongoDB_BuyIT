@@ -2,7 +2,7 @@ const productController = require('./product.controller')
 
 exports.getProducts = async (req, res) => {
     try {
-        res.json(await productController.getProducts(req.auth.uuid))
+        res.json(await productController.getProducts(req.auth))
     } catch (e) {
         throw new Error(e)
     }
@@ -49,6 +49,6 @@ exports.getProductsStartsWith = async (req, res) => {
 
 exports.setLikeDislike = async (req, res) => {
     try {
-        res.json(await productController.setLikeDislike(req.query.uuid))
+        res.json(await productController.setLikeDislike(req.params.slug, req.auth))
     } catch (e) { res.json(e) }
 }

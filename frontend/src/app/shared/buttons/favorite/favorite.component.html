@@ -1,8 +1,8 @@
-<div class="action-buttons">
-  <div class="like-button">
-    <ul class="wrapper">
-      <li class="icon" (click)="likeDislike()" >
-        <app-fa-icon icon="farHeart"></app-fa-icon>
+<div class="action-buttons_">
+  <div class="like-button_">
+    <ul class="wrapper_">
+      <li class="icon_" (click)="likeDislike()" >
+        <app-fa-icon [icon]=" this.product.liked ? 'heart' : 'farHeart'"></app-fa-icon>
       </li>
     </ul>
   </div>
