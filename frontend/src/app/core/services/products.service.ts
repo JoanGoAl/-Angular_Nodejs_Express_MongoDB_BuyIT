@@ -34,10 +34,4 @@ export class ProductService {
       params: new HttpParams().set('startsWith', name),
     });
   }
-
-  likeDislike(slug: string): Observable<Product[]> {
-    return this._http.post<Product[]>(`${this.baseUrl}/${slug}/like`, {}, {
-      headers: new HttpHeaders().set('authorization', `Token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiZTc0ZmNiM2YtMDgwYS00NDMxLWJjYzktOWMwZWNhY2VlNWEzIiwidXNlcm5hbWUiOiJnZm1vaXMxMyIsImV4cCI6MTY3MjkxMzU3NSwiaWF0IjoxNjY3NzI5NTc1fQ.yLR--vTgexWYHUtv7YXvGMm6MRejG64TRc924JzWKo4`)
-    })
-  }
 }

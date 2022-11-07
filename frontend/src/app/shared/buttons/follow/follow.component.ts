@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-follow',
@@ -6,8 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./follow.component.css']
 })
 export class FollowComponent implements OnInit {
+  @Input() mini: boolean = false
 
   constructor() { }
+
+  isFollowing() { return false }
+
+  follow() {
+
+  }
 
   ngOnInit(): void {
   }

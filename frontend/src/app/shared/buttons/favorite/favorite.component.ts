@@ -13,9 +13,9 @@ export class FavoriteComponent implements OnInit {
   constructor (private productService: ProductService) { }
 
   likeDislike() {
-    this.productService.likeDislike(this.product.slug).subscribe((res) => {
-      console.log(res);
-    })
+    // this.productService.likeDislike(this.product.slug).subscribe((res) => {
+    //   console.log(res);
+    // })
   }
 
   ngOnInit(): void { }

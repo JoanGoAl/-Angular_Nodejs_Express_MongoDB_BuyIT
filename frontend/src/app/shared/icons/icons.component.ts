@@ -8,11 +8,14 @@ import {
   faDesktop,
   faFutbol,
   faHeart,
+  faMinus,
   faMotorcycle,
   faPaperPlane,
   faPlane,
   faShirt,
   faShop,
+  faUserMinus,
+  faUserPlus,
 } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -36,6 +39,8 @@ export class IconsComponent {
     bars: faBars,
     heart: faHeart,
     plane: faPaperPlane,
-    farHeart: farHeart
+    farHeart: farHeart,
+    userMinus: faUserMinus,
+    userPlus: faUserPlus
   };
 }

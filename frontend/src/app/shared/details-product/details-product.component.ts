@@ -14,7 +14,7 @@ import { ProductService } from 'src/app/core/services/products.service';
 export class DetailsProductComponent implements OnInit {
   productId: any;
   product!: Product;
-  user = {} as { name: string; n_products: string };
+  user = {} as { name: string; n_products: number };
 
   constructor(
     private aRouter: ActivatedRoute,
@@ -31,9 +31,7 @@ export class DetailsProductComponent implements OnInit {
   }
 
   getUserInfo() {
-    this.profileService.getNProducts('gfmois13').subscribe((e) => this.user.n_products = e as string)
-    console.log(this.user);
-
+    this.profileService.getNProducts('gfmois').subscribe((e) => this.user.n_products = parseInt(e))
   }
 
   ngOnInit(): void {

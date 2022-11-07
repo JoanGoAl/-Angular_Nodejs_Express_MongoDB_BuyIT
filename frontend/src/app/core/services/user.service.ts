@@ -1,9 +1,9 @@
 import { HttpClient, HttpParams } from "@angular/common/http";
-import { Inject } from "@angular/core";
+import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 
-@Inject({
-  provideInt: 'root'
+@Injectable({
+  providedIn: 'root'
 })
 export class UserService {
   private baseUrl = 'http://localhost:3000/auth';

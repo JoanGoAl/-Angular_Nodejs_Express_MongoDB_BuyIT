@@ -12,6 +12,15 @@
   top: 10%;
 }
 
+.follow {
+  /* background-color: red; */
+  width: 25%;
+  height: 100%;
+  position: absolute;
+  left: -35%;
+  margin-left: 10px;
+}
+
 .mini-graphs {
   background-color: red;
 }

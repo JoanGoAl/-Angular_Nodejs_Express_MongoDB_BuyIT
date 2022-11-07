@@ -1,16 +1,16 @@
 import { HttpClient } from '@angular/common/http';
-import { Inject } from "@angular/core";
+import { Injectable } from "@angular/core";
 import { Observable } from 'rxjs';
 
-@Inject({
-  provideInt: 'root'
+@Injectable({
+  providedIn: 'root'
 })
 export class ProfileService {
   private baseUrl = 'http://localhost:3000/profile'
 
   constructor(private _http: HttpClient) { }
 
-  getNProducts(user: string): Observable<String> {
-    return this._http.get<String>(`${this.baseUrl}/${user}/nproducts`)
+  getNProducts(user: string): Observable<string> {
+    return this._http.get<string>(`${this.baseUrl}/${user}/nproducts`)
   }
 }
