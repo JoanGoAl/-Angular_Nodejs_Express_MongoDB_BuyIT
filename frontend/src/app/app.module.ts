@@ -14,13 +14,13 @@ import { AccordionModule } from 'primeng/accordion'
 import { MegaMenuModule } from 'primeng/megamenu';
 import { CardModule } from 'primeng/card';
 import { AutoCompleteModule } from 'primeng/autocomplete';
-import { AuthComponent } from './auth/auth.component';
+// import { AuthComponent } from './auth/auth.component';
 
 // Shared
 import { FooterComponent, HeaderComponent, SharedModule } from './shared';
 
 // Forms
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // Icons
 import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontawesome';
@@ -30,7 +30,7 @@ import { far } from '@fortawesome/free-regular-svg-icons';
   declarations: [
     AppComponent,
     HeaderComponent,
-    FooterComponent,
+    FooterComponent
   ],
   imports: [
     SharedModule,
@@ -43,7 +43,8 @@ import { far } from '@fortawesome/free-regular-svg-icons';
     CardModule,
     FormsModule,
     AutoCompleteModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -17,7 +17,7 @@ import { FiltersComponent } from './filters';
 import { IconsComponent } from './icons';
 
 // Form
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // Scroll
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
@@ -48,7 +48,8 @@ import { FollowComponent } from './buttons/follow/follow.component'
     PanelMenuModule,
     FormsModule,
     MultiSelectModule,
-    DataViewModule
+    DataViewModule,
+    ReactiveFormsModule
   ],
   exports: [
     CarouselComponent,
@@ -59,6 +60,6 @@ import { FollowComponent } from './buttons/follow/follow.component'
     CapitalizePipe,
     CapitalizeArrayPipe
   ],
-  providers: [ CapitalizeArrayPipe ]
+  providers: [CapitalizeArrayPipe]
 })
 export class SharedModule { }
