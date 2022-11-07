@@ -15,7 +15,7 @@ exports.login = async (req, res) => {
     try {
         user = await userController.login(req.body)
     } catch (err) {
-        user = err
+        user = { msg: "User or password are incorrects" }
     }
     res.json(user)
 }

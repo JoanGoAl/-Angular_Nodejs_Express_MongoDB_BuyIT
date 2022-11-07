@@ -4,6 +4,7 @@ import { Component, Inject, OnInit, ViewEncapsulation } from '@angular/core';
 import { MegaMenuItem } from 'primeng/api';
 import { Product } from 'src/app/core/models';
 import { ProductService } from 'src/app/core/services/products.service';
+import { UserService } from '../../../core/services';
 
 @Component({
   selector: 'app-header',
@@ -14,12 +15,14 @@ import { ProductService } from 'src/app/core/services/products.service';
 export class HeaderComponent implements OnInit {
   autocomplete?: string;
   results: String[] = [];
+  user: any
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
     private themeService: ThemeService,
-    private productService: ProductService
-  ) {}
+    private productService: ProductService,
+    private userService: UserService,
+  ) { }
 
   search(e: any) {
     // Capitalize all string to search
@@ -57,5 +60,17 @@ export class HeaderComponent implements OnInit {
     }
   }
 
-  ngOnInit(): void {}
+  isLogged() {
+
+    if (this.userService.getCurrentUser()) {
+      this.user = this.userService.getCurrentUser()
+      return true
+    } else return false
+
+
+  }
+
+  ngOnInit(): void {
+
+  }
 }

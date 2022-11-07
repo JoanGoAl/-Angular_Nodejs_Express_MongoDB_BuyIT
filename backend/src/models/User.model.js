@@ -59,7 +59,7 @@ UserSchema.methods.toAuthJSON = function () {
     email: this.email,
     token: this.generateToken(),
     bio: this.bio,
-    image: this.image
+    avatar: this.avatar
   }
 }
 

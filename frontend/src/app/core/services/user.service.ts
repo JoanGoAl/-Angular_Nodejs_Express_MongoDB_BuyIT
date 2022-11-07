@@ -12,7 +12,6 @@ import { HttpClient, HttpParams } from '@angular/common/http';
     providedIn: 'root',
 })
 export class UserService {
-    private baseUrl = 'http://localhost:3000/auth';
 
     private currentUserSubject = new BehaviorSubject<User>({} as User);
     public currentUser = this.currentUserSubject
@@ -34,9 +33,14 @@ export class UserService {
         //Al iniciar la aplicación, si hay cualquier token, se comprueba aquí
         //console.log(this.jwtService.getToken());
         // If JWT detected, attempt to get & store user's info
+        console.log(this.jwtService.getToken());
+
         if (this.jwtService.getToken()) {
-            this.apiService.get('user').subscribe(
-                (data) => this.setAuth(data.user),
+            this.apiService.get('/user').subscribe(
+                (data) => {
+                    this.setAuth(data)
+                }
+                ,
                 (err) => this.purgeAuth()
 
                 ///NO ENTRA PERQUÈ NO ESTÀ AUTORITZAT
@@ -73,7 +77,7 @@ export class UserService {
         return this.apiService.post(`${route}`, credentials).pipe(
             map((data) => {
 
-                // this.setAuth(data.user);
+                this.setAuth(data);
                 //console.log(data);
                 return data;
             })

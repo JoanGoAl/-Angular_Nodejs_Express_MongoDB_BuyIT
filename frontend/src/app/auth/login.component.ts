@@ -46,11 +46,15 @@ export class LoginComponent implements OnInit {
         const credentials = this.form.value;
 
         this.userService.attemptAuth(this.authType, credentials).subscribe(
-            (data) => {
-                console.log(data);
+            (data: any) => {
+                if (data.msg) {
+                    console.log('No registrado');
+
+                } else {
+                    this.router.navigateByUrl('/');
+                }
 
                 // this.notifyService.showSuccess('Ya estás dentro', 'Bualabob');
-                // this.router.navigateByUrl('/');
             },
             (err) => {
                 // this.notifyService.showError(

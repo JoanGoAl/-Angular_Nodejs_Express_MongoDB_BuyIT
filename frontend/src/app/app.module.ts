@@ -14,6 +14,8 @@ import { AccordionModule } from 'primeng/accordion'
 import { MegaMenuModule } from 'primeng/megamenu';
 import { CardModule } from 'primeng/card';
 import { AutoCompleteModule } from 'primeng/autocomplete';
+import { CoreModule } from './core/core.module';
+
 // import { AuthComponent } from './auth/auth.component';
 
 // Shared
@@ -39,7 +41,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CardModule,
     FormsModule,
     AutoCompleteModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CoreModule
   ],
   providers: [],
   bootstrap: [AppComponent]
