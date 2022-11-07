@@ -1,4 +1,4 @@
-.action-buttons {
+.action-buttons_ {
   display: flex;
   align-items: center;
   width: 40%;
@@ -8,7 +8,7 @@
   margin: 10px;
 }
 
-.like-button {
+.like-button_ {
   display: flex;
   width: 50px;
   height: 50px;
@@ -19,6 +19,6 @@
   color: rgb(223, 16, 16);
 }
 
-.wrapper {
+.wrapper_ {
   list-style: none;
 }

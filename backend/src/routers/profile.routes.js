@@ -16,5 +16,6 @@ router.param('username', (req, res, next, username) => {
 router.get('/:username', AuthMiddleware.optional, ProfileController.getUser)
 router.post('/:username/follow', AuthMiddleware.required, ProfileController.follow)
 router.delete('/:username/follow', AuthMiddleware.required, ProfileController.unfollow)
+router.get('/:username/nproducts', AuthMiddleware.optional, ProfileController.getNProducts)
 
 module.exports = router
