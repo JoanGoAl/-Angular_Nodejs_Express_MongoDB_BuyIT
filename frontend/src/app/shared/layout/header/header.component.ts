@@ -1,11 +1,12 @@
 import { DOCUMENT } from '@angular/common';
 import { ThemeService } from './../../../core/services/theme.service';
 import { Component, Inject, OnInit, ViewEncapsulation } from '@angular/core';
-import { MegaMenuItem } from 'primeng/api';
 import { Product } from 'src/app/core/models';
 import { ProductService } from 'src/app/core/services/products.service';
 import { UserService } from '../../../core/services';
 import { Router } from '@angular/router';
+import { ConfirmationService } from 'primeng/api';
+
 
 @Component({
   selector: 'app-header',
@@ -23,7 +24,8 @@ export class HeaderComponent implements OnInit {
     private themeService: ThemeService,
     private productService: ProductService,
     private userService: UserService,
-    private router: Router
+    private router: Router,
+    private confirmationService: ConfirmationService
   ) { }
 
   products!: Product[];
@@ -75,7 +77,6 @@ export class HeaderComponent implements OnInit {
 
   }
 
-
   goProduct() {
     let slug = this.products
       .map((e) => (e.name == this.autocomplete ? e.slug : ''))
@@ -84,6 +85,11 @@ export class HeaderComponent implements OnInit {
     this.router
       .navigateByUrl('/', { skipLocationChange: true })
       .then(() => this.router.navigate([`/shop/product/${slug}`]));
+  }
+
+  optionsUsers(event: any) {
+    console.log(event.target);
+
   }
 
   ngOnInit(): void { }

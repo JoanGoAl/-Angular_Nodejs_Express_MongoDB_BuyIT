@@ -1,3 +1,5 @@
+<p-confirmPopup></p-confirmPopup>
+
 <div class="layout-topbar">
     <a class="layout-topbar-logo" routerLink="">
         <img src="assets/img/buyIT.png" alt="logo">
@@ -5,8 +7,9 @@
     </a>
     <div class="searhcbar">
         <!-- [dropdown]="true" dropdownIcon="pi pi-search" [completeOnFocus]="true" -->
-        <p-autoComplete placeholder="Busca tu producto" (onSelect)="goProduct()" optionClick id="auto" [size]="$any(80)" [(ngModel)]="autocomplete"
-            [suggestions]="results" (completeMethod)="search($event)" [delay]="500"></p-autoComplete>
+        <p-autoComplete placeholder="Busca tu producto" (onSelect)="goProduct()" optionClick id="auto" [size]="$any(80)"
+            [(ngModel)]="autocomplete" [suggestions]="results" (completeMethod)="search($event)" [delay]="500">
+        </p-autoComplete>
     </div>
     <div #topbarmenu class="layout-topbar-menu">
         <button class="p-link layout-topbar-button" (click)="switchTheme()">
@@ -23,7 +26,7 @@
             <span>Profile</span>
         </button>
 
-        <button *ngIf="isLogged()" class="p-link layout-topbar-button">
+        <button (click)="optionsUsers($event)" *ngIf="isLogged()" class="p-link layout-topbar-button">
             <img [src]="this.user.avatar" alt="" width="100%">
             <span>Profile</span>
         </button>

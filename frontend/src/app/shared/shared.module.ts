@@ -15,6 +15,8 @@ import { ListProductsComponent } from './list-products';
 import { DetailsProductComponent } from './details-product';
 import { FiltersComponent } from './filters';
 import { IconsComponent } from './icons';
+import { ConfirmPopupModule } from 'primeng/confirmpopup';
+import { ConfirmationService } from 'primeng/api';
 
 // Form
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -49,7 +51,8 @@ import { FollowComponent } from './buttons/follow/follow.component'
     FormsModule,
     MultiSelectModule,
     DataViewModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ConfirmPopupModule
   ],
   exports: [
     CarouselComponent,
@@ -60,6 +63,6 @@ import { FollowComponent } from './buttons/follow/follow.component'
     CapitalizePipe,
     CapitalizeArrayPipe
   ],
-  providers: [CapitalizeArrayPipe]
+  providers: [CapitalizeArrayPipe, ConfirmationService]
 })
 export class SharedModule { }

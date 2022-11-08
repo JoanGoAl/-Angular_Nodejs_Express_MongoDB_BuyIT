@@ -15,6 +15,7 @@ import { MegaMenuModule } from 'primeng/megamenu';
 import { CardModule } from 'primeng/card';
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { CoreModule } from './core/core.module';
+import { ConfirmPopupModule } from 'primeng/confirmpopup';
 
 // import { AuthComponent } from './auth/auth.component';
 
@@ -48,7 +49,8 @@ import { far } from '@fortawesome/free-regular-svg-icons';
     ReactiveFormsModule,
     CoreModule,
     FontAwesomeModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ConfirmPopupModule
   ],
   providers: [],
   bootstrap: [AppComponent]
