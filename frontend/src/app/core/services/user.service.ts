@@ -33,11 +33,13 @@ export class UserService {
         //Al iniciar la aplicación, si hay cualquier token, se comprueba aquí
         //console.log(this.jwtService.getToken());
         // If JWT detected, attempt to get & store user's info
-        console.log(this.jwtService.getToken());
+        // console.log(this.jwtService.getToken());
 
         if (this.jwtService.getToken()) {
             this.apiService.get('/user').subscribe(
                 (data) => {
+                    console.log(data);
+
                     this.setAuth(data)
                 }
                 ,
