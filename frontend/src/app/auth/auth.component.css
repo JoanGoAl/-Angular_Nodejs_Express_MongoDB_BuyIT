@@ -44,3 +44,23 @@ form {
     border-radius: 5px;
     border: 1px solid #ccc;
 }
+
+#butt-login {
+    width: 20%;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: #1e88e5;
+    color: #fff;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+.link-for-auth {
+    width: 100%;
+}
+
+.link-for-auth a {
+    color: #1e88e5;
+    /* text-decoration: none; */
+}

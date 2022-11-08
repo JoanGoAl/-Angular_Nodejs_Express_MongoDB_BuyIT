@@ -6,10 +6,10 @@ import { UserService } from '../core/services';
 // import {NotificationService} from '../core/services';
 @Component({
   selector: 'app-auth',
-  templateUrl: './auth.component.html',
+  templateUrl: './register.component.html',
   styleUrls: ['./auth.component.css']
 })
-export class AuthComponent implements OnInit {
+export class RegisterComponent implements OnInit {
   // authType: String = '';
   // title: String = '';
   // isSubmitting = false;
@@ -24,7 +24,7 @@ export class AuthComponent implements OnInit {
   ) {
     //   // use FormBuilder to create a form group
     this.form = this.fb.group({
-      name: ['', Validators.required, Validators.minLength(3)],
+      username: ['', Validators.required, Validators.minLength(3)],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(5)]],
     });

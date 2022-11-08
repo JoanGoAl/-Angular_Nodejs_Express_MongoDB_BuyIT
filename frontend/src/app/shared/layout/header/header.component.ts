@@ -25,7 +25,7 @@ export class HeaderComponent implements OnInit {
     private productService: ProductService,
     private userService: UserService,
     private router: Router,
-    private confirmationService: ConfirmationService
+    private confirmationService: ConfirmationService,
   ) { }
 
   products!: Product[];
@@ -88,8 +88,18 @@ export class HeaderComponent implements OnInit {
   }
 
   optionsUsers(event: any) {
-    console.log(event.target);
-
+    this.confirmationService.confirm({
+      target: event.target,
+      accept: () => {
+        console.log('Se va pal perfil');
+      },
+      acceptLabel: 'Profile',
+      reject: () => {
+        this.userService.purgeAuth()
+      },
+      rejectButtonStyleClass: 'p-button-danger',
+      rejectLabel: 'Logout'
+    });
   }
 
   ngOnInit(): void { }

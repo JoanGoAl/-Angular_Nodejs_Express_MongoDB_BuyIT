@@ -155,3 +155,9 @@
   margin-top: 25%;
   margin-bottom: 5%;
 }
+
+.p-confirm-popup-content {
+  padding: 0 !important;
+}
+
+/* .p-confirm-popup-footer {} */
