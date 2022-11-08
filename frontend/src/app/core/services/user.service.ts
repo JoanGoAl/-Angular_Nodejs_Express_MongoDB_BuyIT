@@ -38,7 +38,7 @@ export class UserService {
         if (this.jwtService.getToken()) {
             this.apiService.get('/user').subscribe(
                 (data) => {
-                    console.log(data);
+                    // console.log(data);
 
                     this.setAuth(data)
                 }
@@ -56,6 +56,8 @@ export class UserService {
     }
 
     setAuth(user: User) {
+        console.log(user);
+
         // Save JWT sent from server in localstorage
         this.jwtService.saveToken(user.token);
         // Set current user data into observable
