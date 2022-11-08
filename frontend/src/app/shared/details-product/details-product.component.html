@@ -102,14 +102,14 @@
   </div>
   <div class="seller-card">
     <div class="seller-avatar">
-      <img src="https://api.multiavatar.com/Binx%20Bond.png" alt="" />
+      <img src="https://api.multiavatar.com/{{ user.name }}.png" alt="" />
     </div>
     <div class="seller-info">
-      <p class="username">gfMois</p> <!-- TODO: Aquí Usuario -->
+      <p class="username">{{ user.name }}</p> <!-- TODO: Aquí Usuario -->
       <p class="rating" [hidden]="user.n_products == 0" >{{ user.n_products }} productos más</p> <!-- Aquí Número de productos del usuario -->
     </div>
     <div class="follow">
-      <app-follow toFollow=" c " [mini]="true"></app-follow>
+      <app-follow toFollow="{{ user.name }}" [mini]="true"></app-follow>
     </div>
   </div>
   <div class="product-info">
@@ -119,13 +119,7 @@
     </div>
   </div>
   <div class="action-buttons">
-    <div class="like-button">
-      <ul class="wrapper">
-        <li class="icon">
-          <app-fa-icon icon="heart"></app-fa-icon>
-        </li>
-      </ul>
-    </div>
+    <app-favorite [product]="product"></app-favorite>
     <div class="price-info">{{ product.price }}</div>
     <div class="chat-button">
       <ul class="wrapper">

@@ -11,6 +11,10 @@ exports.getUser = async (req) => {
     } else return { profile: req.profile.toProfileJSONFor(false) };
 }
 
+exports.getUserById = async (_id) => {
+    return await UserModel.findOne({ _id });
+}
+
 exports.follow = async (req) => {
     let following = false;
     const user = await UserModel.findOne({ uuid: req.auth.uuid }).populate('following')

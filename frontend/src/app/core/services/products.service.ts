@@ -25,8 +25,8 @@ export class ProductService {
       .pipe(map((product: Product[]) => product.map((img) => img.imgUrl[0])));
   }
 
-  getProductById(id: String): Observable<Product[]> {
-    return this._http.get<Product[]>(`${this.baseUrl}//getOneProduct/${id}`);
+  getProductById(id: String): Observable<Product> {
+    return this._http.get<Product>(`${this.baseUrl}//getOneProduct/${id}`);
   }
 
   productStartWith(name: string): Observable<Product[]> {

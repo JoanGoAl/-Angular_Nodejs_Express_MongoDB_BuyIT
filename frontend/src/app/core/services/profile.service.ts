@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from "@angular/core";
 import { Observable } from 'rxjs';
-import { Profile } from '../models';
+import { Profile, User } from '../models';
 import { ApiService } from './api.service';
 
 @Injectable({
@@ -22,5 +22,9 @@ export class ProfileService {
 
   getProfile(username: string): Observable<any> {
     return this._http.get<any>(`${this.baseUrl}/${username}`)
+  }
+
+  getProfileById(_id: string): Observable<User> {
+    return this._http.get<User>(`${this.baseUrl}/user/${_id}`)
   }
 }

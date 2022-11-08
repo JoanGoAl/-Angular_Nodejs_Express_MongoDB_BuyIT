@@ -19,6 +19,12 @@ exports.follow = async (req, res, next) => {
   } catch (e) { res.json(e) }
 };
 
+exports.getUserById = async (req, res) => {
+  try { 
+    res.json(await profileController.getUserById(req.params.id))
+  } catch (e) { res.json(e) }
+}
+
 exports.unfollow = async (req, res) => {
   try {
     let result = await profileController.unfollow(req)

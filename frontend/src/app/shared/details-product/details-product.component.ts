@@ -28,8 +28,14 @@ export class DetailsProductComponent implements OnInit {
     this.productId = this.aRouter.snapshot.paramMap.get('id');
 
     this.productService.getProductById(this.productId).subscribe((res) => {
-      this.product = res[0];
+      this.product = res;
     });
+  }
+
+  getUser() {
+    setTimeout(() => {
+      this.profileService.getProfileById(this.product.owner as string).subscribe((res) => this.user.name = res.username)
+    }, 100)
   }
 
   getUser_NProducts() {
@@ -43,6 +49,11 @@ export class DetailsProductComponent implements OnInit {
   ngOnInit(): void {
     this.getProduct();
     this.getUser_NProducts();
+
+    console.log(this.product);
+
+
+    this.getUser()
 
     this.getUserInfo()
   }

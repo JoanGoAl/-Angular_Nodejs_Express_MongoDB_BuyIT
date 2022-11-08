@@ -4,6 +4,7 @@ const {
   CategoryModel,
   UserModel,
 } = require("../../models");
+const { user } = require("../user");
 
 exports.getProducts = async (auth) => {
   try {
@@ -80,8 +81,16 @@ exports.getOneProduct = async (_id, defaultOption = true) => {
         .limit(1)
         .skip(random)
         .lean();
+    } else {
+      let userFavorites = (await UserModel.findOne({ uuid: _id.auth.uuid }).populate('favorites').lean()).favorites
+      let product = (await ProductModel.find({ slug: _id.params.id }))[0].toObject()
+
+      userFavorites.map((i) => i.slug == product.slug ? product.liked = true : null)
+
+      return product;
     }
-    return await ProductModel.find({ slug: _id });
+
+
   } catch (e) {
     return e;
   }

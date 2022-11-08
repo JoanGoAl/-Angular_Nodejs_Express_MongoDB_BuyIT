@@ -10,7 +10,7 @@ const ProductSchema = mongoose.Schema({
     imgUrl: [{ type: String }],
     condition: String,
     slug: { type: String, unique: true, required: true },
-    owner: String,
+    owner: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
     price: String,
 }, {
     timestamps: true,

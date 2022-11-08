@@ -77,7 +77,7 @@ export class HeaderComponent implements OnInit {
 
   isLogged() {
 
-    if (this.userService.getCurrentUser()) {
+    if (this.userService.getCurrentUser().username) {
       this.user = this.userService.getCurrentUser()
       return true
     } else return false
@@ -85,7 +85,5 @@ export class HeaderComponent implements OnInit {
 
   }
 
-  ngOnInit(): void {
-
-  }
+  ngOnInit(): void { }
 }

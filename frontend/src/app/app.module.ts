@@ -46,7 +46,7 @@ import { far } from '@fortawesome/free-regular-svg-icons';
     AutoCompleteModule,
     FontAwesomeModule,
     ReactiveFormsModule,
-    CoreModule
+    CoreModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

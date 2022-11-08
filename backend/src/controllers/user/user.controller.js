@@ -6,6 +6,12 @@ exports.getUser = async ({ username }, auth) => {
     return data.parse(data, auth)
 }
 
+exports.user = async (auth) => {
+    let data = await UserModel.findOne({ uuid: auth.uuid })
+    if (!data) return { error: 'El usuario no existe' }
+    return data.toAuthJSON()
+}
+
 exports.login = async (userInfo) => {
     const data = await UserModel.findOne({ "username": userInfo.username })
 

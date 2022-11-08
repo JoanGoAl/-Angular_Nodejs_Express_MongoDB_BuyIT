@@ -44,6 +44,5 @@ export class FollowComponent implements OnInit {
     this.profileService
       .getProfile(this.userService.getCurrentUser().username)
       .subscribe((i) => (this.profile = i));
-    console.log(this.profile);
   }
 }

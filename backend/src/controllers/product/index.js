@@ -34,7 +34,7 @@ exports.deleteProduct = async (req, res) => {
 
 exports.getOneProduct = async (req, res) => {
     try {
-        if (req.params.id) res.json(await productController.getOneProduct(req.params.id))
+        if (req.params.id) res.json(await productController.getOneProduct(req))
         else if (req.headers.title) res.json(await productController.getOneProduct(req.headers.title, false))
     } catch (e) {
         throw new Error(e)

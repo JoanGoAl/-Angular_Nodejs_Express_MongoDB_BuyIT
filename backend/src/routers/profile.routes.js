@@ -15,6 +15,7 @@ router.param('username', (req, res, next, username) => {
 
 router.get('/:username', AuthMiddleware.optional, ProfileController.getUser)
 router.post('/:username/follow', AuthMiddleware.required, ProfileController.follow)
+router.get('/user/:id', AuthMiddleware.optional, ProfileController.getUserById)
 router.get('/:username/nproducts', AuthMiddleware.optional, ProfileController.getNProducts)
 
 module.exports = router
