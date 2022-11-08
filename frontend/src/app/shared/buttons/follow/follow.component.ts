@@ -1,4 +1,11 @@
-import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { Router } from '@angular/router';
 import { concatMap, of, tap } from 'rxjs';
 import { Profile, ProfileService, UserService } from 'src/app/core';
@@ -10,9 +17,10 @@ import { Profile, ProfileService, UserService } from 'src/app/core';
 })
 export class FollowComponent implements OnInit {
   @Input() mini: boolean = false;
-  @Input() profile!: Profile;
+  @Input() toFollow!: string;
   @Output() toggle = new EventEmitter<boolean>();
-  isSubmitting = false;
+  isFollowing: boolean = false;
+  profile!: Profile;
 
   constructor(
     private userService: UserService,
@@ -21,48 +29,21 @@ export class FollowComponent implements OnInit {
     private cd: ChangeDetectorRef
   ) {}
 
-  isFollowing() {
-    return false;
-  }
-
   toggleFollowing() {
-    this.isSubmitting = true;
+    this.userService.isAuthenticated.subscribe((auth) => {
+      if (!auth) {
+        this.router.navigateByUrl('/auth/login')
+        return
+      }
 
-    console.log('A');
-
-
-    this.userService.isAuthenticated.pipe(
-      concatMap((authenticated) => {
-
-        if (!authenticated) {
-          this.router.navigateByUrl('/login');
-          return of(null);
-        }
-
-        if (!this.profile.following) {
-          return this.profileService.follow(this.profile.username).pipe(
-            tap(
-              (data) => {
-                this.isSubmitting = false;
-                this.toggle.emit(true);
-              },
-              (err) => (this.isSubmitting = false)
-            )
-          );
-        } else {
-          return this.profileService.unfollow(this.profile.username).pipe(
-            tap(
-              (data) => {
-                this.isSubmitting = false;
-                this.toggle.emit(false);
-              },
-              (err) => (this.isSubmitting = false)
-            )
-          );
-        }
-      })
-    ).subscribe(() => this.cd.markForCheck())
+      return this.profileService.follow(this.toFollow).subscribe((e) => this.isFollowing = e)
+    })
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.profileService
+      .getProfile(this.userService.getCurrentUser().username)
+      .subscribe((i) => (this.profile = i));
+    console.log(this.profile);
+  }
 }

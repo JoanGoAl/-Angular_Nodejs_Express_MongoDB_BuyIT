@@ -14,7 +14,7 @@ const UserSchema = mongoose.Schema({
   bio: { type: String, maxLength: 300 },
   products: [{ type: mongoose.Schema.Types.ObjectId, ref: "product" }],
   favorites: [{ type: mongoose.Schema.Types.ObjectId, ref: "product" }],
-  following: [{ type: mongoose.Schema.Types.ObjectId, ref: 'user' }]
+  following: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }]
 })
 
 UserSchema.plugin(uniqueValidator, { message: "is already taken" })
@@ -58,7 +58,7 @@ UserSchema.methods.toAuthJSON = function () {
     email: this.email,
     token: this.generateToken(),
     bio: this.bio,
-    image: this.image
+    avatar: this.avatar
   }
 }
 

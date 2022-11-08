@@ -9,13 +9,12 @@ import { ProductService } from 'src/app/core/services';
 })
 export class FavoriteComponent implements OnInit {
   @Input() product!: Product;
+  isLiked: boolean = this.product["liked"] || false;
 
   constructor (private productService: ProductService) { }
 
-  likeDislike() {
-    // this.productService.likeDislike(this.product.slug).subscribe((res) => {
-    //   console.log(res);
-    // })
+  toggleLike() {
+    this.productService.toggleLike(this.product.slug).subscribe((res) => this.isLiked = res)
   }
 
   ngOnInit(): void { }

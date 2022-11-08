@@ -5,6 +5,7 @@ import { MegaMenuItem } from 'primeng/api';
 import { Product } from 'src/app/core/models';
 import { ProductService } from 'src/app/core/services/products.service';
 import { Router } from '@angular/router';
+import { UserService } from '../../../core/services';
 
 @Component({
   selector: 'app-header',
@@ -15,13 +16,15 @@ import { Router } from '@angular/router';
 export class HeaderComponent implements OnInit {
   autocomplete?: string;
   results: String[] = [];
+  user: any
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
     private themeService: ThemeService,
     private productService: ProductService,
-    private router: Router
-  ) {}
+    private router: Router,
+    private userService: UserService
+  ) { }
 
   products!: Product[];
 
@@ -72,5 +75,17 @@ export class HeaderComponent implements OnInit {
       .then(() => this.router.navigate([`/shop/product/${slug}`]));
   }
 
-  ngOnInit(): void {}
+  isLogged() {
+
+    if (this.userService.getCurrentUser()) {
+      this.user = this.userService.getCurrentUser()
+      return true
+    } else return false
+
+
+  }
+
+  ngOnInit(): void {
+
+  }
 }

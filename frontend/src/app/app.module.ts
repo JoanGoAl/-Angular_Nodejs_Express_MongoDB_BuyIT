@@ -14,6 +14,8 @@ import { AccordionModule } from 'primeng/accordion'
 import { MegaMenuModule } from 'primeng/megamenu';
 import { CardModule } from 'primeng/card';
 import { AutoCompleteModule } from 'primeng/autocomplete';
+import { CoreModule } from './core/core.module';
+
 // import { AuthComponent } from './auth/auth.component';
 
 // Shared
@@ -39,12 +41,12 @@ import { far } from '@fortawesome/free-regular-svg-icons';
     HttpClientModule,
     AppRoutingModule,
     AccordionModule,
-    MegaMenuModule,
     CardModule,
     FormsModule,
     AutoCompleteModule,
     FontAwesomeModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CoreModule
   ],
   providers: [],
   bootstrap: [AppComponent]

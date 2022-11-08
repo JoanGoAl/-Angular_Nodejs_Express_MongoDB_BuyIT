@@ -34,4 +34,8 @@ export class ProductService {
       params: new HttpParams().set('startsWith', name),
     });
   }
+
+  toggleLike(slug: string): Observable<boolean> {
+    return this._http.post<boolean>(`${this.baseUrl}/${slug}/like`, {})
+  }
 }

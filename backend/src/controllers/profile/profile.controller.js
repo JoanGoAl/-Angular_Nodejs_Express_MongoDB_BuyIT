@@ -12,13 +12,19 @@ exports.getUser = async (req) => {
 }
 
 exports.follow = async (req) => {
-    let profileID = mongoose.Types.ObjectId(req.profile._id);
+    let following = false;
+    const user = await UserModel.findOne({ uuid: req.auth.uuid }).populate('following')
+    const userFollow = await UserModel.findOne({ username: req.params.username })
 
-    return UserModel.findOne({ uuid: req.auth.uuid }).then((user) => {
-        if (!user) return 404
+    user.following.map((u) => u.uuid == userFollow.uuid ? following = true : null)
 
-        return user.follow(profileID).then(() => { return { profile: req.profile.toProfileJSONFor(user) } })
-    })
+    if (following) {
+        await UserModel.findOneAndUpdate({ uuid: req.auth.uuid }, { $pull: { following: userFollow._id } })
+        return false
+    } else {
+        await UserModel.findOneAndUpdate({ uuid: req.auth.uuid }, { $push: { following: userFollow._id } })
+        return true
+    }
 }
 
 exports.unfollow = async (req) => {

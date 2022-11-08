@@ -2,10 +2,6 @@ const router = require('express').Router()
 const { ProductController } = require('../controllers')
 const { AuthMiddleware } = require('../middlewares')
 
-// router.param('comment', (req, res, next, id) => {
-    
-// })
-
 router.get('/getProducts', AuthMiddleware.optional, ProductController.getProducts)
 router.get('/getOneProduct', ProductController.getOneProduct)
 router.get('/getOneProduct/:id', ProductController.getOneProduct)

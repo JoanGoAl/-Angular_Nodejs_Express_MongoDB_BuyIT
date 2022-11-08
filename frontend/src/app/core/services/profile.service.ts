@@ -10,17 +10,17 @@ import { ApiService } from './api.service';
 export class ProfileService {
   private baseUrl = 'http://localhost:3000/profile'
 
-  constructor(private _http: HttpClient, private _apiService: ApiService) { }
+  constructor(private _http: HttpClient) { }
 
   getNProducts(user: string): Observable<string> {
     return this._http.get<string>(`${this.baseUrl}/${user}/nproducts`)
   }
 
-  follow(username: string): Observable<Profile> {
-    return this._apiService.post(`/profile/${username}/follow`)
+  follow(username: string): Observable<boolean> {
+    return this._http.post<boolean>(`${this.baseUrl}/${username}/follow`, {})
   }
 
-  unfollow(username: string): Observable<Profile> {
-    return this._apiService.delete(`/profile/${username}/follow`)
+  getProfile(username: string): Observable<any> {
+    return this._http.get<any>(`${this.baseUrl}/${username}`)
   }
 }

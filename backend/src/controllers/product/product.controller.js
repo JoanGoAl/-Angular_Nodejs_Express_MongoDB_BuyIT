@@ -101,8 +101,9 @@ exports.setLikeDislike = async (product_slug, auth) => {
   let user = await UserModel.findOne({ uuid: auth.uuid })
 
   if (user.favorites.includes(product_id)) {    
-    return await UserModel.findOneAndUpdate({ uuid: auth.uuid }, { $pull: { favorites: product_id } })
+    if (await UserModel.findOneAndUpdate({ uuid: auth.uuid }, { $pull: { favorites: product_id } })) return false
+    
   } 
 
-  return await UserModel.findOneAndUpdate({ uuid: auth.uuid }, { $push: { favorites: product_id } })
+  if (await UserModel.findOneAndUpdate({ uuid: auth.uuid }, { $push: { favorites: product_id } })) return true
 };
