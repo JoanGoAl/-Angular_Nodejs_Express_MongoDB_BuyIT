@@ -24,6 +24,10 @@ import { FooterComponent, HeaderComponent, SharedModule } from './shared';
 // Forms
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+// Icons
+import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontawesome';
+import { fas } from '@fortawesome/free-solid-svg-icons';
+import { far } from '@fortawesome/free-regular-svg-icons';
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,9 +46,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     AutoCompleteModule,
     ReactiveFormsModule,
-    CoreModule
+    CoreModule,
+    FontAwesomeModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(_library: FaIconLibrary) {
+    _library.addIconPacks(far, fas)
+  }
+}

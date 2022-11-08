@@ -12,6 +12,7 @@ import {
   CategoryService,
   ProductService,
   ProductsXCategoryService,
+  UserService,
 } from 'src/app/core/services';
 
 @Component({
@@ -34,7 +35,7 @@ export class FiltersComponent implements OnInit {
     private productService: ProductService,
     private categoryService: CategoryService,
     private pXcService: ProductsXCategoryService,
-    private capitalizeArrayPipe: CapitalizeArrayPipe
+    private capitalizeArrayPipe: CapitalizeArrayPipe,
   ) {}
 
   getProducts() {
@@ -63,7 +64,7 @@ export class FiltersComponent implements OnInit {
         res.map((e) => {
           console.log(e.value[0]);
 
-          this.catsSelected.push(e.value.length > 0 ? e.value[0] : [])
+          this.catsSelected.push(e.value.length > 0 ? e.value[0] : []);
           console.log(this.catsSelected);
         });
 
@@ -83,6 +84,8 @@ export class FiltersComponent implements OnInit {
     ) {
       this.productService.getProducts().subscribe((items) => {
         this.router.navigateByUrl(`shop/${btoa(`filters?category=all`)}`);
+        console.log(items);
+
         this.products.emit(items);
       });
     }
@@ -104,23 +107,21 @@ export class FiltersComponent implements OnInit {
   }
 
   changeCategoryUrl = () => {
-    let options = this.catsSelected.map((i: Category) => i.title?.toLowerCase()).filter((i) => i != undefined)
-    console.log(`filters?category=${options.length > 0 ? options : 'all'}`);
-    options = options.length > 0 ? options : ['all']
+    let options = this.catsSelected
+      .map((i: Category) => i.title?.toLowerCase())
+      .filter((i) => i != undefined);
 
+    options = options.length > 0 ? options : ['all'];
 
-    //! Arreglar cuando no hay optiones muestre todos con el ?filters=all
     this.router.navigateByUrl(`shop/${btoa(`filters?category=${options}`)}`);
 
     console.log(options.toString().includes('all'), options);
-
 
     if (options.includes('all')) {
       this.productService.getProducts().subscribe((items) => {
         this.products.emit(items);
       });
     }
-
 
     if (!options.includes('all')) {
       this.pXcService.getPxC(options).subscribe((i) => {

@@ -2,11 +2,20 @@ const {
   ProductModel,
   ProductsXCategories,
   CategoryModel,
+  UserModel,
 } = require("../../models");
 
-exports.getProducts = async () => {
+exports.getProducts = async (auth) => {
   try {
-    const docs = await ProductModel.find();
+    const docs = await ProductModel.find().lean();
+    if (auth) {
+      let userFavorites = (await UserModel.findOne({ uuid: auth.uuid }).populate('favorites').lean()).favorites
+
+      docs.map((e) => {
+        userFavorites.map((i) => i.slug == e.slug ? e.liked = true : null)
+      })
+    }
+
     return docs;
   } catch (e) {
     return e;
@@ -72,7 +81,7 @@ exports.getOneProduct = async (_id, defaultOption = true) => {
         .skip(random)
         .lean();
     }
-    return await ProductModel.find({ _id });
+    return await ProductModel.find({ slug: _id });
   } catch (e) {
     return e;
   }
@@ -85,4 +94,15 @@ exports.getProductsStartsWith = async (string) => {
   } catch (e) {
     return e;
   }
+};
+
+exports.setLikeDislike = async (product_slug, auth) => {
+  let product_id = (await ProductModel.findOne({ slug: product_slug }).lean())._id
+  let user = await UserModel.findOne({ uuid: auth.uuid })
+
+  if (user.favorites.includes(product_id)) {    
+    return await UserModel.findOneAndUpdate({ uuid: auth.uuid }, { $pull: { favorites: product_id } })
+  } 
+
+  return await UserModel.findOneAndUpdate({ uuid: auth.uuid }, { $push: { favorites: product_id } })
 };

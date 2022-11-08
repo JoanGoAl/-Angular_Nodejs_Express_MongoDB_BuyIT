@@ -21,11 +21,10 @@ exports.login = async (req, res) => {
 }
 
 exports.register = async (req, res) => {
-    let user
     try {
-        user = await userController.register(req.body, res)
-    } catch (error) {
-        user = error
+        res.json(await userController.register(req.body, res))
+    } catch (e) {
+        res.json(e)
     }
-    res.json(user)
 }
+

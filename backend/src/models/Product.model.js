@@ -19,7 +19,7 @@ const ProductSchema = mongoose.Schema({
 mongoose.plugin(slug);
 
 ProductSchema.pre('validate', function (next) {
-    if (this.name) this.slug = slugify(this.name, { lower: true, strict: true })
+    if (this.name) this.slug = `${slugify(this.name, { lower: true, strict: true })}-${(Math.random() * Math.pow(36, 6) | 0).toString(36)}`
     next();
 });
 

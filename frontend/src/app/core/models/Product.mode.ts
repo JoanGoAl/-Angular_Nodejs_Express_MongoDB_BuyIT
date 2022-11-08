@@ -7,4 +7,6 @@ export interface Product {
   condition: String
   owner: String
   price: String
+  slug: string
+  liked?: boolean
 }

@@ -5,7 +5,7 @@
     </a>
     <div class="searhcbar">
         <!-- [dropdown]="true" dropdownIcon="pi pi-search" [completeOnFocus]="true" -->
-        <p-autoComplete placeholder="Busca tu producto" id="auto" [size]="$any(80)" [(ngModel)]="autocomplete"
+        <p-autoComplete placeholder="Busca tu producto" (onSelect)="goProduct()" optionClick id="auto" [size]="$any(80)" [(ngModel)]="autocomplete"
             [suggestions]="results" (completeMethod)="search($event)" [delay]="500"></p-autoComplete>
     </div>
     <div #topbarmenu class="layout-topbar-menu">
