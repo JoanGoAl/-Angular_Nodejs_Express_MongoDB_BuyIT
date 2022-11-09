@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { far, faHeart as farHeart } from '@fortawesome/free-regular-svg-icons';
+import { faHeart as farHeart, faSquarePlus as farMessage } from '@fortawesome/free-regular-svg-icons';
 import {
   faBars,
   faCoffee,
@@ -8,10 +8,8 @@ import {
   faDesktop,
   faFutbol,
   faHeart,
-  faMinus,
   faMotorcycle,
   faPaperPlane,
-  faPlane,
   faShirt,
   faShop,
   faUserMinus,
@@ -41,6 +39,7 @@ export class IconsComponent {
     plane: faPaperPlane,
     farHeart: farHeart,
     userMinus: faUserMinus,
-    userPlus: faUserPlus
+    userPlus: faUserPlus,
+    commentNew: farMessage
   };
 }

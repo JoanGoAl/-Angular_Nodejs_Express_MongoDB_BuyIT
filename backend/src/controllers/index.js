@@ -3,7 +3,8 @@ const controllers = {
     CategoryController: require('./category'),
     ProductsXcateogryController: require('./productsXcategory'),
     UserController: require('./user'),
-    ProfileController: require('./profile')
+    ProfileController: require('./profile'),
+    CommentController: require('./comment')
 }
 
 module.exports = controllers

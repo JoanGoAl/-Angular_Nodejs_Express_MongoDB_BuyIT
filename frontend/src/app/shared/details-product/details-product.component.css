@@ -12,8 +12,102 @@
   top: 10%;
 }
 
+.comments-wrapper {
+  width: 45%;
+  height: 30%;
+  top: 60%;
+  left: 50%;
+  position: absolute;
+  display: flex;
+  flex-wrap: wrap;
+  border-radius: 20px;
+  padding: 10px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  overflow: auto;
+}
+
+.comment-user-avatar img {
+  width: 100%;
+}
+
+.comment-user-avatar {
+  width: 15%;
+  margin: 5px;
+}
+
+.comment {
+  background-color: #a5a5a5b9;
+  border-radius: 10px;
+  width: 30%;
+  margin: 10px;
+  padding: 10px;
+  height: 26.5vh;
+}
+
+.addOne {
+  display: flex;
+  color: white;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  font-size: 3.5rem;
+  cursor: pointer;
+}
+
+.comment-user-info {
+  background-color: white;
+  padding: 5px;
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  display: flex;
+}
+
+.comment-username {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+textarea.comment-body {
+  background-color: white;
+  height: 50%;
+  width: 100%;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.send-btn {
+  background-color: #ff5a00;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 4%;
+  padding: 8px;
+  border-radius: 10px;
+  color: rgb(0, 0, 0);
+  cursor: pointer;
+  user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -o-user-select: none;
+}
+
+.comment-body {
+  background-color: white;
+  height: 70%;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.follow-btn {
+  width: 20%;
+  margin-left: 33%;
+}
+
 .follow {
-  /* background-color: red; */
   width: 25%;
   height: 100%;
   position: absolute;
@@ -39,8 +133,6 @@
   top: 32%;
 }
 
-
-
 .img-carousel {
   position: absolute;
   width: 20%;
@@ -54,7 +146,6 @@
   justify-content: center;
   border-radius: 56px;
 }
-
 
 .product-img {
   width: 100%;

@@ -105,8 +105,12 @@
       <img src="https://api.multiavatar.com/{{ user.name }}.png" alt="" />
     </div>
     <div class="seller-info">
-      <p class="username">{{ user.name }}</p> <!-- TODO: Aquí Usuario -->
-      <p class="rating" [hidden]="user.n_products == 0" >{{ user.n_products }} productos más</p> <!-- Aquí Número de productos del usuario -->
+      <p class="username">{{ user.name }}</p>
+      <!-- TODO: Aquí Usuario -->
+      <p class="rating" [hidden]="user.n_products == 0">
+        {{ user.n_products }} productos más
+      </p>
+      <!-- Aquí Número de productos del usuario -->
     </div>
     <div class="follow">
       <app-follow toFollow="{{ user.name }}" [mini]="true"></app-follow>
@@ -120,7 +124,7 @@
   </div>
   <div class="action-buttons">
     <app-favorite [product]="product"></app-favorite>
-    <div class="price-info">{{ product.price }}</div>
+    <div class="price-info">{{ product.price }}€</div>
     <div class="chat-button">
       <ul class="wrapper">
         <li class="icon chat">
@@ -128,6 +132,35 @@
           <span><app-fa-icon icon="plane"></app-fa-icon></span>
         </li>
       </ul>
+    </div>
+  </div>
+  <div class="comments-wrapper">
+    <div class="comment" *ngFor="let comment of comments">
+      <div class="comment-user-info">
+        <div class="comment-user-avatar">
+          <img src="https://api.multiavatar.com/{{ comment.username }}.png" alt="" />
+        </div>
+        <div class="comment-username">{{ comment.username }}</div>
+        <div class="follow-btn">
+          <app-follow [toFollow]="comment.username" [mini]="true"></app-follow>
+        </div>
+      </div>
+      <div class="comment-body">{{ comment.body }}</div>
+    </div>
+    <div class="comment" (click)="changeToAdd()" [hidden]="hide">
+      <div class="addOne">
+        <app-fa-icon icon="commentNew"></app-fa-icon>
+      </div>
+    </div>
+    <div class="comment" [hidden]="clicked">
+      <div class="comment-user-info">
+        <div class="comment-user-avatar">
+          <img src="https://api.multiavatar.com/{{ currentUser.username }}.png" alt="" />
+        </div>
+        <div class="comment-username">{{ currentUser.username }}</div>
+      </div>
+      <textarea class="comment-body" [(ngModel)]="commentBody" placeholder="Este producto..." name="" id="" cols="30" rows="10"></textarea>
+      <div class="send-btn" (click)="setComment()">Guarda el Comentario</div>
     </div>
   </div>
 </div>

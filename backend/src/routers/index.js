@@ -18,5 +18,6 @@ router.use('/categories', require('./category.route'))
 router.use('/productsXcategory', require('./productsXcategory.route'))
 router.use('/auth', require('./user.routes'))
 router.use('/profile', require('./profile.routes'))
+router.use('/comments', require('./comments.routes'))
 
 module.exports = router;
