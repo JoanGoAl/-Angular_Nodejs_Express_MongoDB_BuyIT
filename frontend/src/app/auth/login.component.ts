@@ -15,6 +15,9 @@ export class LoginComponent implements OnInit {
     isSubmitting = false;
     form: FormGroup;
 
+    errorUsermame: String = '';
+    errorEmail: String = '';
+
     constructor(
         private router: Router,
         private userService: UserService,
@@ -30,18 +33,9 @@ export class LoginComponent implements OnInit {
     }
 
     ngOnInit() {
-        // // Get the last piece of the URL (it's either 'login' or 'register')
-        // this.authType = this.router.url;
-        // // Set a title for the page accordingly
-        // this.title = this.authType === '/login' ? 'Sign in' : 'Sign up';
-        // // add form control for username if this is the register page
-        // if (this.authType === '/register') {
-        //   this.authForm.addControl('username', new FormControl());
-        // }
-        // this.cd.markForCheck();
     }
 
-    onSubmit() {
+    login() {
         this.isSubmitting = true;
         const credentials = this.form.value;
 

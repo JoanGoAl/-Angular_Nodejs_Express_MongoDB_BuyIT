@@ -18,13 +18,18 @@ exports.login = async (userInfo) => {
     if (await data.validatePassword(userInfo.password)) {
         return data.toAuthJSON()
     } else {
-        return { msg: "User or password are incorrects" }
+        return { error: "User or password are incorrects" }
     }
 }
 
 exports.register = async (userInfo) => {
-    let info = await UserModel.create(userInfo)
-    return info
+    const data = await UserModel.create(userInfo)
+
+    if (await data.validatePassword(userInfo.password)) {
+        return data.toAuthJSON()
+    } else {
+        return { error: "Error al registrar" }
+    }
 };
 
 exports.getUserFavorites = async (uuid) => {

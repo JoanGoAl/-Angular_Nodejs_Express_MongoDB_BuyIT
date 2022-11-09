@@ -1,23 +1,31 @@
 <div class="container-content-auth">
+    <img class="fondo-register" src="../../assets/img/auth-element_1.svg" style="transform: translate(70px, 55px);"
+        alt="">
     <div class="container-form-auth">
         <h1 class="title-auth">Register</h1>
-        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <form [formGroup]="form">
             <div class="form-group">
-                <label for="username">User name</label>
-                <input type="username" class="form-control" id="username" formControlName="username" />
+                <input type="username" placeholder="Username" class="form-control" id="username"
+                    formControlName="username" />
+            </div>
+            <div class="spanError"><span> {{errorUsermame}} </span></div>
+            <div class="form-group">
+                <input type="email" placeholder="Email" class="form-control" id="email" formControlName="email" />
+            </div>
+            <div class="spanError"><span> {{errorEmail}} </span></div>
+            <div class="form-group">
+                <input type="password" placeholder="Password" class="form-control" id="password"
+                    formControlName="password" />
             </div>
             <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" class="form-control" id="email" formControlName="email" />
+                <input type="password" placeholder="Repeat Password" class="form-control" id="rePassword"
+                    formControlName="rePassword" />
             </div>
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" class="form-control" id="password" formControlName="password" />
-            </div>
+            <div class="spanError"><span> {{errorPasswd}} </span></div>
             <div class="link-for-auth">
                 <a [routerLink]="['/auth/login']">Ya estas registrado?</a>
             </div>
-            <button type="submit" id="butt-login" class="btn btn-primary" [disabled]="form.invalid">Register</button>
+            <button (click)="register()" id="butt-auth" class="btn btn-primary">Register</button>
         </form>
     </div>
 </div>
