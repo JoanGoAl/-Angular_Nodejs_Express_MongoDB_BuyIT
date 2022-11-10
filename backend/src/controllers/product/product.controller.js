@@ -82,11 +82,15 @@ exports.getOneProduct = async (_id, defaultOption = true) => {
         .skip(random)
         .lean();
     } else {
-      let userFavorites = (await UserModel.findOne({ uuid: _id.auth.uuid }).populate('favorites').lean()).favorites
+      let userFavorites = []
+      if (typeof _id.auth != "undefined") {
+        userFavorites = (await UserModel.findOne({ uuid: _id.auth.uuid }).populate('favorites').lean()).favorites
+      }
       let product = (await ProductModel.find({ slug: _id.params.id }))[0].toObject()
 
       userFavorites.map((i) => i.slug == product.slug ? product.liked = true : null)
 
+      
       return product;
     }
 

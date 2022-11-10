@@ -1,7 +1,7 @@
 import { ProfileService } from './../../core/services/profile.service';
 import { UserService } from './../../core/services/user.service';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Product, Profile, Comment, User } from 'src/app/core/models';
 import { ProductService } from 'src/app/core/services/products.service';
 import { CommentService } from 'src/app/core/services/comments.service';
@@ -29,18 +29,23 @@ export class DetailsProductComponent implements OnInit {
     private productService: ProductService,
     private profileService: ProfileService,
     private userService: UserService,
-    private commentService: CommentService
+    private commentService: CommentService,
+    private router: Router
   ) {}
 
   getProduct() {
     this.productId = this.aRouter.snapshot.paramMap.get('id');
-
     this.productService.getProductById(this.productId).subscribe((res) => {
+      console.log(res);
+
       this.commentService
         .getProductComments(res._id as string)
         .subscribe((e) => {
+          console.log(e);
+
           this.comments = e;
         });
+
       this.product = res;
     });
   }
@@ -49,25 +54,37 @@ export class DetailsProductComponent implements OnInit {
     setTimeout(() => {
       this.profileService
         .getProfileById(this.product.owner as string)
-        .subscribe((res) => (this.user.name = res.username));
+        .subscribe((res) => {
+          (this.user.name = res.username)
+        });
     }, 100);
   }
 
   getUser_NProducts() {
-    this.profileService
-      .getNProducts('gfmois')
+    if (typeof this.user.name != "undefined") {
+      this.profileService
+      .getNProducts(this.user.name)
       .subscribe((e) => (this.user.n_products = parseInt(e)));
+    }
   }
 
   getUserInfo() {
-    this.profileService
-      .getProfile(this.userService.getCurrentUser().username)
-      .subscribe((e) => (this.userProfile = e.profile));
+    let currentUser = this.userService.getCurrentUser().username;
+
+    if (typeof currentUser != 'undefined') {
+      this.profileService
+        .getProfile(currentUser)
+        .subscribe((e) => (this.userProfile = e.profile));
+    }
   }
 
   changeToAdd() {
-    this.hide = true;
-    this.clicked = !this.clicked;
+    if (Object.keys(this.currentUser).length == 0) {
+      this.router.navigateByUrl('/auth/login')
+    } else {
+      this.hide = true;
+      this.clicked = !this.clicked;
+    }
   }
 
   setComment() {
@@ -77,23 +94,23 @@ export class DetailsProductComponent implements OnInit {
         product_id: this.product._id,
       })
       .subscribe((e) => {
-        this.clicked = !this.clicked
-        this.hide = !this.hide
+        this.clicked = !this.clicked;
+        this.hide = !this.hide;
         this.comments.push({
           ...e,
           username: this.currentUser.username,
         });
 
-        this.commentBody = ''
+        this.commentBody = '';
       });
   }
 
   ngOnInit(): void {
+    this.currentUser = this.userService.getCurrentUser();
+
     this.getProduct();
     this.getUser_NProducts();
     this.getUser();
     this.getUserInfo();
-
-    this.currentUser = this.userService.getCurrentUser();
   }
 }
