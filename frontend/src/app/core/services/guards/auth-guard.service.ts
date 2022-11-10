@@ -3,7 +3,7 @@ import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from
 import { Observable } from 'rxjs';
 
 import { UserService } from '../user.service';
-import { take } from 'rxjs/operators';
+import { take, map } from 'rxjs/operators';
 
 @Injectable({
     providedIn: 'root'
@@ -19,7 +19,10 @@ export class AuthGuard implements CanActivate {
         state: RouterStateSnapshot
     ): Observable<boolean> {
 
-        return this.userService.isAuthenticated.pipe(take(1));
+        return this.userService.isAuthenticated.pipe(take(1), map(isAuth => {
+            if (!isAuth) this.router.navigateByUrl('/');
+            return isAuth
+        }));
 
     }
 }

@@ -11,6 +11,7 @@
                 <input type="password" placeholder="Password" class="form-control" id="password"
                     formControlName="password" />
             </div>
+            <div class="spanError"><span> {{errorLogin}} </span></div>
             <div class="link-for-auth">
                 <a [routerLink]="['/auth/register']">No estas registrado?</a>
             </div>

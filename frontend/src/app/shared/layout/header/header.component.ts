@@ -91,11 +91,13 @@ export class HeaderComponent implements OnInit {
     this.confirmationService.confirm({
       target: event.target,
       accept: () => {
-        console.log('Se va pal perfil');
+        this.router.navigateByUrl('/profile')
       },
       acceptLabel: 'Profile',
       reject: () => {
         this.userService.purgeAuth()
+        this.router.navigateByUrl('/')
+
       },
       rejectButtonStyleClass: 'p-button-danger',
       rejectLabel: 'Logout'
