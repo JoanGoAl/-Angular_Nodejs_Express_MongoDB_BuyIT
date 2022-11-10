@@ -50,48 +50,49 @@ export class UserService {
     }
   }
 
-  setAuth(user: User) {
-    // Save JWT sent from server in localstorage
-    this.jwtService.saveToken(user.token);
-    // Set current user data into observable
-    this.currentUserSubject.next(user);
-    // Set isAuthenticated to true
-    this.isAuthenticatedSubject.next(true);
+    setAuth(user: User) {
+        // Save JWT sent from server in localstorage
+        this.jwtService.saveToken(user.token);
+        // Set current user data into observable
+        this.currentUserSubject.next(user);
+        // Set isAuthenticated to true
+        this.isAuthenticatedSubject.next(true);
+    }
+
+    purgeAuth() {
+      // Remove JWT from localstorage
+      this.jwtService.destroyToken();
+      // Set current user to an empty object
+      this.currentUserSubject.next({} as User)
+      // Set auth status to false
+      this.isAuthenticatedSubject.next(false)
+    }
+
+    attemptAuth(type: any, credentials: any): Observable<User> {
+      const route = type;
+
+      return this.apiService.post(`${route}`, credentials).pipe(
+          map((data) => {
+              if (data.error) return data
+              this.setAuth(data);
+              return data;
+          })
+      );
   }
 
-  purgeAuth() {
-    // Remove JWT from localstorage
-    this.jwtService.destroyToken();
-    // Set current user to an empty object
-    this.currentUserSubject.next({} as User);
-    // Set auth status to false
-    this.isAuthenticatedSubject.next(false);
-  }
 
-  attemptAuth(type: any, credentials: any): Observable<User> {
-    const route = type === '/login' ? '/login' : '';
+    getCurrentUser(): User {
+        return this.currentUserSubject.value;
+    }
 
-    return this.apiService.post(`${route}`, credentials).pipe(
-      map((data) => {
-        this.setAuth(data);
-        //console.log(data);
-        return data;
-      })
-    );
-  }
-
-  getCurrentUser(): User {
-    return this.currentUserSubject.value;
-  }
-
-  // Update the user on the server (email, pass, etc)
-  update(user: any): Observable<User> {
-    return this.apiService.put('user', { user }).pipe(
-      map((data) => {
-        // Update the currentUser observable
-        this.currentUserSubject.next(data.user);
-        return data.user;
-      })
-    );
-  }
+    // Update the user on the server (email, pass, etc)
+    update(user: any): Observable<User> {
+        return this.apiService.put('user', { user }).pipe(
+            map((data) => {
+                // Update the currentUser observable
+                this.currentUserSubject.next(data.user);
+                return data.user;
+            })
+        );
+    }
 }

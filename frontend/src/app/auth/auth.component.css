@@ -1,23 +1,28 @@
 .container-content-auth {
     width: 100%;
-    height: 100%;
+    height: 87vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    justify-content: center;
 }
 
 .container-form-auth {
-    margin-top: 5%;
-    width: 450px;
+    width: 350px;
     border-radius: 10px;
-    padding: 10px;
+    padding: 10px 25px;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 0px 15px -2px,
         rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-color: #fff;
+}
+
+h1 {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 form {
@@ -30,7 +35,7 @@ form {
 
 .form-group {
     width: 100%;
-    margin: 15px;
+    margin: 10px;
     display: flex;
     flex-direction: column;
 }
@@ -40,7 +45,51 @@ form {
 }
 
 .form-group>input {
+    height: 50px;
+    padding: 10px;
+    border-radius: 2px;
+    border: 1px solid #ccc;
+}
+
+#butt-auth {
+    width: 100%;
     padding: 10px;
     border-radius: 5px;
-    border: 1px solid #ccc;
+    border: none;
+    background-color: #1e88e5;
+    color: #fff;
+    font-weight: bold;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    cursor: pointer;
+}
+
+.link-for-auth {
+    width: 100%;
+    margin: 10px 0;
+}
+
+.link-for-auth a {
+    color: #1e88e5;
+    /* text-decoration: none; */
+}
+
+.spanError {
+    width: 100%;
+}
+
+.spanError>span {
+    color: red;
+}
+
+.fondo-login {
+    position: fixed;
+    width: 50%;
+    z-index: -1;
+}
+
+.fondo-register {
+    position: fixed;
+    width: 55%;
+    z-index: -1;
 }

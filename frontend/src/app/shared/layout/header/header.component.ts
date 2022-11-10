@@ -1,11 +1,12 @@
 import { DOCUMENT } from '@angular/common';
 import { ThemeService } from './../../../core/services/theme.service';
 import { Component, Inject, OnInit, ViewEncapsulation } from '@angular/core';
-import { MegaMenuItem } from 'primeng/api';
 import { Product } from 'src/app/core/models';
 import { ProductService } from 'src/app/core/services/products.service';
 import { Router } from '@angular/router';
 import { UserService } from '../../../core/services';
+import { ConfirmationService } from 'primeng/api';
+
 
 @Component({
   selector: 'app-header',
@@ -22,8 +23,9 @@ export class HeaderComponent implements OnInit {
     @Inject(DOCUMENT) private document: Document,
     private themeService: ThemeService,
     private productService: ProductService,
+    private userService: UserService,
     private router: Router,
-    private userService: UserService
+    private confirmationService: ConfirmationService,
   ) { }
 
   products!: Product[];
@@ -65,6 +67,16 @@ export class HeaderComponent implements OnInit {
     }
   }
 
+  isLogged() {
+
+    if (this.userService.getCurrentUser().username) {
+      this.user = this.userService.getCurrentUser()
+      return true
+    } else return false
+
+
+  }
+
   goProduct() {
     let slug = this.products
       .map((e) => (e.name == this.autocomplete ? e.slug : ''))
@@ -75,14 +87,19 @@ export class HeaderComponent implements OnInit {
       .then(() => this.router.navigate([`/shop/product/${slug}`]));
   }
 
-  isLogged() {
-
-    if (this.userService.getCurrentUser().username) {
-      this.user = this.userService.getCurrentUser()
-      return true
-    } else return false
-
-
+  optionsUsers(event: any) {
+    this.confirmationService.confirm({
+      target: event.target,
+      accept: () => {
+        console.log('Se va pal perfil');
+      },
+      acceptLabel: 'Profile',
+      reject: () => {
+        this.userService.purgeAuth()
+      },
+      rejectButtonStyleClass: 'p-button-danger',
+      rejectLabel: 'Logout'
+    });
   }
 
   ngOnInit(): void { }
