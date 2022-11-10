@@ -13,6 +13,7 @@ export class ProfileComponent implements OnInit {
   infoUser?: any
   isAutorized: boolean = false
 
+  favorites?: any[]
   products?: any[]
 
   constructor(
@@ -30,9 +31,34 @@ export class ProfileComponent implements OnInit {
       ? this.userService.getCurrentUser().username
       : `${this.aRouter.snapshot.paramMap.get('user')}`
 
-    if (this.userService.getCurrentUser().username) this.isAutorized = true
+    if (this.userService.getCurrentUser().username) {
+      this.isAutorized = true
+      this.getAutorizedUser(auxUser)
+    } else {
+      this.isAutorized = false
+      this.getUnautorizedUser(auxUser)
+    }
 
-    this.userService.getInfoUser(auxUser).subscribe(data => {
+  }
+
+  getAutorizedUser(user: string) {
+    this.userService.getInfoUser(user).subscribe(data => {
+      this.infoUser = data
+
+      this.productService.getUserProducts(this.infoUser.products).subscribe(data => {
+        this.products = data
+      })
+
+      this.productService.getUserProducts(this.infoUser.favorites).subscribe(data => {
+        this.favorites = data
+      })
+
+    })
+
+  }
+
+  getUnautorizedUser(user: string) {
+    this.userService.getInfoUser(user).subscribe(data => {
       this.infoUser = data
 
       this.productService.getUserProducts(this.infoUser.products).subscribe(data => {
@@ -42,11 +68,6 @@ export class ProfileComponent implements OnInit {
       })
 
     })
-
-
-
-
-
   }
 
   ngOnInit(): void {
