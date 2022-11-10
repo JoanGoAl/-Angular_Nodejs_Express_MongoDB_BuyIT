@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../core';
+import { UserService, ProductService } from '../core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -19,6 +19,7 @@ export class ProfileComponent implements OnInit {
     private userService: UserService,
     private router: Router,
     private aRouter: ActivatedRoute,
+    private productService: ProductService
   ) {
 
   }
@@ -33,7 +34,18 @@ export class ProfileComponent implements OnInit {
 
     this.userService.getInfoUser(auxUser).subscribe(data => {
       this.infoUser = data
+
+      this.productService.getUserProducts(this.infoUser.products).subscribe(data => {
+        console.log(data);
+
+        this.products = data
+      })
+
     })
+
+
+
+
 
   }
 
