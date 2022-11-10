@@ -55,6 +55,7 @@ import { FollowComponent } from './buttons/follow/follow.component';
   ],
   exports: [
     CarouselComponent,
+    IconsComponent,
     CategoriesComponent,
     ListProductsComponent,
     DetailsProductComponent,

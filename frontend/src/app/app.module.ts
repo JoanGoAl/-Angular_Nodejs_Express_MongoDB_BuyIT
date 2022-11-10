@@ -11,7 +11,6 @@ import { AppComponent } from './app.component';
 
 // PrimeNG
 import { AccordionModule } from 'primeng/accordion'
-import { MegaMenuModule } from 'primeng/megamenu';
 import { CardModule } from 'primeng/card';
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { CoreModule } from './core/core.module';

@@ -29,3 +29,107 @@
     left: 80%;
     top: 32%;
 }
+
+.container-profile {
+  position: absolute;
+  width: 70%;
+  height: 80%;
+  left: 20%;
+  top: 15%;
+  padding: 25px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 10px;
+}
+
+.user-container {
+  background-color: rgba(140, 140, 140, 0.328);
+  display: flex;
+  color: white;
+  padding: 10px;
+  align-items: center;
+}
+
+.user-container * {
+  margin-left: 25px;
+}
+
+.avatar {
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+}
+
+.container-products {
+  background-color: rgba(255, 255, 255, 0.309);
+  border-radius: 62px;
+  color: rgba(219, 119, 13, 0.727);
+  width: fit-content;
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36px;
+  left: 83%;
+  top: 6%;
+  cursor: pointer;
+}
+
+.container-favoritos {
+  background-color: rgba(255, 255, 255, 0.309);
+  border-radius: 62px;
+  color: rgba(219, 13, 13, 0.727);
+  width: fit-content;
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36px;
+  left: 90%;
+  top: 6%;
+  cursor: pointer;
+}
+
+.content-wrapper {
+  /* background-color: yellow; */
+  margin-top: 10px;
+  height: 85%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+}
+
+.card {
+  margin: 10px;
+  /* padding: 10px; */
+  background-color: rgba(140, 140, 140, 0.328);
+  height: fit-content;
+  padding: 10px;
+  width: 90%;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+.product-title {
+  text-align: center;
+}
+
+.product-img {
+  padding: 5px;
+  margin-left: 10%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 80%;
+}
+
+.product-img img {
+  width: 100%;
+}
+
+.product-description {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

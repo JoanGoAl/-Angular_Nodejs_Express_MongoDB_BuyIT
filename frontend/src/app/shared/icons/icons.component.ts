@@ -3,6 +3,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faHeart as farHeart, faSquarePlus as farMessage } from '@fortawesome/free-regular-svg-icons';
 import {
   faBars,
+  faBoxesStacked,
   faCoffee,
   faCouch,
   faDesktop,
@@ -42,6 +43,7 @@ export class IconsComponent {
     userMinus: faUserMinus,
     userPlus: faUserPlus,
     commentNew: farMessage,
-    trash: faTrash
+    trash: faTrash,
+    products: faBoxesStacked
   };
 }
