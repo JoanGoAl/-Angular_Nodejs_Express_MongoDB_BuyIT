@@ -18,7 +18,7 @@ exports.login = async (userInfo) => {
     if (await data.validatePassword(userInfo.password)) {
         return data.toAuthJSON()
     } else {
-        return { error: "User or password are incorrects" }
+        return { error: "Usuario o contraseña incorrectos" }
     }
 }
 

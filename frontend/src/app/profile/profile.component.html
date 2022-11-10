@@ -1,0 +1,21 @@
+<div *ngIf="infoUser" class="container-profile">
+
+    <img src="{{infoUser.avatar}}" alt="" width="50px">
+    <p> {{infoUser.username}} </p>
+    <p ng> {{infoUser.email}} </p>
+
+    <div class="container-products">
+        <p>Productos</p>
+        <div *ngFor="let product of products">
+            <p>{{product}}</p>
+        </div>
+    </div>
+
+    <div *ngIf="isAutorized" class="container-favoritos">
+        <p>Favoritos</p>
+        <div *ngFor="let favorite of products">
+            <p>{{favorite}}</p>
+        </div>
+    </div>
+
+</div>

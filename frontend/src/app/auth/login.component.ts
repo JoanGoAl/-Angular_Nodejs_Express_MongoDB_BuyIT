@@ -15,8 +15,7 @@ export class LoginComponent implements OnInit {
     isSubmitting = false;
     form: FormGroup;
 
-    errorUsermame: String = '';
-    errorEmail: String = '';
+    errorLogin: String = '';
 
     constructor(
         private router: Router,
@@ -28,7 +27,7 @@ export class LoginComponent implements OnInit {
         //   // use FormBuilder to create a form group
         this.form = this.fb.group({
             username: ['', Validators.required],
-            password: ['', [Validators.required, Validators.minLength(3)]],
+            password: ['', [Validators.required]],
         });
     }
 
@@ -41,7 +40,8 @@ export class LoginComponent implements OnInit {
 
         this.userService.attemptAuth(this.authType, credentials).subscribe(
             (data: any) => {
-                if (data.msg) {
+                if (data.error) {
+                    this.errorLogin = data.error;
                     console.log('No registrado');
 
                 } else {
