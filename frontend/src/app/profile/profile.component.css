@@ -1,0 +1,31 @@
+*:focus,
+*:active {
+    outline: none !important;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.graph {
+    position: absolute;
+    width: 40%;
+    height: fit-content;
+    left: 8%;
+    top: 10%;
+}
+
+.mini-graphs {
+    background-color: red;
+}
+
+.mini-graphs>.top-graph {
+    position: absolute;
+    width: 20%;
+    left: 45%;
+    top: 5%;
+}
+
+.mini-graphs .bottom-graph {
+    position: absolute;
+    width: 20%;
+    left: 80%;
+    top: 32%;
+}
