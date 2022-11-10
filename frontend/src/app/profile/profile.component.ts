@@ -13,7 +13,7 @@ export class ProfileComponent implements OnInit {
   infoUser?: any
   isAutorized: boolean = false
 
-  products?: any[]
+  option?: any[]
 
   constructor(
     private userService: UserService,
@@ -38,7 +38,7 @@ export class ProfileComponent implements OnInit {
       this.productService.getUserProducts(this.infoUser.products).subscribe(data => {
         console.log(data);
 
-        this.products = data
+        this.option = data
       })
 
     })
@@ -47,6 +47,10 @@ export class ProfileComponent implements OnInit {
 
 
 
+  }
+
+  goProduct(slug: string) {
+    this.router.navigateByUrl(`/shop/product/${slug}`)
   }
 
   ngOnInit(): void {
