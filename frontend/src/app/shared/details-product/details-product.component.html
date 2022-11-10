@@ -106,11 +106,9 @@
     </div>
     <div class="seller-info">
       <p class="username">{{ user.name }}</p>
-      <!-- TODO: Aquí Usuario -->
       <p class="rating" [hidden]="user.n_products == 0">
-        {{ user.n_products }} productos más
+        <!-- {{ user.n_products }} productos más -->
       </p>
-      <!-- Aquí Número de productos del usuario -->
     </div>
     <div class="follow">
       <app-follow toFollow="{{ user.name }}" [mini]="true"></app-follow>
@@ -143,6 +141,9 @@
         <div class="comment-username">{{ comment.username }}</div>
         <div class="follow-btn">
           <app-follow [toFollow]="comment.username" [mini]="true"></app-follow>
+          <div class="ico-wrapper" *ngIf="comment.username == currentUser.username">
+            <app-fa-icon icon="trash" (click)="removeComment(comment)"></app-fa-icon>
+          </div>
         </div>
       </div>
       <div class="comment-body">{{ comment.body }}</div>

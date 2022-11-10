@@ -22,4 +22,8 @@ export class CommentService {
   setProductComment(comment_info: any): Observable<Comment> {
     return this._http.post<Comment>(`${this.baseUrl}/setProductCommentary`, comment_info)
   }
+
+  deleteProductComment(_id: string): Observable<Comment> {
+    return this._http.delete<Comment>(`${this.baseUrl}/deleteProductCommentary/${_id}`)
+  }
 }

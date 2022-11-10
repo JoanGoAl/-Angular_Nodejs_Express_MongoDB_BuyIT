@@ -23,3 +23,9 @@ exports.setProductCommentary = async (req, res) => {
         res.json(await commentController.setProductCommentary(obj))
     } catch (e) { res.json(e) }
 }
+
+exports.deleteProductCommentary = async (req, res) => {
+    try {
+        res.json(await commentController.deleteProductCommentary(req.params.comment_id))
+    } catch (e) { res.json(e) }
+}

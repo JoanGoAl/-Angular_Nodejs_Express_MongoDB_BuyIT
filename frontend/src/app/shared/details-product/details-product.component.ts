@@ -36,12 +36,10 @@ export class DetailsProductComponent implements OnInit {
   getProduct() {
     this.productId = this.aRouter.snapshot.paramMap.get('id');
     this.productService.getProductById(this.productId).subscribe((res) => {
-      console.log(res);
 
       this.commentService
         .getProductComments(res._id as string)
         .subscribe((e) => {
-          console.log(e);
 
           this.comments = e;
         });
@@ -55,16 +53,16 @@ export class DetailsProductComponent implements OnInit {
       this.profileService
         .getProfileById(this.product.owner as string)
         .subscribe((res) => {
-          (this.user.name = res.username)
+          this.user.name = res.username;
         });
     }, 100);
   }
 
   getUser_NProducts() {
-    if (typeof this.user.name != "undefined") {
+    if (typeof this.user.name != 'undefined') {
       this.profileService
-      .getNProducts(this.user.name)
-      .subscribe((e) => (this.user.n_products = parseInt(e)));
+        .getNProducts(this.user.name)
+        .subscribe((e) => (this.user.n_products = parseInt(e)));
     }
   }
 
@@ -74,13 +72,15 @@ export class DetailsProductComponent implements OnInit {
     if (typeof currentUser != 'undefined') {
       this.profileService
         .getProfile(currentUser)
-        .subscribe((e) => (this.userProfile = e.profile));
+        .subscribe((e) => {
+          this.userProfile = e.profile
+        });
     }
   }
 
   changeToAdd() {
     if (Object.keys(this.currentUser).length == 0) {
-      this.router.navigateByUrl('/auth/login')
+      this.router.navigateByUrl('/auth/login');
     } else {
       this.hide = true;
       this.clicked = !this.clicked;
@@ -105,6 +105,12 @@ export class DetailsProductComponent implements OnInit {
       });
   }
 
+  removeComment(comment: Comment) {
+    this.comments.splice(this.comments.findIndex((arr_comment) => arr_comment._id == comment._id ), 1)
+
+    this.commentService.deleteProductComment(comment._id)
+  }
+
   ngOnInit(): void {
     this.currentUser = this.userService.getCurrentUser();
 
@@ -112,5 +118,7 @@ export class DetailsProductComponent implements OnInit {
     this.getUser_NProducts();
     this.getUser();
     this.getUserInfo();
+
+    this.profileService.getProfile('gfmois').subscribe((e) => e)
   }
 }

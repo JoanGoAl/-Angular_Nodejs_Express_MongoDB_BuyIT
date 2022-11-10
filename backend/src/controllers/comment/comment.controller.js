@@ -31,3 +31,7 @@ exports.setProductCommentary = async (values) => {
     body: values.body,
   });
 };
+
+exports.deleteProductCommentary = async (_id) => {
+  return await CommentModel.findOneAndDelete({ _id })
+}

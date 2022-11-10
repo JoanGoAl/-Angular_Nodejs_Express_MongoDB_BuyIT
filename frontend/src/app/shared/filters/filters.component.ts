@@ -62,10 +62,8 @@ export class FiltersComponent implements OnInit {
       )
       .subscribe((res) => {
         res.map((e) => {
-          console.log(e.value[0]);
 
           this.catsSelected.push(e.value.length > 0 ? e.value[0] : []);
-          console.log(this.catsSelected);
         });
 
         if (
@@ -84,7 +82,6 @@ export class FiltersComponent implements OnInit {
     ) {
       this.productService.getProducts().subscribe((items) => {
         this.router.navigateByUrl(`shop/${btoa(`filters?category=all`)}`);
-        console.log(items);
 
         this.products.emit(items);
       });
@@ -114,8 +111,6 @@ export class FiltersComponent implements OnInit {
     options = options.length > 0 ? options : ['all'];
 
     this.router.navigateByUrl(`shop/${btoa(`filters?category=${options}`)}`);
-
-    console.log(options.toString().includes('all'), options);
 
     if (options.includes('all')) {
       this.productService.getProducts().subscribe((items) => {

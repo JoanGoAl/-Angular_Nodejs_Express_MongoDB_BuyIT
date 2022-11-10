@@ -12,6 +12,7 @@ import {
   faPaperPlane,
   faShirt,
   faShop,
+  faTrash,
   faUserMinus,
   faUserPlus,
 } from '@fortawesome/free-solid-svg-icons';
@@ -40,6 +41,7 @@ export class IconsComponent {
     farHeart: farHeart,
     userMinus: faUserMinus,
     userPlus: faUserPlus,
-    commentNew: farMessage
+    commentNew: farMessage,
+    trash: faTrash
   };
 }

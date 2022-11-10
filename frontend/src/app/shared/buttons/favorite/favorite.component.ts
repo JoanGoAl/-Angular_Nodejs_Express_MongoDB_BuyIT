@@ -19,10 +19,6 @@ export class FavoriteComponent implements OnInit {
 
   ngOnInit(): void {
     this.isLiked =  this.product?.liked || false
-    console.log(this.product);
-
-    console.log(this.isLiked);
-
   }
 
 }

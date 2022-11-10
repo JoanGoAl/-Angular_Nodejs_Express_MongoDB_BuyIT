@@ -95,6 +95,19 @@ textarea.comment-body {
   -o-user-select: none;
 }
 
+.ico-wrapper {
+  background-color: white;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* background-color: red; */
+  width: 100%;
+  height: 100%;
+  /* margin-top: 15px; */
+  cursor: pointer;
+}
+
 .comment-body {
   background-color: white;
   height: 70%;
