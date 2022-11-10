@@ -90,7 +90,7 @@ exports.getOneProduct = async (_id, defaultOption = true) => {
 
       userFavorites.map((i) => i.slug == product.slug ? product.liked = true : null)
 
-      
+
       return product;
     }
 
@@ -113,10 +113,20 @@ exports.setLikeDislike = async (product_slug, auth) => {
   let product_id = (await ProductModel.findOne({ slug: product_slug }).lean())._id
   let user = await UserModel.findOne({ uuid: auth.uuid })
 
-  if (user.favorites.includes(product_id)) {    
+  if (user.favorites.includes(product_id)) {
     if (await UserModel.findOneAndUpdate({ uuid: auth.uuid }, { $pull: { favorites: product_id } })) return false
-    
-  } 
+
+  }
 
   if (await UserModel.findOneAndUpdate({ uuid: auth.uuid }, { $push: { favorites: product_id } })) return true
 };
+
+exports.getUserProducts = async ({ products }) => {
+
+  let userProducts = []
+  for (let i = 0; i < products.length; i++) {
+    userProducts.push(await ProductModel.findOne({ _id: products[i] }))
+  }
+
+  return userProducts
+}

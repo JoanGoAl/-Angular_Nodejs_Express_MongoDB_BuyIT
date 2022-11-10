@@ -15,6 +15,10 @@ export class ProductService {
     return this._http.get<Product[]>(`${this.baseUrl}/getProducts`);
   }
 
+  getUserProducts(products: any): Observable<Product[]> {
+    return this._http.post<Product[]>(`${this.baseUrl}/getUserProducts`, { products })
+  }
+
   getRandomProduct(name: string): Observable<String[]> {
     let params = new HttpHeaders().set('title', name);
 

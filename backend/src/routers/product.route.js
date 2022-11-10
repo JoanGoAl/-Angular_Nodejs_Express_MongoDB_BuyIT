@@ -10,5 +10,6 @@ router.post('/addProduct', ProductController.addProduct)
 router.put('/updateProduct', ProductController.updateProduct)
 router.delete('/deleteProduct/:id', ProductController.deleteProduct)
 router.post('/:slug/like', AuthMiddleware.required, ProductController.setLikeDislike)
+router.post('/getUserProducts', ProductController.getUserProducts)
 
 module.exports = router

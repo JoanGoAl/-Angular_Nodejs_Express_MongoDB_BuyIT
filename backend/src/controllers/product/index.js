@@ -49,6 +49,12 @@ exports.getProductsStartsWith = async (req, res) => {
 
 exports.setLikeDislike = async (req, res) => {
     try {
-        res.json(await productController.setLikeDislike(req.params.slug, req.auth))
+        res.send(await productController.setLikeDislike(req.params.slug, req.auth))
+    } catch (e) { res.json(e) }
+}
+
+exports.getUserProducts = async (req, res) => {
+    try {
+        res.json(await productController.getUserProducts(req.body))
     } catch (e) { res.json(e) }
 }
