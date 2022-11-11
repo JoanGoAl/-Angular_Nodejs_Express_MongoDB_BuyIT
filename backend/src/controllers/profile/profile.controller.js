@@ -3,11 +3,12 @@ const { mongo, default: mongoose } = require('mongoose')
 
 exports.getUser = async (req) => {
     if (req.auth) {
-        await UserModel.findOne({ username: req.params.username }).then((user) => {
-            if (!user) return { profile: req.auth.toProfileJSONFor(false) };
+        let user = await UserModel.findOne({ username: req.auth.username })
 
-            return { profile: req.profile.toProfileJSONFor(user) };
-        });
+        if (!user) return { profile: req.profile.toProfileJSONFor(user) }
+
+        console.log({ profile: req.profile.toProfileJSONFor(user) });
+        return { profile: req.profile.toProfileJSONFor(user) };
     } else return { profile: req.profile.toProfileJSONFor(false) };
 }
 

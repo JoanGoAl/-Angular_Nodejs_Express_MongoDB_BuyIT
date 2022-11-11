@@ -13,26 +13,29 @@ export class ProfileComponent implements OnInit {
   infoUser?: any
   isAutorized: boolean = false
 
+  values?: any[]
   favorites?: any[]
   products?: any[]
-  following?: any[]
+  following?: any[];
+
+  option: 'products' | 'favorites' | 'following' = 'products'
 
   constructor(
     private userService: UserService,
     private router: Router,
     private aRouter: ActivatedRoute,
     private productService: ProductService
-  ) {
-
-  }
+  ) { }
 
   getUser() {
 
-    let auxUser = this.userService.getCurrentUser().username
-      ? this.userService.getCurrentUser().username
-      : `${this.aRouter.snapshot.paramMap.get('user')}`
+    let actualUser = this.userService.getCurrentUser().username
 
-    if (this.userService.getCurrentUser().username) {
+    let auxUser = this.aRouter.snapshot.paramMap.get('user')
+      ? `${this.aRouter.snapshot.paramMap.get('user')}`
+      : this.userService.getCurrentUser().username
+
+    if (actualUser) {
       this.isAutorized = true
       this.getAutorizedUser(auxUser)
     } else {
@@ -43,9 +46,16 @@ export class ProfileComponent implements OnInit {
   }
 
   getAutorizedUser(user: string) {
+    if (user != this.userService.getCurrentUser().username) {
+      this.isAutorized = false
+    }
+
     this.userService.getInfoUser(user).subscribe(data => {
       this.infoUser = data
 
+        this.productService.getUserProducts(this.infoUser.products).subscribe(data => {
+          this.products = data
+        })
       console.log(data);
 
 
@@ -53,8 +63,8 @@ export class ProfileComponent implements OnInit {
         this.products = data
       })
 
-      this.productService.getUserProducts(this.infoUser.favorites).subscribe(data => {
-        this.favorites = data
+        this.productService.getUserProducts(this.infoUser.favorites).subscribe(data => {
+          this.favorites = data
       })
 
       this.userService.getUserFollowing(this.infoUser.following).subscribe(data => {
@@ -64,7 +74,11 @@ export class ProfileComponent implements OnInit {
       })
 
     })
+  }
 
+  changeOption(newValue: 'products' | 'favorites' | 'following') {
+    this.option = newValue;
+    this.values = this[newValue]
   }
 
   getUnautorizedUser(user: string) {
@@ -72,18 +86,21 @@ export class ProfileComponent implements OnInit {
       this.infoUser = data
 
       this.productService.getUserProducts(this.infoUser.products).subscribe(data => {
-        console.log(data);
-
-        this.products = data
+        this.values = data
       })
 
     })
   }
 
+  goProduct(slug: string) {
+    this.router.navigateByUrl(`/shop/product/${slug}`)
+  }
+
   ngOnInit(): void {
     this.getUser()
-
-    // this.user = this.userService.getCurrentUser().username
+    setTimeout(() => {
+      this.values = this.products
+    }, 100);
   }
 
 }

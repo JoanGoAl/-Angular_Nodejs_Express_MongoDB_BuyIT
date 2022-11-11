@@ -26,6 +26,5 @@ export class ListProductsComponent implements OnInit {
   redirect(id?: String) {
     this.router.navigateByUrl(`shop/product/${id}`);
   }
-
   ngOnInit(): void {}
 }

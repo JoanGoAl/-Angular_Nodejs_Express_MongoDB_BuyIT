@@ -111,7 +111,7 @@
       </p>
     </div>
     <div class="follow">
-      <app-follow toFollow="{{ user.name }}" [mini]="true"></app-follow>
+      <app-follow [toFollow]="user.name" [mini]="true"></app-follow>
     </div>
   </div>
   <div class="product-info">
@@ -135,7 +135,7 @@
   <div class="comments-wrapper">
     <div class="comment" *ngFor="let comment of comments">
       <div class="comment-user-info">
-        <div class="comment-user-avatar">
+        <div class="comment-user-avatar" (click)="goProfile(comment.username)">
           <img src="https://api.multiavatar.com/{{ comment.username }}.png" alt="" />
         </div>
         <div class="comment-username">{{ comment.username }}</div>

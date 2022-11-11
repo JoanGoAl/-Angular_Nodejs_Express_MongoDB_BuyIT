@@ -6,9 +6,9 @@ const {
 } = require("../../models");
 const { user } = require("../user");
 
-exports.getProducts = async (auth) => {
+exports.getProducts = async (auth, params) => {
   try {
-    const docs = await ProductModel.find().lean();
+    const docs = await ProductModel.find().skip(params.count).limit(params.offset);
     if (auth) {
       let userFavorites = (await UserModel.findOne({ uuid: auth.uuid }).populate('favorites').lean()).favorites
 

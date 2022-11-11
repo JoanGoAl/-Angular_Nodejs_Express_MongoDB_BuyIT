@@ -2,7 +2,7 @@ const productController = require('./product.controller')
 
 exports.getProducts = async (req, res) => {
     try {
-        res.json(await productController.getProducts(req.auth))
+        res.json(await productController.getProducts(req.auth, req.query))
     } catch (e) {
         throw new Error(e)
     }

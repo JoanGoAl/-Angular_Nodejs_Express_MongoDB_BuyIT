@@ -29,6 +29,9 @@ export class FiltersComponent implements OnInit {
   categories: Category[] = [];
   model: any[] = [];
 
+  offset: number = 8;
+  count: number = 0;
+
   constructor(
     private router: Router,
     private aRouter: ActivatedRoute,
@@ -113,7 +116,7 @@ export class FiltersComponent implements OnInit {
     this.router.navigateByUrl(`shop/${btoa(`filters?category=${options}`)}`);
 
     if (options.includes('all')) {
-      this.productService.getProducts().subscribe((items) => {
+      this.productService.getProducts(this.count, this.offset).subscribe((items) => {
         this.products.emit(items);
       });
     }
@@ -124,6 +127,7 @@ export class FiltersComponent implements OnInit {
       });
     }
   };
+
 
   ngOnInit(): void {
     this.getProducts();

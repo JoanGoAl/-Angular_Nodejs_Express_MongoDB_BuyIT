@@ -87,6 +87,10 @@ export class DetailsProductComponent implements OnInit {
     }
   }
 
+  goProfile(username: string) {
+    this.router.navigateByUrl(`/profile/${username}`)
+  }
+
   setComment() {
     this.commentService
       .setProductComment({
@@ -108,7 +112,7 @@ export class DetailsProductComponent implements OnInit {
   removeComment(comment: Comment) {
     this.comments.splice(this.comments.findIndex((arr_comment) => arr_comment._id == comment._id ), 1)
 
-    this.commentService.deleteProductComment(comment._id)
+    this.commentService.deleteProductComment(comment._id).subscribe((e) => e)
   }
 
   ngOnInit(): void {
