@@ -35,3 +35,14 @@ exports.register = async (userInfo) => {
 exports.getUserFavorites = async (uuid) => {
     return await UserModel.findOne({ uuid }).populate('favorites')
 }
+
+exports.getFollowingUsers = async ({ users }) => {
+
+    let userFollowers = []
+    for (let i = 0; i < users.length; i++) {
+        let data = await UserModel.findOne({ _id: users[i] })
+        userFollowers.push(data.parse(data))
+    }
+    return userFollowers
+}
+

@@ -80,6 +80,14 @@ export class UserService {
     );
   }
 
+  getUserFollowing(users: String[]): Observable<any[]> {
+    return this.apiService.post(`/getFollowingUsers`, { users }).pipe(
+      map((data) => {
+        return data;
+      })
+    )
+  }
+
   getInfoUser(user: String): Observable<User> {
     return this.apiService.get(`/getUser/${user}`).pipe(
       map((data) => {

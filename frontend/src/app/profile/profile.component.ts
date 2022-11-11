@@ -57,7 +57,9 @@ export class ProfileComponent implements OnInit {
         this.favorites = data
       })
 
-      this.productService.getUserProducts(this.infoUser.following).subscribe(data => {
+      this.userService.getUserFollowing(this.infoUser.following).subscribe(data => {
+        console.log(data);
+
         this.following = data
       })
 

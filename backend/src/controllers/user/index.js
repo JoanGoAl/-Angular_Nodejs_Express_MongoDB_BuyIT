@@ -38,3 +38,13 @@ exports.register = async (req, res) => {
     }
 }
 
+exports.getFollowingUsers = async (req, res) => {
+    item = {}
+    try {
+        item = await userController.getFollowingUsers(req.body)
+    } catch (e) {
+        item = e
+    }
+    res.json(item)
+}
+
