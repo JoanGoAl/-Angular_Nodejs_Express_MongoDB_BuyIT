@@ -16,6 +16,7 @@ import {
   faTrash,
   faUserMinus,
   faUserPlus,
+  faUsers,
 } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -44,6 +45,7 @@ export class IconsComponent {
     userPlus: faUserPlus,
     commentNew: farMessage,
     trash: faTrash,
-    products: faBoxesStacked
+    products: faBoxesStacked,
+    followers: faUsers
   };
 }

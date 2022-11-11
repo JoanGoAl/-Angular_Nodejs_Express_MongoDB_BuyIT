@@ -87,6 +87,10 @@ export class DetailsProductComponent implements OnInit {
     }
   }
 
+  goProfile(username: string) {
+    this.router.navigateByUrl(`/profile/${username}`)
+  }
+
   setComment() {
     this.commentService
       .setProductComment({

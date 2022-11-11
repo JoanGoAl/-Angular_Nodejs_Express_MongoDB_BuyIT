@@ -46,7 +46,7 @@
 <div *ngIf="infoUser" class="container-profile">
 
     <div class="user-container">
-      <img class="avatar" src="{{infoUser.avatar}}" alt="" width="50px">
+      <img class="avatar" src="{{ infoUser.avatar }}" alt="" width="50px">
       <div class="user-info">
         <p> {{infoUser.username}} </p>
       <p ng> {{infoUser.email}} </p>
@@ -60,6 +60,10 @@
     <div *ngIf="isAutorized" class="container-favoritos" (click)="changeOption('favorites')">
         <p><app-fa-icon icon="heart"></app-fa-icon></p>
     </div>
+
+    <div *ngIf="isAutorized" class="container-followers" (click)="changeOption('followers')">
+      <p><app-fa-icon icon="followers"></app-fa-icon></p>
+  </div>
 
     <div class="content-wrapper">
       <div class="no-values" *ngIf="values?.length == 0">
