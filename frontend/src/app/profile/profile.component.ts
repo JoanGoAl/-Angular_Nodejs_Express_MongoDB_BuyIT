@@ -16,9 +16,9 @@ export class ProfileComponent implements OnInit {
   values?: any[]
   favorites?: any[]
   products?: any[]
-  followers?: any[];
+  following?: any[];
 
-  option: 'products' | 'favorites' | 'followers' = 'products'
+  option: 'products' | 'favorites' | 'following' = 'products'
 
   constructor(
     private userService: UserService,
@@ -56,14 +56,25 @@ export class ProfileComponent implements OnInit {
         this.productService.getUserProducts(this.infoUser.products).subscribe(data => {
           this.products = data
         })
+      console.log(data);
+
+
+      this.productService.getUserProducts(this.infoUser.products).subscribe(data => {
+        this.products = data
+      })
 
         this.productService.getUserProducts(this.infoUser.favorites).subscribe(data => {
           this.favorites = data
       })
+
+      this.productService.getUserProducts(this.infoUser.following).subscribe(data => {
+        this.following = data
+      })
+
     })
   }
 
-  changeOption(newValue: 'products' | 'favorites' | 'followers') {
+  changeOption(newValue: 'products' | 'favorites' | 'following') {
     this.option = newValue;
     this.values = this[newValue]
   }
