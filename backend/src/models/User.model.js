@@ -69,7 +69,8 @@ UserSchema.methods.parse = function (data, auth) {
       email: data.email,
       products: data.products,
       favorites: data.favorites,
-      avatar: data.avatar
+      avatar: data.avatar,
+      following: data.following
     }
   } else return {
     username: data.username,

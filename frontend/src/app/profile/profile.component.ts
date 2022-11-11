@@ -15,6 +15,7 @@ export class ProfileComponent implements OnInit {
 
   favorites?: any[]
   products?: any[]
+  following?: any[]
 
   constructor(
     private userService: UserService,
@@ -45,12 +46,19 @@ export class ProfileComponent implements OnInit {
     this.userService.getInfoUser(user).subscribe(data => {
       this.infoUser = data
 
+      console.log(data);
+
+
       this.productService.getUserProducts(this.infoUser.products).subscribe(data => {
         this.products = data
       })
 
       this.productService.getUserProducts(this.infoUser.favorites).subscribe(data => {
         this.favorites = data
+      })
+
+      this.productService.getUserProducts(this.infoUser.following).subscribe(data => {
+        this.following = data
       })
 
     })
