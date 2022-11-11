@@ -44,17 +44,13 @@ export class FollowComponent implements OnInit {
   ngOnInit(): void {
     let currentUser = this.userService.getCurrentUser().username
 
-    if (typeof currentUser != "undefined") {
-
-      this.profileService
-      .getProfile(currentUser)
-      .subscribe((i) => {
+    if (typeof this.toFollow != 'undefined' && typeof currentUser != "undefined") {
+      this.profileService.getProfile(currentUser).subscribe((i) => {
         this.profile = i;
+        console.log(i.profile.username, this.toFollow);
+
         if (i.profile.username == this.toFollow) this.itsMe = true;
       });
-
-
-      this.profileService.getProfile('joseluis')
     }
   }
 }

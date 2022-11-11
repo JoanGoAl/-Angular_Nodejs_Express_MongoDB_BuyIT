@@ -62,13 +62,18 @@
     </div>
 
     <div class="content-wrapper">
-      <div class="card" *ngFor="let item of values" (click)="goProduct(item.slug)">
-        <div class="product-title">{{ item.name }}</div>
-        <div class="product-img">
-          <img src="{{ item.imgUrl[0] }}">
-        </div>
-        <div class="product-description">
-          {{ item.description }}
+      <div class="no-values" *ngIf="values?.length == 0">
+        Todavía no tienes productos
+      </div>
+      <div class="wrapper">
+        <div class="card" *ngFor="let item of values" (click)="goProduct(item.slug)">
+          <div class="product-title">{{ item.name }}</div>
+          <div class="product-img">
+            <img src="{{ item.imgUrl[0] }}">
+          </div>
+          <div class="product-description">
+            {{ item.description }}
+          </div>
         </div>
       </div>
     </div>
