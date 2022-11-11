@@ -53,16 +53,16 @@
       </div>
     </div>
 
-    <div class="container-products">
+    <div class="container-products" (click)="changeOption('products')">
         <p><app-fa-icon icon="products"></app-fa-icon></p>
     </div>
 
-    <div *ngIf="isAutorized" class="container-favoritos">
+    <div *ngIf="isAutorized" class="container-favoritos" (click)="changeOption('favorites')">
         <p><app-fa-icon icon="heart"></app-fa-icon></p>
     </div>
 
     <div class="content-wrapper">
-      <div class="card" *ngFor="let item of option" (click)="goProduct(item.slug)">
+      <div class="card" *ngFor="let item of values" (click)="goProduct(item.slug)">
         <div class="product-title">{{ item.name }}</div>
         <div class="product-img">
           <img src="{{ item.imgUrl[0] }}">

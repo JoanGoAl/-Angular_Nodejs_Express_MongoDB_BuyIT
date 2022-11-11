@@ -13,16 +13,18 @@ export class ProfileComponent implements OnInit {
   infoUser?: any
   isAutorized: boolean = false
 
-  option?: any[]
+  values?: any[]
+  favorites?: any[]
+  products?: any[]
+
+  option: 'products' | 'favorites' = 'products'
 
   constructor(
     private userService: UserService,
     private router: Router,
     private aRouter: ActivatedRoute,
     private productService: ProductService
-  ) {
-
-  }
+  ) { }
 
   getUser() {
 
@@ -30,23 +32,44 @@ export class ProfileComponent implements OnInit {
       ? this.userService.getCurrentUser().username
       : `${this.aRouter.snapshot.paramMap.get('user')}`
 
-    if (this.userService.getCurrentUser().username) this.isAutorized = true
+    if (this.userService.getCurrentUser().username) {
+      this.isAutorized = true
+      this.getAutorizedUser(auxUser)
+    } else {
+      this.isAutorized = false
+      this.getUnautorizedUser(auxUser)
+    }
 
-    this.userService.getInfoUser(auxUser).subscribe(data => {
+  }
+
+  getAutorizedUser(user: string) {
+    this.userService.getInfoUser(user).subscribe(data => {
+      this.infoUser = data
+
+        this.productService.getUserProducts(this.infoUser.products).subscribe(data => {
+          this.products = data
+        })
+
+        this.productService.getUserProducts(this.infoUser.favorites).subscribe(data => {
+          this.favorites = data
+      })
+    })
+  }
+
+  changeOption(newValue: 'products' | 'favorites') {
+    this.option = newValue;
+    this.values = this[newValue]
+  }
+
+  getUnautorizedUser(user: string) {
+    this.userService.getInfoUser(user).subscribe(data => {
       this.infoUser = data
 
       this.productService.getUserProducts(this.infoUser.products).subscribe(data => {
-        console.log(data);
-
-        this.option = data
+        this.values = data
       })
 
     })
-
-
-
-
-
   }
 
   goProduct(slug: string) {
@@ -55,8 +78,9 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUser()
-
-    // this.user = this.userService.getCurrentUser().username
+    setTimeout(() => {
+      this.values = this.products
+    }, 100);
   }
 
 }
