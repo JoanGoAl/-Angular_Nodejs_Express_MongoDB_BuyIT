@@ -10,6 +10,8 @@ import { Category, Product } from 'src/app/core/models';
 export class ListProductsComponent implements OnInit {
   filters?: any;
   products!: Product[];
+  n_pages: number = 1;
+  Arr: Array<number> = [];
 
   allCategories?: Category[];
 
@@ -19,6 +21,10 @@ export class ListProductsComponent implements OnInit {
     });
   }
 
+  counter(i: number) {
+    return new Array(i);
+  }
+
   setProducts(e: any) {
     this.products = e;
   }
@@ -26,5 +32,18 @@ export class ListProductsComponent implements OnInit {
   redirect(id?: String) {
     this.router.navigateByUrl(`shop/product/${id}`);
   }
+
+  setNpages(e: any) { this.n_pages = e }
+
+  setPage(page: number) {
+    this.aRouter.url.subscribe((e) => {
+      this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+        let flt = `${atob(e[0].path)}&page=${page}`
+
+        this.router.navigateByUrl(`/shop/${btoa(flt)}`)
+      })
+    })
+  }
+
   ngOnInit(): void {}
 }

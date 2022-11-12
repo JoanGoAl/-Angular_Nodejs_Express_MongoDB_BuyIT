@@ -4,9 +4,9 @@ import { ShopComponent } from './shop.component';
 import { DetailsProductComponent } from '../shared/details-product/details-product.component';
 
 const routes: Routes = [
-    { path: '', component: ShopComponent },
-    { path: ':filters', component: ShopComponent },
-    { path: 'product/:id', component: DetailsProductComponent }
+  { path: '', component: ShopComponent },
+  { path: 'product/:id', component: DetailsProductComponent },
+  { path: ':filters', component: ShopComponent },
 ];
 
 @NgModule({

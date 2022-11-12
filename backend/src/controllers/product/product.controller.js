@@ -16,12 +16,15 @@ exports.getProducts = async (auth, params) => {
         userFavorites.map((i) => i.slug == e.slug ? e.liked = true : null)
       })
     }
-
     return docs;
   } catch (e) {
     return e;
   }
 };
+
+exports.getNpages = async () => {
+  return Math.round(await ProductModel.find().countDocuments() / 2)
+}
 
 exports.addProduct = async (data) => {
   try {

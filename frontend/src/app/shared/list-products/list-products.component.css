@@ -8,6 +8,19 @@
   grid-row-gap: 0px;
 }
 
+.paginator {
+  background-color: red;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.paginator button {
+  padding: 10px;
+  margin: 5px;
+  cursor: pointer;
+}
+
 .filters-container {
   grid-area: 1 / 1 / 3 / 2;
   height: 15%;

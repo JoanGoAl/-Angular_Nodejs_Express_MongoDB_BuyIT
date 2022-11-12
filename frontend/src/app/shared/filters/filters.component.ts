@@ -12,7 +12,6 @@ import {
   CategoryService,
   ProductService,
   ProductsXCategoryService,
-  UserService,
 } from 'src/app/core/services';
 
 @Component({
@@ -23,14 +22,15 @@ import {
 })
 export class FiltersComponent implements OnInit {
   @Output() products = new EventEmitter<Product[]>();
+  @Output() n_pages = new EventEmitter<Number>();
 
   catsSelected: Array<any> = [];
-  filters: Filters = { category: 'all' };
+  filters: Filters = { category: 'all', page: 1 };
   categories: Category[] = [];
   model: any[] = [];
 
-  offset: number = 8;
   count: number = 0;
+  offset: number = 2;
 
   constructor(
     private router: Router,
@@ -44,6 +44,9 @@ export class FiltersComponent implements OnInit {
   getProducts() {
     this.aRouter.url.subscribe((flt) => {
       if (flt.length > 0) {
+        console.log(`${atob(flt[0].path)}`);
+
+
         this.filters = Object.fromEntries(
           atob(flt[0].path)
             .split('?')
@@ -51,8 +54,12 @@ export class FiltersComponent implements OnInit {
             .map((item) => item.split('&'))
             .map((e) => e[0].split('='))
         );
+
+        console.log(this.filters);
+
       } else {
         this.filters['category'] = 'all';
+        this.filters.page = 1
       }
     });
 
@@ -83,7 +90,7 @@ export class FiltersComponent implements OnInit {
       this.filters.category == 'all' ||
       typeof this.filters.category == 'undefined'
     ) {
-      this.productService.getProducts().subscribe((items) => {
+      this.productService.getProducts(this.count, this.offset).subscribe((items) => {
         this.router.navigateByUrl(`shop/${btoa(`filters?category=all`)}`);
 
         this.products.emit(items);
@@ -132,5 +139,9 @@ export class FiltersComponent implements OnInit {
   ngOnInit(): void {
     this.getProducts();
     this.getCategories();
+
+    this.productService.getNpages().subscribe((e) => {
+      this.n_pages.emit(e)
+    });
   }
 }

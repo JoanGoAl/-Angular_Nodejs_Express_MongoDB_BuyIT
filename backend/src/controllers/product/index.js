@@ -2,6 +2,7 @@ const productController = require('./product.controller')
 
 exports.getProducts = async (req, res) => {
     try {
+        console.log(req.query);
         res.json(await productController.getProducts(req.auth, req.query))
     } catch (e) {
         throw new Error(e)
@@ -14,6 +15,12 @@ exports.addProduct = async (req, res) => {
     } catch (e) {
         res.json(e)
     }
+}
+
+exports.getNPages = async (req, res) => {
+    try {
+        res.json(await productController.getNpages())
+    } catch (e) { res.json(e) }
 }
 
 exports.updateProduct = async (req, res) => {
