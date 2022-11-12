@@ -16,8 +16,9 @@ export class ProfileComponent implements OnInit {
   values?: any[]
   favorites?: any[]
   products?: any[]
+  following?: any[];
 
-  option: 'products' | 'favorites' = 'products'
+  option: 'products' | 'favorites' | 'following' = 'products'
 
   constructor(
     private userService: UserService,
@@ -28,11 +29,13 @@ export class ProfileComponent implements OnInit {
 
   getUser() {
 
-    let auxUser = this.userService.getCurrentUser().username
-      ? this.userService.getCurrentUser().username
-      : `${this.aRouter.snapshot.paramMap.get('user')}`
+    let actualUser = this.userService.getCurrentUser().username
 
-    if (this.userService.getCurrentUser().username) {
+    let auxUser = this.aRouter.snapshot.paramMap.get('user')
+      ? `${this.aRouter.snapshot.paramMap.get('user')}`
+      : this.userService.getCurrentUser().username
+
+    if (actualUser) {
       this.isAutorized = true
       this.getAutorizedUser(auxUser)
     } else {
@@ -43,20 +46,35 @@ export class ProfileComponent implements OnInit {
   }
 
   getAutorizedUser(user: string) {
+    if (user != this.userService.getCurrentUser().username) {
+      this.isAutorized = false
+    }
+
     this.userService.getInfoUser(user).subscribe(data => {
       this.infoUser = data
 
         this.productService.getUserProducts(this.infoUser.products).subscribe(data => {
           this.products = data
         })
+      console.log(data);
+
+
+      this.productService.getUserProducts(this.infoUser.products).subscribe(data => {
+        this.products = data
+      })
 
         this.productService.getUserProducts(this.infoUser.favorites).subscribe(data => {
           this.favorites = data
       })
+
+      this.productService.getUserProducts(this.infoUser.following).subscribe(data => {
+        this.following = data
+      })
+
     })
   }
 
-  changeOption(newValue: 'products' | 'favorites') {
+  changeOption(newValue: 'products' | 'favorites' | 'following') {
     this.option = newValue;
     this.values = this[newValue]
   }

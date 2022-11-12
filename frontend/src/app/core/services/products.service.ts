@@ -11,8 +11,19 @@ export class ProductService {
 
   constructor(private _http: HttpClient) { }
 
-  getProducts(): Observable<Product[]> {
-    return this._http.get<Product[]>(`${this.baseUrl}/getProducts`);
+  getProducts(count: number = 0, offset: number = 0): Observable<Product[]> {
+    count = typeof count == 'number' ? count : -1;
+    offset = typeof offset == 'number' ? offset : -1;
+
+
+
+    return this._http.get<Product[]>(`${this.baseUrl}/getProducts`, {
+      params: new HttpParams().set('count', count).set('offset', offset)
+    });
+  }
+
+  getNpages(): Observable<Number> {
+    return this._http.get<Number>(`${this.baseUrl}/getNpages`)
   }
 
   getUserProducts(products: any): Observable<Product[]> {

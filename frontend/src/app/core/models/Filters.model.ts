@@ -1,4 +1,4 @@
 export interface Filters {
     category: String
-    price?: String
+    page: Number
 }

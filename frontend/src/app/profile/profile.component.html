@@ -46,7 +46,7 @@
 <div *ngIf="infoUser" class="container-profile">
 
     <div class="user-container">
-      <img class="avatar" src="{{infoUser.avatar}}" alt="" width="50px">
+      <img class="avatar" src="{{ infoUser.avatar }}" alt="" width="50px">
       <div class="user-info">
         <p> {{infoUser.username}} </p>
       <p ng> {{infoUser.email}} </p>
@@ -61,18 +61,32 @@
         <p><app-fa-icon icon="heart"></app-fa-icon></p>
     </div>
 
+    <div *ngIf="isAutorized" class="container-followers" (click)="changeOption('following')">
+      <p><app-fa-icon icon="followers"></app-fa-icon></p>
+  </div>
+
     <div class="content-wrapper">
       <!-- <div class="no-values" *ngIf="values?.length == 0">
         Todavía no tienes productos
       </div> -->
       <div class="wrapper">
-        <div class="card" *ngFor="let item of values" (click)="goProduct(item.slug)">
-          <div class="product-title">{{ item.name }}</div>
-          <div class="product-img">
-            <img src="{{ item.imgUrl[0] }}">
+        <div class="following" *ngIf="option == 'following'">
+          <div class="card" *ngFor="let item of values" (click)="goProduct(item.slug)">
+            <div class="product-title">{{ item.username }}</div>
+            <div class="product-img">
+              <img src="{{ item.avatar }}">
+            </div>
           </div>
-          <div class="product-description">
-            {{ item.description }}
+        </div>
+        <div class="products" *ngIf="option != 'following'">
+          <div class="card" *ngFor="let item of values" (click)="goProduct(item.slug)">
+            <div class="product-title">{{ item.name }}</div>
+            <div class="product-img">
+              <img src="{{ item.imgUrl[0] }}">
+            </div>
+            <div class="product-description">
+              {{ item.description }}
+            </div>
           </div>
         </div>
       </div>

@@ -6,9 +6,9 @@ const {
 } = require("../../models");
 const { user } = require("../user");
 
-exports.getProducts = async (auth) => {
+exports.getProducts = async (auth, params) => {
   try {
-    const docs = await ProductModel.find().lean();
+    const docs = await ProductModel.find().skip(params.count).limit(params.offset);
     if (auth) {
       let userFavorites = (await UserModel.findOne({ uuid: auth.uuid }).populate('favorites').lean()).favorites
 
@@ -16,12 +16,15 @@ exports.getProducts = async (auth) => {
         userFavorites.map((i) => i.slug == e.slug ? e.liked = true : null)
       })
     }
-
     return docs;
   } catch (e) {
     return e;
   }
 };
+
+exports.getNpages = async () => {
+  return Math.round(await ProductModel.find().countDocuments() / 2)
+}
 
 exports.addProduct = async (data) => {
   try {
