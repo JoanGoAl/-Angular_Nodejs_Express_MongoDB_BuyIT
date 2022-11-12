@@ -62,9 +62,9 @@
     </div>
 
     <div class="content-wrapper">
-      <div class="no-values" *ngIf="values?.length == 0">
+      <!-- <div class="no-values" *ngIf="values?.length == 0">
         Todavía no tienes productos
-      </div>
+      </div> -->
       <div class="wrapper">
         <div class="card" *ngFor="let item of values" (click)="goProduct(item.slug)">
           <div class="product-title">{{ item.name }}</div>
