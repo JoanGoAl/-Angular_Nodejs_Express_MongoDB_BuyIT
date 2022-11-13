@@ -1,4 +1,5 @@
 export interface Filters {
     category: String
-    page: number
+    page: number,
+    condition?: string
 }

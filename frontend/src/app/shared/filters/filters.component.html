@@ -8,3 +8,13 @@
   [style]="{ width: '100%' }"
   (onChange)="changeCategoryUrl()"
 ></p-multiSelect>
+<br><br>
+<p-multiSelect
+  inputId="multiselect"
+  [options]="conditions"
+  [(ngModel)]="conditionSelected"
+  defaultLabel="Codición"
+  [filter]="false"
+  [style]="{ width: '100%' }"
+  (onChange)="changeCategoryUrl()"
+></p-multiSelect>

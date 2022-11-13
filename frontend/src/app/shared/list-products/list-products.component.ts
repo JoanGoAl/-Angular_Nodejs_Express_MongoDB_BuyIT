@@ -23,10 +23,6 @@ export class ListProductsComponent implements OnInit {
     });
   }
 
-  counter(i: number) {
-    return new Array(i);
-  }
-
   setProducts(e: any) {
     this.products = e;
   }
