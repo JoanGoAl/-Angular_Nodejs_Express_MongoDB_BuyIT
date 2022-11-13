@@ -30,7 +30,7 @@ export class FiltersComponent implements OnInit {
   model: any[] = [];
 
   count: number = 0;
-  offset: number = 2;
+  offset: number = 8;
 
   constructor(
     private router: Router,
@@ -38,28 +38,26 @@ export class FiltersComponent implements OnInit {
     private productService: ProductService,
     private categoryService: CategoryService,
     private pXcService: ProductsXCategoryService,
-    private capitalizeArrayPipe: CapitalizeArrayPipe,
+    private capitalizeArrayPipe: CapitalizeArrayPipe
   ) {}
 
   getProducts() {
     this.aRouter.url.subscribe((flt) => {
       if (flt.length > 0) {
-        console.log(`${atob(flt[0].path)}`);
-
-
         this.filters = Object.fromEntries(
           atob(flt[0].path)
-            .split('?')
-            .splice(1)
-            .map((item) => item.split('&'))
-            .map((e) => e[0].split('='))
+          .split('?')
+          .splice(1)
+          .map((item) => item.split('&'))
+          .flat()
+          .map((e) => e.split('='))
         );
 
-        console.log(this.filters);
+        this.count = ((this.filters.page - 1) * this.offset)
 
       } else {
         this.filters['category'] = 'all';
-        this.filters.page = 1
+        this.filters.page = 1;
       }
     });
 
@@ -72,7 +70,6 @@ export class FiltersComponent implements OnInit {
       )
       .subscribe((res) => {
         res.map((e) => {
-
           this.catsSelected.push(e.value.length > 0 ? e.value[0] : []);
         });
 
@@ -90,11 +87,15 @@ export class FiltersComponent implements OnInit {
       this.filters.category == 'all' ||
       typeof this.filters.category == 'undefined'
     ) {
-      this.productService.getProducts(this.count, this.offset).subscribe((items) => {
-        this.router.navigateByUrl(`shop/${btoa(`filters?category=all`)}`);
+      this.productService
+        .getProducts(this.count, this.offset)
+        .subscribe((items) => {
+          this.router.navigateByUrl(
+            `shop/${btoa(`filters?category=all&page=${this.filters.page}`)}`
+          );
 
-        this.products.emit(items);
-      });
+          this.products.emit(items);
+        });
     }
 
     if (
@@ -120,12 +121,14 @@ export class FiltersComponent implements OnInit {
 
     options = options.length > 0 ? options : ['all'];
 
-    this.router.navigateByUrl(`shop/${btoa(`filters?category=${options}`)}`);
+    this.router.navigateByUrl(`shop/${btoa(`filters?category=${options}&page=${this.filters.page}`)}`);
 
     if (options.includes('all')) {
-      this.productService.getProducts(this.count, this.offset).subscribe((items) => {
-        this.products.emit(items);
-      });
+      this.productService
+        .getProducts(this.count, this.offset)
+        .subscribe((items) => {
+          this.products.emit(items);
+        });
     }
 
     if (!options.includes('all')) {
@@ -135,13 +138,14 @@ export class FiltersComponent implements OnInit {
     }
   };
 
-
   ngOnInit(): void {
     this.getProducts();
     this.getCategories();
 
     this.productService.getNpages().subscribe((e) => {
-      this.n_pages.emit(e)
+      console.log(e);
+
+      this.n_pages.emit(e);
     });
   }
 }

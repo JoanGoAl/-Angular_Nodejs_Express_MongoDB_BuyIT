@@ -25,7 +25,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 // Pipe
-import { CapitalizePipe, CapitalizeArrayPipe } from '../core/pipes';
+import { CapitalizePipe, CapitalizeArrayPipe, CounterPipe } from '../core/pipes';
 import { FavoriteComponent } from './buttons/favorite/favorite.component';
 import { FollowComponent } from './buttons/follow/follow.component';
 
@@ -37,6 +37,7 @@ import { FollowComponent } from './buttons/follow/follow.component';
     DetailsProductComponent,
     FiltersComponent,
     CapitalizePipe,
+    CounterPipe,
     CapitalizeArrayPipe,
     FavoriteComponent,
     FollowComponent],

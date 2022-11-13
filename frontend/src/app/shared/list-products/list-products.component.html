@@ -32,10 +32,10 @@
         </div>
       </div>
     </div>
-    <div class="paginator" *ngIf="n_pages">
-      <div class="btn-paginator" *ngFor="let number of counter(n_pages); let index=index" (click)="setPage(index + 1)">
-        <button>{{ index + 1 }}</button>
-      </div>
+  </div>
+  <div class="paginator">
+    <div class="btn-paginator" *ngFor="let number of n_pages | counter; let index=index" (click)="setPage(index + 1)">
+      <a>{{ index + 1 }}</a>
     </div>
   </div>
 </div>

@@ -18,6 +18,8 @@ export class ListProductsComponent implements OnInit {
   constructor(private aRouter: ActivatedRoute, private router: Router) {
     this.aRouter.queryParams.subscribe((res) => {
       this.filters = res;
+      console.log(res);
+
     });
   }
 
@@ -38,7 +40,7 @@ export class ListProductsComponent implements OnInit {
   setPage(page: number) {
     this.aRouter.url.subscribe((e) => {
       this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-        let flt = `${atob(e[0].path)}&page=${page}`
+        let flt = `${atob(e[0].path)}&page=${page || 1}`
 
         this.router.navigateByUrl(`/shop/${btoa(flt)}`)
       })

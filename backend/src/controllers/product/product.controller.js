@@ -8,7 +8,7 @@ const { user } = require("../user");
 
 exports.getProducts = async (auth, params) => {
   try {
-    const docs = await ProductModel.find().skip(params.count).limit(params.offset);
+    const docs = await ProductModel.find().skip(params.count).limit(params.offset).lean();
     if (auth) {
       let userFavorites = (await UserModel.findOne({ uuid: auth.uuid }).populate('favorites').lean()).favorites
 
@@ -23,7 +23,7 @@ exports.getProducts = async (auth, params) => {
 };
 
 exports.getNpages = async () => {
-  return Math.round(await ProductModel.find().countDocuments() / 2)
+  return Math.ceil(await ProductModel.find().countDocuments() / 8)
 }
 
 exports.addProduct = async (data) => {
