@@ -1,19 +1,19 @@
 *:focus,
 *:active {
-    outline: none !important;
-    -webkit-tap-highlight-color: transparent;
+  outline: none !important;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .graph {
-    position: absolute;
-    width: 40%;
-    height: fit-content;
-    left: 8%;
-    top: 10%;
+  position: absolute;
+  width: 40%;
+  height: fit-content;
+  left: 8%;
+  top: 10%;
 }
 
 .mini-graphs {
-    background-color: red;
+  background-color: red;
 }
 
 .no-values {
@@ -24,17 +24,17 @@
 }
 
 .mini-graphs>.top-graph {
-    position: absolute;
-    width: 20%;
-    left: 45%;
-    top: 5%;
+  position: absolute;
+  width: 20%;
+  left: 45%;
+  top: 5%;
 }
 
 .mini-graphs .bottom-graph {
-    position: absolute;
-    width: 20%;
-    left: 80%;
-    top: 32%;
+  position: absolute;
+  width: 20%;
+  left: 80%;
+  top: 32%;
 }
 
 .container-profile {
@@ -128,7 +128,6 @@
 }
 
 .card {
-
   display: inline-block;
   width: 23.4%;
   cursor: pointer;
@@ -137,6 +136,18 @@
   padding: 10px;
   border-radius: 10px;
   box-sizing: border-box;
+}
+
+.product-img {
+  height: 200px;
+  border-radius: 10px;
+}
+
+.product-img>img {
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+  width: 100%;
 }
 
 .card:hover {
@@ -155,12 +166,25 @@
   width: 80%;
 }
 
-.product-img img {
-  width: 100%;
-}
-
 .product-description {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.container-estadisticas {
+  display: flex;
+  flex-direction: row;
+}
+
+.user-numbers {
+  border-radius: 15px;
+  background-color: rgba(92, 86, 79, 0.688);
+  width: 150px;
+  text-align: center;
+  font-size: 25px;
+}
+
+.user-numbers p {
+  margin: 5px;
 }
