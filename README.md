@@ -5,13 +5,13 @@ Este proyecto se basa en crear una replica o similar a wallapop, una web donde u
 Tecnologías
 -----------
 En este proyecto se han utilizado dos tecnologias:
-> __ExpressJS__ - Versión 4.18.1 - Servidor
-> __Angular__ - Versión 14.2.0 - Cliente
+> __ExpressJS__ - Versión 4.18.1 - Servidor  
+> __Angular__ - Versión 14.2.0 - Cliente  
 
 También se han utilizado iconos y componentes de:
-> __PrimeNG__ - Versión 14.1.2 - Componentes
-> __PrimeIcons__ - Versión 6.0.1 - Iconos
-> __FontAwesome__ - Versión 6.2.0 - Iconos
+> __PrimeNG__ - Versión 14.1.2 - Componentes  
+> __PrimeIcons__ - Versión 6.0.1 - Iconos  
+> __FontAwesome__ - Versión 6.2.0 - Iconos  
 
 Funciones
 --------
