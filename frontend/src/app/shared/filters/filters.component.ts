@@ -26,7 +26,7 @@ export class FiltersComponent implements OnInit {
 
   catsSelected: Array<any> = [];
   conditionSelected: Array<any> = [];
-  filters: Filters = { category: 'all', page: 1, condition: 'all' };
+  filters: Filters = { category: 'all', page: "1", condition: 'all' };
   categories: Category[] = [];
   conditions: String[] = ['Perfecto', 'Semi-Perfecto', 'Bastante Usado'];
   model: any[] = [];
@@ -55,12 +55,14 @@ export class FiltersComponent implements OnInit {
             .map((e) => e.split('='))
         );
 
-        console.log(this.filters);
+        if (typeof this.filters.page == "undefined") {
+          this.filters.page = "1"
+        }
 
-        this.count = (this.filters.page - 1) * this.offset;
+        this.count = (parseInt(this.filters.page) - 1) * this.offset;
       } else {
         this.filters['category'] = 'all';
-        this.filters.page = 1;
+        this.filters.page = "1";
         this.filters.condition = 'all';
       }
     });

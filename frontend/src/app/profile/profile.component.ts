@@ -98,7 +98,7 @@ export class ProfileComponent implements OnInit {
     this.getUser()
     setTimeout(() => {
       this.values = this.products
-    }, 100);
+    }, 200);
   }
 
 }
