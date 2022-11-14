@@ -1,0 +1,36 @@
+[{
+  "_id": {
+    "$oid": "637210f301fc63703ea53a1d"
+  },
+  "title": "deportes",
+  "icon": "futbol",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "637210f801fc63703ea53a21"
+  },
+  "title": "moda",
+  "icon": "moda",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6372110001fc63703ea53a25"
+  },
+  "title": "electrónica",
+  "icon": "desktop",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6372110801fc63703ea53a29"
+  },
+  "title": "muebles",
+  "icon": "sofa",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6372110f01fc63703ea53a2d"
+  },
+  "title": "motor",
+  "icon": "moto",
+  "__v": 0
+}]

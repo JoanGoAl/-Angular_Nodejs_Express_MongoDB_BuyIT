@@ -90,6 +90,10 @@ export class ProfileComponent implements OnInit {
     this.router.navigateByUrl(`/shop/product/${slug}`)
   }
 
+  goProfile(profile: string) {
+    this.router.navigateByUrl(`/`, { skipLocationChange: true }).then(() => this.router.navigateByUrl(`profile/${profile}`))
+  }
+
   ngOnInit(): void {
     this.getUser()
     setTimeout(() => {

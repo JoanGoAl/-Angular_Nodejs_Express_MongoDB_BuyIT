@@ -23,7 +23,7 @@ exports.getProducts = async (auth, params) => {
 };
 
 exports.getNpages = async () => {
-  return Math.ceil(await ProductModel.find().countDocuments() / 8)
+  return Math.ceil(await ProductModel.find().countDocuments() / 6)
 }
 
 exports.addProduct = async (data) => {

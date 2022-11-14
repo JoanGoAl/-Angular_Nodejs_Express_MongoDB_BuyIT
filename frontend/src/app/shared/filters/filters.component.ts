@@ -32,7 +32,7 @@ export class FiltersComponent implements OnInit {
   model: any[] = [];
 
   count: number = 0;
-  offset: number = 8;
+  offset: number = 6;
 
   constructor(
     private router: Router,

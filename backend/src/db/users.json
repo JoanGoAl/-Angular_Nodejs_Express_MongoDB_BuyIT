@@ -1,0 +1,89 @@
+[{
+  "_id": {
+    "$oid": "6372112201fc63703ea53a3f"
+  },
+  "username": "joan",
+  "email": "joan@gmail.com",
+  "password": "$argon2id$v=19$m=65536,t=3,p=4$MPGjg20RWHwIp0edEynz2g$asrQormVg+ZeIfMaWK3R/gVNWh8Osy9pb38ntpWNMQA",
+  "products": [
+    {
+      "$oid": "6372117a01fc63703ea53a54"
+    },
+    {
+      "$oid": "637224e133cd1ea831165dca"
+    },
+    {
+      "$oid": "637225a733cd1ea831165df5"
+    }
+  ],
+  "favorites": [
+    {
+      "$oid": "637211e001fc63703ea53a93"
+    }
+  ],
+  "following": [
+    {
+      "$oid": "6372112f01fc63703ea53a45"
+    }
+  ],
+  "avatar": "https://api.multiavatar.com/joan.png",
+  "uuid": "5f7c6394-0cbf-4819-a03e-042328a543ef",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6372112f01fc63703ea53a45"
+  },
+  "username": "gfmois",
+  "email": "gfmois@gmail.com",
+  "password": "$argon2id$v=19$m=65536,t=3,p=4$tcAsqxJoKm0EGvYvMDjR7A$ZWonwF6NLcovpzzUveN3nu2r82QhlDzedWLXsBFpJN8",
+  "products": [
+    {
+      "$oid": "637211e001fc63703ea53a93"
+    },
+    {
+      "$oid": "6372183133cd1ea831165cda"
+    },
+    {
+      "$oid": "6372274f33cd1ea831165ec0"
+    }
+  ],
+  "favorites": [
+    {
+      "$oid": "637224e133cd1ea831165dca"
+    },
+    {
+      "$oid": "637225a733cd1ea831165df5"
+    },
+    {
+      "$oid": "637228fe176ce7fc2a527411"
+    }
+  ],
+  "following": [
+    {
+      "$oid": "6372112201fc63703ea53a3f"
+    },
+    {
+      "$oid": "637228f4176ce7fc2a52740a"
+    }
+  ],
+  "avatar": "https://api.multiavatar.com/gfmois.png",
+  "uuid": "4fac7265-6bd4-4a12-a91b-aa6295525473",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "637228f4176ce7fc2a52740a"
+  },
+  "username": "Vendedor",
+  "email": "buyIT@gmail.com",
+  "password": "$argon2id$v=19$m=65536,t=3,p=4$3sUPa1aGTr7/Y1hG/fDWgA$jmB+fNKVHO2i12LEcRDc4tCxo4fbyBYVgobPVW9dZt4",
+  "products": [
+    {
+      "$oid": "637228fe176ce7fc2a527411"
+    }
+  ],
+  "favorites": [],
+  "following": [],
+  "avatar": "https://api.multiavatar.com/Vendedor.png",
+  "uuid": "949e3b80-6710-4823-b9f3-90b96619ec3a",
+  "__v": 0
+}]

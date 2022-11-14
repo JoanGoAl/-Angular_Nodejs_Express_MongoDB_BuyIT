@@ -18,8 +18,6 @@ export class ListProductsComponent implements OnInit {
   constructor(private aRouter: ActivatedRoute, private router: Router) {
     this.aRouter.queryParams.subscribe((res) => {
       this.filters = res;
-      console.log(res);
-
     });
   }
 

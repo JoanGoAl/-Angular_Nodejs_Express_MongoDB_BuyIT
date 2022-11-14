@@ -51,7 +51,7 @@
     </p-carousel>
   </div>
   <div class="seller-card">
-    <div class="seller-avatar">
+    <div class="seller-avatar" (click)="goProfile(user.name)">
       <img src="https://api.multiavatar.com/{{ user.name }}.png" alt="" />
     </div>
     <div class="seller-info">

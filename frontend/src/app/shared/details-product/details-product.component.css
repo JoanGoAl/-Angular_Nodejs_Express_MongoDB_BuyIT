@@ -31,6 +31,7 @@
 }
 
 .comment-user-avatar {
+  cursor: pointer;
   width: 15%;
   margin: 5px;
 }
@@ -189,6 +190,7 @@ textarea.comment-body {
   left: 5%;
   top: 15%;
   border-radius: 55px;
+  cursor: pointer;
 }
 
 .seller-avatar img {

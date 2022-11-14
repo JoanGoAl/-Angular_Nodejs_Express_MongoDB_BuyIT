@@ -1,0 +1,11 @@
+[{
+  "_id": {
+    "$oid": "6372161a33cd1ea831165c9f"
+  },
+  "user_id": "5f7c6394-0cbf-4819-a03e-042328a543ef",
+  "product_id": {
+    "$oid": "637211e001fc63703ea53a93"
+  },
+  "body": "Que buen producto",
+  "__v": 0
+}]

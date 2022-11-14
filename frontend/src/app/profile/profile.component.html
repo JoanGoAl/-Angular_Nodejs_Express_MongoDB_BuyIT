@@ -91,7 +91,7 @@
     </div>
     <div class="wrapper">
       <div class="following" *ngIf="option == 'following'">
-        <div class="card" *ngFor="let item of values" (click)="goProduct(item.slug)">
+        <div class="card" *ngFor="let item of values" (click)="goProfile(item.username)">
           <div class="product-title">{{ item.username }}</div>
           <div class="product-img">
             <img src="{{ item.avatar }}">
@@ -100,6 +100,7 @@
       </div>
       <div class="products" *ngIf="option != 'following'">
         <div class="card" *ngFor="let item of values" (click)="goProduct(item.slug)">
+          <!-- <h1>{{ item | json }}</h1> -->
           <div class="product-title">{{ item.name }}</div>
           <div class="product-img">
             <img src="{{ item.imgUrl[0] }}">

@@ -55,7 +55,7 @@ export class CategoriesComponent implements OnInit {
 
   goFilteredProducts(title: String) {
     this.router.navigateByUrl(
-      `shop/${btoa(`filters?category=${title.toLowerCase()}`)}`
+      `shop/${btoa(`filters?category=${title.toLowerCase()}&page=1`)}`
     );
   }
 

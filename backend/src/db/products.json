@@ -1,0 +1,214 @@
+[{
+  "_id": {
+    "$oid": "6372117a01fc63703ea53a54"
+  },
+  "name": "Patinete Eléctrico",
+  "categories": [
+    "electrónica"
+  ],
+  "description": "Pa la calle, resistente, puedes poner altavoz y escuchar al Morad, batería dura 33km",
+  "imgUrl": [
+    "https://i01.appmifile.com/webfile/globalweb/chenyang/04!800x800!85.png",
+    "https://tuxiaomi.es/wp-content/uploads/2022/08/Xiaomi-Electric-Scooter-4-Pro-patin.png"
+  ],
+  "condition": "Perfecto",
+  "owner": {
+    "$oid": "6372112201fc63703ea53a3f"
+  },
+  "price": "560",
+  "slug": "patinete-electrico-fkt2kl",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1668419962003"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1668419962003"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "637211e001fc63703ea53a93"
+  },
+  "name": "Televisión LG Oled",
+  "categories": [
+    "electrónica"
+  ],
+  "description": "55 pulgadas, HD y se ve perfecta, tiene un golpe en la parte superior izquierda pero fue culpa del chaval, que le hincó el diente sin querer al caerse de la silla, que estaba cogiendo el jesusito que tenemos arriba en una estanteria para ponerlo en el centro de la mesa porque ya era navidad y teniamos que poner el belén, pero quitando eso perfecta.",
+  "imgUrl": [
+    "https://www.sony.es/image/f0765f7b3e3a1eff3e5e5b20161368ad?fmt=png-alpha&wid=676&hei=400",
+    "https://res-3.cloudinary.com/grover/image/upload/v1649663103/qrppooe8x1za0q0b11b1.png",
+    "https://static.rcwilley.com/products/112700195/LG-42-Class-C2-Series-OLED-evo-4K-UHD-Smart-TV-rcwilley-image8~700.webp?r=6"
+  ],
+  "condition": "Semi-Perfecto",
+  "owner": {
+    "$oid": "6372112f01fc63703ea53a45"
+  },
+  "price": "275",
+  "slug": "television-lg-oled-wptuc3",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1668420064525"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1668420064525"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6372183133cd1ea831165cda"
+  },
+  "name": "Cadena de Oro 24k",
+  "categories": [
+    "moda"
+  ],
+  "description": "Cadena de oro de mi comunión, perfecta para regalo, la vendo porque se me ha quedado pequeña y mis niños ya tienen una y no quieren esto y para venderla en el vendo oro de debajo mi casa que me dan una miseria porque el marido ha dejado a la dueña y está de una mala agarra que no da ni un duro la vendo aquí.",
+  "imgUrl": [
+    "https://cdn.shopify.com/s/files/1/0262/3455/2375/products/image_b523d7a3-7ce8-4778-a6fa-d688ccae8eee_medium.jpg?v=1656875536",
+    "https://www.aldajoyeros.com/13061-superlarge_default/cadena-oro-amarillo-18k-maciza-barbada-3mm-60cm.jpg",
+    "https://www.nicols.es/34622-home_default/cadena-oro-hombre-gold-60cm.jpg"
+  ],
+  "condition": "Perfecto",
+  "owner": {
+    "$oid": "6372112f01fc63703ea53a45"
+  },
+  "price": "160",
+  "slug": "cadena-de-oro-24k--z8xcy9",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1668421681831"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1668421681831"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "637224e133cd1ea831165dca"
+  },
+  "name": "iPhone 14 Pro Max",
+  "categories": [
+    "electrónica"
+  ],
+  "description": "No es que sea malo ni nada pero prefiero mi nokia.",
+  "imgUrl": [
+    "https://www.vodafone.es/c/tienda/tol/img/1500196592037/Frontal-Apple-iPhone-14-Pro-Max-Deep-Purpl?v=20220909103757/",
+    "https://www.stopandclick.es/wp-content/uploads/2022/09/iPhone-14-Pro-max.png"
+  ],
+  "condition": "Perfecto",
+  "owner": {
+    "$oid": "6372112201fc63703ea53a3f"
+  },
+  "price": "760",
+  "slug": "iphone-14-pro-max-jcpyyn",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1668424929405"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1668424929405"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "637225a733cd1ea831165df5"
+  },
+  "name": "Pelota del mundial 2010",
+  "categories": [
+    "deportes"
+  ],
+  "description": "Con la que españa gano la copa del mundo, unos grandes. Hay que decir que lleva desde entonces en el trastero cogiendo polvo.",
+  "imgUrl": [
+    "https://www.balones-oficiales.com/wp-content/uploads/2018/06/Jabulani2.png"
+  ],
+  "condition": "Bastante Usado",
+  "owner": {
+    "$oid": "6372112201fc63703ea53a3f"
+  },
+  "price": "10",
+  "slug": "pelota-del-mundial-2010-at354v",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1668425127250"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1668425127250"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6372274f33cd1ea831165ec0"
+  },
+  "name": "Audi A1",
+  "categories": [
+    "motor"
+  ],
+  "description": "Coche en perfecto estado, cuidado y con mucho cariño hacia el. Lo vendo porque me hace falta un coche mas grande para los nenes, sino me lo quedaba. Tiene unos 80.000Km y huele a limpio aún, vendo también BodyKit pero eso a parte (Mirad mi perfil). Es del 2019, de verdad muy bien cuidado, solo ofertas reales.",
+  "imgUrl": [
+    "https://i.pinimg.com/originals/96/88/8b/96888bc59aa2dc19fc9d60e4e1f3c1dc.png",
+    "https://www.pngplay.com/wp-content/uploads/13/Audi-A1-Download-Free-PNG.png",
+    "https://www.quadisrentacar.es/sites/default/files/styles/slider_car/public/2022-03/04-03-2022-Quadis-Rent-a-Car-AUDI-A1-4.png?itok=mxYoGayQ"
+  ],
+  "condition": "Semi-Perfecto",
+  "owner": {
+    "$oid": "6372112f01fc63703ea53a45"
+  },
+  "price": "19.890",
+  "slug": "audi-a1-bhcysr",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1668425551591"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1668425551591"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "637228fe176ce7fc2a527411"
+  },
+  "name": "Silla de jardín",
+  "categories": [
+    "muebles"
+  ],
+  "description": "Tenemos de todos los tipos de sillas, ofrecemos sillas modernas, de toda la vida, de colores, etc.",
+  "imgUrl": [
+    "https://www.liquidatodo.es/1980-thickbox_default/silla-de-jardin-en-rattan-sintetico-marron-chocolate-.jpg",
+    "https://www.outlet-piscinas.com/media/catalog/product/cache/1/image/800x800/9df78eab33525d08d6e5fb8d27136e95/p/r/prosolis-silla-relax-ellipse-poolstar.png",
+    "https://www.tucanhome.es/tucanhome/24560-large_default/luxemburgo-silla-de-exterior.jpg"
+  ],
+  "condition": "Perfecto",
+  "owner": {
+    "$oid": "637228f4176ce7fc2a52740a"
+  },
+  "price": "35",
+  "slug": "silla-de-jardin-d08yk",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1668425982539"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1668425982539"
+    }
+  },
+  "__v": 0
+}]
