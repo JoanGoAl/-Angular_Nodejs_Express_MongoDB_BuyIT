@@ -38,13 +38,13 @@ exports.addProduct = async (data) => {
     const createProduct = await ProductModel.create(data);
 
     let addInPxC = [];
-
-
     for (let i = 0; i < idCategories.length; i++) {
       let auxPxC = await ProductsXCategories.updateOne(
         { id_category: idCategories[i] },
         { $push: { id_products: createProduct._id } }
       );
+
+      await UserModel.findOneAndUpdate({ _id: createProduct.owner }, { $push: { products: createProduct } })
 
       addInPxC.push(auxPxC);
     }
