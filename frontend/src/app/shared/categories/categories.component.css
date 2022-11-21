@@ -298,12 +298,12 @@ img,
   }
 }
 /* iPads (portrait and landscape) ----------- */
-@media only screen and (min-width: 550px) and (max-width: 800px) {
+@media (max-width: 991px) {
   .grid {
     width: 75%;
     height: 75%;
     padding: 15px;
-    margin-top: 15%;
+    margin-top: 19.5%;
   }
 
   .card {
@@ -314,8 +314,8 @@ img,
     margin: auto;
     text-align: left;
     font-family: arial;
-    width: 175px;
-    height: 175px;
+    width: 250px;
+    height: 250px;
   }
 
   .card header {
