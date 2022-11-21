@@ -133,7 +133,7 @@ textarea.comment-body {
   background-color: red;
 }
 
-.mini-graphs > .top-graph {
+.mini-graphs>.top-graph {
   position: absolute;
   width: 20%;
   left: 45%;
@@ -367,4 +367,97 @@ ul.wrapper .icon {
 
 .like-button app-fa-icon {
   margin-top: 5px;
+}
+
+@media (max-width: 991px) {
+  .graph {
+    left: 8%;
+    top: 30%;
+  }
+
+  .mini-graphs>.top-graph {
+    top: 12%;
+  }
+
+  .img-carousel {
+    width: 23%;
+    height: 23%;
+    left: 17%;
+    top: 38%;
+  }
+
+  .product-info .product-name {
+    font-size: 20px;
+    font-weight: 800;
+    padding: 15px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+  }
+
+  .product-info .product-description {
+    font-size: 25px;
+    padding: 15px;
+    line-height: 35px;
+    width: 100%;
+    font-size: 12px;
+    float: right;
+    text-justify: auto;
+  }
+
+  .action-buttons .price-info {
+    margin-left: 25px;
+    top: 35px;
+    font-size: 22px;
+  }
+
+  .action-buttons .chat-button {
+    position: absolute;
+    width: 20%;
+    height: 70%;
+    bottom: 60%;
+  }
+
+  .action-buttons .chat-button .wrapper {
+    position: absolute;
+    right: 20%;
+  }
+
+  .comment {
+    background-color: #a5a5a5b9;
+    border-radius: 10px;
+    width: 44.5%;
+    margin: 10px;
+    padding: 10px;
+    height: 26.5vh;
+  }
+
+  .comment-user-avatar {
+    width: 25%;
+    margin-top: 10px;
+    margin-right: 10px;
+  }
+
+  .follow-btn {
+    margin-right: 30px;
+  }
+
+  .seller-card {
+    top: 32%;
+    width: 12%;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  }
+
+  .seller-avatar img {
+    width: 25px;
+    height: 25px;
+  }
+
+  .follow {
+    width: 40%;
+    height: 100%;
+    margin-right: 10px;
+    position: absolute;
+    left: -55%;
+    margin-left: 10px;
+  }
 }
