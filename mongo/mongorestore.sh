@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 FILES="/db-dump/*.json"
 
 for f in $FILES; do
