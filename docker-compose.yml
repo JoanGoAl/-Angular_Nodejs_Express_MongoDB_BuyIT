@@ -63,6 +63,8 @@ services:
       - ./conf/loadbalancer/nginx.conf:/etc/nginx/nginx.conf
     depends_on:
       - frontend
+    ports:
+      - 80:80
     networks:
       - angular_net
     command: ["nginx", "-g", "daemon off;"]
@@ -84,8 +86,8 @@ services:
     image: grafana/grafana:7.1.5
     container_name: grafana_practica
     environment:
-      GF_AUTH_DISABLE_LOGIN_FORM: true
-      GF_AUTH_ANONYMOUS_ENABLED: true
+      GF_AUTH_DISABLE_LOGIN_FORM: "true"
+      GF_AUTH_ANONYMOUS_ENABLED: "true"
       GF_AUTH_ANONYMOUS_ORG_ROLE: Admin
       GF_INSTALL_PLUGINS: grafana-clock-panel 1.0.1
     depends_on:
