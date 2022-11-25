@@ -8,8 +8,11 @@ const port = 3000;
 
 app.use(require('./src/routers'))
 
-mongoose.connect(`mongodb://${process.env.USERNAME}:${process.env.PASSWORD}@mongodb:27017/buyIT`, {
+mongoose.connect(`mongodb://mongodb:27017/buyIT`, {
     useNewUrlParser: true,
+    authSource: "admin",
+    user: process.env.USERNAME,
+    pass: process.env.PASSWORD
 }).then(() => {
     console.log('Connected to MongoDB');
 }).catch(err => console.log(err));

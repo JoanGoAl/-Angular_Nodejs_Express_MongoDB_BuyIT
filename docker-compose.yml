@@ -42,7 +42,7 @@ services:
       - 3000:3000
     networks:
       - angular_net
-    command: sh /script/wait-for-it.sh -t 0 mongodb:27017 -- npm start
+    command: npm start
 
   frontend:
     build: ./frontend
@@ -54,8 +54,7 @@ services:
       - 4200:4200
     networks:
       - angular_net
-    command: sh /script/wait-for-it.sh -t 0 mongodb:27017 -- npm start
-
+    command: npm start
   # nginx_loadbalancer:
   #   image: nginx:stable
   #   container_name: nginx_loadbalancer_container

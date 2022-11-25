@@ -2,5 +2,5 @@
 FILES="/db-dump/*.json"
 
 for f in $FILES; do
-    mongoimport -d buyIT --jsonArray --file $f;
+    mongoimport --authenticationDatabase admin --username gfmois --password 1234 -d buyIT --jsonArray --file $f;
 done
