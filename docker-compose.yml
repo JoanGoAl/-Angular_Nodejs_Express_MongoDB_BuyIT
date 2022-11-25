@@ -16,7 +16,7 @@ services:
       - ./mongo/mongorestore.sh:/docker-entrypoint-initdb.d/mongorestore.sh
       - ./backend/src/db:/db-dump
     networks:
-      - angular_net
+      - practica_net
 
   # mongo_express:
   #   image: mongo-express:latest
@@ -31,7 +31,7 @@ services:
   #   depends_on:
   #     - mongodb
   #   networks:
-  #     - angular_net
+  #     - practica_net
 
   backend:
     build: ./backend
@@ -42,7 +42,7 @@ services:
     ports:
       - 3000:3000
     networks:
-      - angular_net
+      - practica_net
     command: npm start
 
   frontend:
@@ -54,7 +54,7 @@ services:
     ports:
       - 4200:4200
     networks:
-      - angular_net
+      - practica_net
     command: npm start
   # nginx_loadbalancer:
   #   image: nginx:stable
@@ -63,7 +63,7 @@ services:
   #     - mongodb
   #   command: nginx -g daemon off
   #   networks:
-  #     - angular_net
+  #     - practica_net
 
 networks:
-  angular_net:
+  practica_net:
