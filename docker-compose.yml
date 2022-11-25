@@ -1,4 +1,5 @@
 version: '3'
+
 services:
   mongodb:
     image: mongo
@@ -7,7 +8,7 @@ services:
     ports:
       - 27018:27017
     environment:
-      - MONGO_INITDB_ROOT_USERNAME=gfmois
+      - MONGO_INITDB_ROOT_USERNAME=joan
       - MONGO_INITDB_ROOT_PASSWORD=1234
       - MONGO_INITDB_DATABASE=buyIT
     volumes:
@@ -16,14 +17,14 @@ services:
       - ./backend/src/db:/db-dump
     networks:
       - angular_net
-      
+
   # mongo_express:
   #   image: mongo-express:latest
   #   container_name: adminMongo_container
   #   environment:
   #     - ME_CONFIG_OPTIONS_EDITORTHEME=ambiance
   #     - ME_CONFIG_MONGODB_SERVER=mongodb
-  #     - ME_CONFIG_BASICAUTH_USERNAME=gfmois
+  #     - ME_CONFIG_BASICAUTH_USERNAME=joan
   #     - ME_CONFIG_BASICAUTH_PASSWORD=1234
   #   ports:
   #     - 82:8081
@@ -63,5 +64,6 @@ services:
   #   command: nginx -g daemon off
   #   networks:
   #     - angular_net
+
 networks:
   angular_net:

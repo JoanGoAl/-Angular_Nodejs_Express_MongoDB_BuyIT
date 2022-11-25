@@ -3,7 +3,7 @@ print("########### START ###########")
 db = db.getSiblingDB('buyIT');
 db.createUser(
     {
-        user: "gfmois",
+        user: "joan",
         pwd: "1234",
         roles: [
             {
