@@ -8,7 +8,7 @@ const port = 3000;
 
 app.use(require('./src/routers'))
 
-mongoose.connect('mongodb://localhost:27017/buyIT', {
+mongoose.connect(`mongodb://${process.env.USERNAME}:${process.env.PASSWORD}@mongodb:27017/buyIT`, {
     useNewUrlParser: true,
 }).then(() => {
     console.log('Connected to MongoDB');

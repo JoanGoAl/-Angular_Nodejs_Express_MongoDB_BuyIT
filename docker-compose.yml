@@ -1,0 +1,68 @@
+version: '3'
+services:
+  mongodb:
+    image: mongo
+    container_name: mongo_container
+    restart: always
+    ports:
+      - 27018:27017
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=gfmois
+      - MONGO_INITDB_ROOT_PASSWORD=1234
+      - MONGO_INITDB_DATABASE=buyIT
+    volumes:
+      - ./mongo/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+      - ./mongo/mongorestore.sh:/docker-entrypoint-initdb.d/mongorestore.sh
+      - ./backend/src/db:/db-dump
+    networks:
+      - angular_net
+      
+  # mongo_express:
+  #   image: mongo-express:latest
+  #   container_name: adminMongo_container
+  #   environment:
+  #     - ME_CONFIG_OPTIONS_EDITORTHEME=ambiance
+  #     - ME_CONFIG_MONGODB_SERVER=mongodb
+  #     - ME_CONFIG_BASICAUTH_USERNAME=gfmois
+  #     - ME_CONFIG_BASICAUTH_PASSWORD=1234
+  #   ports:
+  #     - 82:8081
+  #   depends_on:
+  #     - mongodb
+  #   networks:
+  #     - angular_net
+
+  backend:
+    build: ./backend
+    container_name: backend_container
+    restart: always
+    depends_on:
+      - mongodb
+    ports:
+      - 3000:3000
+    networks:
+      - angular_net
+    command: npm start
+
+  frontend:
+    build: ./frontend
+    container_name: frontend_container
+    restart: always
+    depends_on:
+      - backend
+    ports:
+      - 4200:4200
+    networks:
+      - angular_net
+    command: npm start
+  
+  # nginx_loadbalancer:
+  #   image: nginx:stable
+  #   container_name: nginx_loadbalancer_container
+  #   depends_on:
+  #     - mongodb
+  #   command: nginx -g daemon off
+  #   networks:
+  #     - angular_net
+networks:
+  angular_net:
