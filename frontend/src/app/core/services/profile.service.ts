@@ -8,7 +8,7 @@ import { ApiService } from './api.service';
   providedIn: 'root'
 })
 export class ProfileService {
-  private baseUrl = 'http://localhost:3000/profile'
+  private baseUrl = '/api/profile'
 
   constructor(private _http: HttpClient) { }
 

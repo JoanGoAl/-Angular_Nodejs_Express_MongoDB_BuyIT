@@ -7,7 +7,7 @@ import { Product, Comment } from "../models";
   providedIn: "root"
 })
 export class CommentService {
-  private baseUrl = 'http://localhost:3000/comments';
+  private baseUrl = '/api/comments';
 
   constructor(private _http: HttpClient) {}
 

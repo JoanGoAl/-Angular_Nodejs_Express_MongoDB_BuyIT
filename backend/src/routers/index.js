@@ -8,9 +8,9 @@ let client = require('prom-client');
 const collectDefaultMetrics = client.collectDefaultMetrics;
 collectDefaultMetrics({ timeout: 5000 });
 
-const counterPracticaEndpoint = (endpoint) => new client.Counter({
-    name: `${endpoint}_endpoint`,
-    help: `Total de peticiones para el endpoint ${endpoint}`
+const counterPracticaEndpoint = new client.Counter({
+    name: `_endpoint`,
+    help: `Total de peticiones para el endpoint`
 })
 
 router.use(function (req, res, next) {
@@ -26,14 +26,14 @@ router.use(morgan('dev'))
 
 router.use('/metrics', (req, res) => {
     res.set('Content-Type', client.register.contentType);
-    res.end(client.register.metrics());
+    client.register.metrics().then(data => res.send(data))
 });
 
-// router.use('/products', (req, res) => { counterPracticaEndpoint('products').inc() }, require('./product.route'))
-// router.use('/categories', (req, res) => { counterPracticaEndpoint('categories').inc() }, require('./category.route'))
-// router.use('/productsXcategory', (req, res) => { counterPracticaEndpoint('productsXcategory').inc() }, require('./productsXcategory.route'))
-// router.use('/auth', (req, res) => { counterPracticaEndpoint('auth').inc() }, require('./user.routes'))
-// router.use('/profile', (req, res) => { counterPracticaEndpoint('profile').inc() }, require('./profile.routes'))
-// router.use('/comments', (req, res) => { counterPracticaEndpoint('comments').inc() }, require('./comments.routes'))
+router.use('/products', (req, res, next) => { counterPracticaEndpoint.inc(); next() }, require('./product.route'))
+router.use('/categories', (req, res, next) => { counterPracticaEndpoint.inc(); next() }, require('./category.route'))
+router.use('/productsXcategory', (req, res, next) => { counterPracticaEndpoint.inc(); next() }, require('./productsXcategory.route'))
+router.use('/auth', (req, res, next) => { counterPracticaEndpoint.inc(); next() }, require('./user.routes'))
+router.use('/profile', (req, res, next) => { counterPracticaEndpoint.inc(); next() }, require('./profile.routes'))
+router.use('/comments', (req, res, next) => { counterPracticaEndpoint.inc(); next() }, require('./comments.routes'))
 
 module.exports = router;

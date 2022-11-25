@@ -55,17 +55,17 @@ services:
   #     - angular_net
   #   command: npm start
 
-  # nginx_loadbalancer:
-  #   image: nginx:stable
-  #   restart: always
-  #   container_name: nginx_loadbalancer_container
-  #   volumes:
-  #     - ./conf/loadbalancer/nginx.conf:/etc/nginx/nginx.conf
-  #   depends_on:
-  #     - mongodb
-  #   networks:
-  #     - angular_net
-  #   command: ["nginx", "-g", "daemon off;"]
+  nginx_loadbalancer:
+    image: nginx:stable
+    restart: always
+    container_name: nginx_loadbalancer_container
+    volumes:
+      - ./conf/loadbalancer/nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - frontend
+    networks:
+      - angular_net
+    command: ["nginx", "-g", "daemon off;"]
   
   prometheus:
     image: prom/prometheus:v2.20.1
@@ -102,4 +102,4 @@ networks:
   angular_net:
 
 volumes:
-  myGrafanaVol:
+  myGrafanaVol: {}
