@@ -6,7 +6,7 @@ COPY package.json .
 RUN npm install
 
 FROM node:19-alpine as start
-ENV NODE_OPTIONS=--max_old_space_size=2048
+# ENV NODE_OPTIONS=--max_old_space_size=2048
 
 WORKDIR /usr/src/app
 
