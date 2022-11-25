@@ -43,17 +43,17 @@ services:
       - angular_net
     command: npm start
 
-  # frontend:
-  #   build: ./frontend
-  #   container_name: frontend_container
-  #   restart: always
-  #   depends_on:
-  #     - backend
-  #   ports:
-  #     - 4200:4200
-  #   networks:
-  #     - angular_net
-  #   command: npm start
+  frontend:
+    build: ./frontend
+    container_name: frontend_container
+    restart: always
+    depends_on:
+      - backend
+    ports:
+      - 4200:4200
+    networks:
+      - angular_net
+    command: npm start
 
   nginx_loadbalancer:
     image: nginx:stable
