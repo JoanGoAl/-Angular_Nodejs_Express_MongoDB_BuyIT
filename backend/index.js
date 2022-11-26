@@ -6,7 +6,7 @@ require('dotenv').config()
 const app = express();
 const port = 3000;
 
-app.use(require('./src/routers'))
+app.use('/api', require('./src/routers'))
 
 mongoose.connect(`mongodb://mongodb:27017/buyIT`, {
     useNewUrlParser: true,
