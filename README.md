@@ -24,10 +24,37 @@ Todos los ficheros de configuración necesarios residirán en una carpeta mongo 
 
 Primero crearemos una carpeta a nivel de aplicación llamada `mongo`.
 
+Dentro de esta carpeta crearemos el archivo `mongo-init.js`
+````js
+print("########### START ###########")
 
+db = db.getSiblingDB('buyIT');
+db.createUser(
+    {
+        user: "joan", // Nombre de usuario
+        pwd: "1234", // Contraseña
+        roles: [
+            {
+                role: "readWrite",
+                db: "buyIT" // Nombre de la base de datos
+            }
+        ]
+    }
+)
+````
 
+Por ultimo crearemos un script `mongorestore.sh` el qual se encargara de importar los .json con la información de la base de datos:
+````sh
+#!/usr/bin/env bash
+FILES="/db-dump/*.json"; 
+for f in $FILES; do 
+	mongoimport --authenticationDatabase admin --username joan --password 1234 -d buyIT --jsonArray --file $f;
+done
+````
 
 <br>
+
+---
 
 En el docker-compose.yml
 ````yml
