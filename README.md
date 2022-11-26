@@ -326,10 +326,10 @@ global:
   scrape_interval: 5s
   evaluation_interval: 30s
 scrape_configs:
-    - job_name: "buyIT-angular-express-app"
-  honor_labels: true
-  static_configs:
-    - targets: ["backend:3000"]
+  - job_name: "buyIT-angular-express-app"
+    honor_labels: true
+    static_configs:
+      - targets: ["backend:3000"]
 ````
 
 En el docker-compose.yml
