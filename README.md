@@ -282,3 +282,106 @@ nginx_loadbalancer:
       - practica_net
     command: ["nginx", "-g", "daemon off;"]
 ````
+
+# Servicios opcionales
+
+Primero en el backend haremos un `npm install prom-client`
+
+Despues modificaremos el fichero `/backend/src/routers/index.js`
+Crearemos un `endpoint` para las metricas:
+
+````js
+let client = require('prom-client');
+const collectDefaultMetrics = client.collectDefaultMetrics;
+collectDefaultMetrics({ timeout: 5000 });
+
+const counterPracticaEndpoint = new client.Counter({
+	name:`_endpoint`,
+	help:`Total de peticiones para el endpoint`
+})
+
+router.use('/metrics', (req, res) => {
+	res.set('Content-Type', client.register.contentType);
+	client.register.metrics().then(data  =>  res.send(data))
+});
+````
+
+Y pondremos `counterPracticaEndpoint` como middleware en en todos los `router.use` para contabilizar las peticiones
+
+````js
+router.use('/products', (req, res, next) => { counterPracticaEndpoint.inc(); next() }, require('./product.route'))
+router.use('/categories', (req, res, next) => { counterPracticaEndpoint.inc(); next() }, require('./category.route'))
+router.use('/productsXcategory', (req, res, next) => { counterPracticaEndpoint.inc(); next() }, require('./productsXcategory.route'))
+router.use('/auth', (req, res, next) => { counterPracticaEndpoint.inc(); next() }, require('./user.routes'))
+router.use('/profile', (req, res, next) => { counterPracticaEndpoint.inc(); next() }, require('./profile.routes'))
+router.use('/comments', (req, res, next) => { counterPracticaEndpoint.inc(); next() }, require('./comments.routes'))
+````
+
+## Servicio Prometheus
+
+Crearemos la carpeta `/conf/metrics` y crearemos el fichero `prometheus.yml`
+
+````yml
+global:
+  scrape_interval: 5s
+  evaluation_interval: 30s
+scrape_configs:
+    - job_name: "buyIT-angular-express-app"
+  honor_labels: true
+  static_configs:
+    - targets: ["backend:3000"]
+````
+
+En el docker-compose.yml
+````yml
+prometheus:
+    image: prom/prometheus:v2.20.1
+    container_name: prometheus_practica
+    volumes:
+      - ./conf/metrics/prometheus.yml:/etc/prometheus/prometheus.yml
+    depends_on:
+      - backend
+    ports:
+      - 9090:9090
+    networks:
+      - angular_net
+    command: --config.file=/etc/prometheus/prometheus.yml
+````
+
+## Servicio Grafana
+
+En la carpeta `./conf/metrics` crearemos el fichero `datasources.yml`
+
+````yml
+apiVersion: 1
+datasources:
+  - name: Prometheus
+    type: prometheus
+    access: proxy
+    orgId: 1
+    url: prometheus:9090
+    basicAuth: false
+    isDefault: true
+    editable: true
+````
+
+En el docker-compose.yml
+````yml
+grafana:
+    image: grafana/grafana:7.1.5
+    container_name: grafana_practica
+    environment:
+      GF_AUTH_DISABLE_LOGIN_FORM: "true"
+      GF_AUTH_ANONYMOUS_ENABLED: "true"
+      GF_AUTH_ANONYMOUS_ORG_ROLE: Admin
+      GF_INSTALL_PLUGINS: grafana-clock-panel 1.0.1
+    depends_on:
+      - prometheus
+    ports:
+      - 3500:3000
+    volumes:
+      - myGrafanaVol:/var/lib/grafana
+      - ./conf/metrics/datasources.yml:/etc/grafana/provisioning/datasources/datasources.yml
+    networks:
+      - practica_net
+````
