@@ -32,21 +32,21 @@ Estos archivo usando los volumenes de docker-compose lo añadiremos a la siguien
 El servicio de MongoDB en el archivo `docker-compose.yml` quedaría así:
 ````yml
 mongodb:
-	image: mongo
-	container_name: mongo_container
-	restart: always
-	ports:
-		- 27018:27017
-	environment:
-		- MONGO_INITDB_ROOT_USERNAME=gfmois
-		- MONGO_INITDB_ROOT_PASSWORD=1234
-		- MONGO_INITDB_DATABASE=buyIT
-	volumes:
-		- ./backend/src/db:/db-dump
-		- ./mongo/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
-		- ./mongo/mongorestore.sh:/docker-entrypoint-initdb.d/mongorestore.sh
-	networks:
-		- angular_net
+        image: mongo
+        container_name: mongo_container
+        restart: always
+        ports:
+                - 27018:27017
+        environment:
+                - MONGO_INITDB_ROOT_USERNAME=gfmois
+                - MONGO_INITDB_ROOT_PASSWORD=1234
+                - MONGO_INITDB_DATABASE=buyIT
+        volumes:
+                - ./backend/src/db:/db-dump
+                - ./mongo/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+                - ./mongo/mongorestore.sh:/docker-entrypoint-initdb.d/mongorestore.sh
+        networks:
+                - angular_net
 ````
 
 Contenedor Backend
@@ -148,16 +148,16 @@ module.exports  =  router;
 __docker-compose__ del servicio backend:
 ````yml
 backend:
-	build: ./backend
-	container_name: backend_container
-	restart: always
-	depends_on:
-		- mongodb
-	ports:
-		- 3000:3000
-	networks:
-		- angular_net
-	command: npm start
+        build: ./backend
+        container_name: backend_container
+        restart: always
+        depends_on:
+                - mongodb
+        ports:
+                - 3000:3000
+        networks:
+                - angular_net
+        command: npm start
 ````
 
 Contenedor Frontend
@@ -230,16 +230,16 @@ export  class  CategoryService {
 __Docker-compose__ del servicio frontend:
 ````yml
 frontend:
-	build: ./frontend
-	container_name: frontend_container
-	restart: always
-	depends_on:
-		- backend
-	ports:
-		- 4200:4200
-	networks:
-		- angular_net
-	command: npm start
+        build: ./frontend
+        container_name: frontend_container
+        restart: always
+        depends_on:
+                - backend
+        ports:
+                - 4200:4200
+        networks:
+                - angular_net
+        command: npm start
 ````
 
 Contenedor NGINX
@@ -287,18 +287,18 @@ http {
 __docker-compose__ del servicio nginx:
 ````yml
 nginx_loadbalancer:
-	image: nginx:stable
-	restart: always
-	container_name: nginx_loadbalancer_container
-	volumes:
-		- ./conf/loadbalancer/nginx.conf:/etc/nginx/nginx.conf
-	depends_on:
-		- frontend
-	ports:
-		- 80:80
-	command: ["nginx", "-g", "daemon off;"]
-	networks:
-		- angular_net
+        image: nginx:stable
+        restart: always
+        container_name: nginx_loadbalancer_container
+        volumes:
+                - ./conf/loadbalancer/nginx.conf:/etc/nginx/nginx.conf
+        depends_on:
+                - frontend
+        ports:
+                - 80:80
+        command: ["nginx", "-g", "daemon off;"]
+        networks:
+                - angular_net
 ````
 Contenedores Opcionales
 ========
@@ -313,27 +313,27 @@ Simplemente cambiamos el `job_name` al nombre que queramos, en mi caso he puesto
 
 ````yml
 global:
-	scrape_interval: 5s
-	evaluation_interval: 30s
+        scrape_interval: 5s
+        evaluation_interval: 30s
 scrape_configs:
-  - job_name: "buyIT-angular-express-app"
-	honor_labels: true
-	static_configs:
-		- targets: ["backend:3000"]
+        - job_name: "buyIT-angular-express-app"
+        honor_labels: true
+        static_configs:
+                - targets: ["backend:3000"]
 ````
 
 __docker-compose.yml__ del servicio:
 ````yml
 prometheus:
-	image: prom/prometheus:v2.20.1
-	container_name: prometheus_practica
-	volumes:
-		- ./conf/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
-	depends_on:
-		- backend
-	network:
-		- angular_net
-	command: --config.file=/etc/prometheus/prometheus.yml
+        image: prom/prometheus:v2.20.1
+        container_name: prometheus_practica
+        volumes:
+                - ./conf/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+        depends_on:
+                - backend
+        network:
+                - angular_net
+        command: --config.file=/etc/prometheus/prometheus.yml
 ````
 
 Contenedor Grafana
@@ -350,33 +350,33 @@ __datasource.yml__:
 ````yml
 apiVersion: 1
 datasources:
-	- name: Prometheus
-	  type: prometheus
-	  access: proxy
-	  orgId: 1
-	  url: prometheus:9000
-	  basicAuth: false
-	  isDefault: true
-	  editable: true
+        - name: Prometheus
+          type: prometheus
+          access: proxy
+          orgId: 1
+          url: prometheus:9000
+          basicAuth: false
+          isDefault: true
+          editable: true
 ````
 
 __docker-compose.yml__ del servicio grafana:
 ````yml
 grafana:
-	image: grafana/grafana:7.1.5
-	container_name: grafana_practica
-	enviroment: 
-		- GF_AUTH_DISABLE_LOGIN_FORM: "true"
-		- GF_AUTH_ANONYMOUS_ENABLED: "true"
-		- GF_AUTH_ANONYMOUS_ORG_ROLE: Admin
-		- GF_INSTALL_PLUGINS: grafana-clock-panel 1.0.1
-	depends_on:
-		- prometheus
-	ports:
-		- 3500:3000
-	volumes:
-		- myGrafanaVol:/var/lib/grafana
-		- ./conf/prometheus/datasource.yml:/etc/grafana/provisioning/datasources/datasource.yml
-	networks:
-		- angular_net
+        image: grafana/grafana:7.1.5
+        container_name: grafana_practica
+        enviroment: 
+                - GF_AUTH_DISABLE_LOGIN_FORM: "true"
+                - GF_AUTH_ANONYMOUS_ENABLED: "true"
+                - GF_AUTH_ANONYMOUS_ORG_ROLE: Admin
+                - GF_INSTALL_PLUGINS: grafana-clock-panel 1.0.1
+        depends_on:
+                - prometheus
+        ports:
+                - 3500:3000
+        volumes:
+                - myGrafanaVol:/var/lib/grafana
+                - ./conf/prometheus/datasource.yml:/etc/grafana/provisioning/datasources/datasource.yml
+        networks:
+                - angular_net
 ````
