@@ -43,12 +43,13 @@ db.createUser(
 )
 ````
 
-Por ultimo crearemos un script `mongorestore.sh` el qual se encargara de importar los .json con la información de la base de datos:
+Por ultimo crearemos un script `mongorestore.sh` el qual se encargará de importar los .json con la información de la base de datos:
 ````sh
 #!/usr/bin/env bash
 FILES="/db-dump/*.json"; 
 for f in $FILES; do 
-	mongoimport --authenticationDatabase admin --username joan --password 1234 -d buyIT --jsonArray --file $f;
+	mongoimport --authenticationDatabase admin --username joan --password 1234 -d buyIT --jsonArray --file $f; 
+  # Hace una migración de todos los ficheros json que se encuentran en la carpeta db-dump
 done
 ````
 
@@ -86,7 +87,19 @@ El contenedor asociado se denominará **backend_container**
 
 Ejecutará como primer comando nada más arrancar: **npm start**
 
-<br>
+---
+
+Configuraremos el fichero `index.js` para poder conectarse a mongo
+````js
+mongoose.connect(`mongodb://mongodb:27017/buyIT`, {
+    useNewUrlParser: true,
+    authSource: "admin",
+    user: process.env.USERNAME,
+    pass: process.env.PASSWORD
+}).then(() => {
+    console.log('Connected to MongoDB');
+}).catch(err => console.log(err));
+````
 
 En el docker-compose.yml
 ````yml
@@ -134,6 +147,8 @@ El contenedor asociado se denominará frontend_container
 Ejecutará como primer comando nada más arrancar: npm start
 
 <br>
+
+---
 
 En el docker-compose.yml
 ````yml
@@ -183,6 +198,8 @@ Arrancará después del servicio de **mongodb**
 
 <br>
 
+---
+
 En el docker-compose.yml
 ````yml
 mongo_express:
@@ -200,3 +217,68 @@ mongo_express:
       - practica_net
 ````
 
+## Servicio de loadbalancer de nginx
+
+Nos permitirá implementar un sistema de balanceo de carga/proxy en nuestro sistema 
+
+Partirá de la imagen oficial de nginx
+
+Asociará un fichero de configuración de nginx (nginx.conf) que tendremos en la carpeta loadbalancer de nuestro repositorio con el mismo fichero de la carpeta /etc/nginx/ de la imagen. Este fichero nos permitirá implementar el balanceador de carga y su contenido será similar al adjuntado a esta tarea (realizando las modificaciones oportunas para adecuarlo a vuestras necesidades).
+
+Ejecutará como primer comando nada más arrancar: nginx -g daemon off
+
+---
+
+Primero crearemos un carpeta `./conf/loadbalancer` donde crearemos un fichero llamado `nginx.conf`
+
+````nginx
+events {
+  worker_connections 1024;
+}
+
+http {
+  upstream frontend {
+    # These are references to our backend containers, facilitated by
+    # Compose, as defined in docker-compose.yml
+    server frontend:4200;
+  } 
+  upstream backend {
+    # These are references to our backend containers, facilitated by
+    # Compose, as defined in docker-compose.yml
+    server backend:3000;
+  }
+  
+
+ server {
+    listen 80;
+    server_name frontend;
+    server_name backend;
+
+    location / {
+       resolver 127.0.0.1 valid=30s;
+       proxy_pass http://frontend;
+       proxy_set_header Host $host;
+    }
+    location /api {
+      resolver 127.0.0.1 valid=30s;
+       proxy_pass http://backend;
+       proxy_set_header Host $host;
+    }
+  }
+}
+````
+En el docker-compose.yml
+````yml
+nginx_loadbalancer:
+    image: nginx:stable
+    container_name: nginx_loadbalancer_container
+    depends_on:
+      - frontend
+    volumes:
+      - ./conf/loadbalancer/nginx.conf:/etc/nginx/nginx.conf
+    ports:
+      - 80:80
+    networks:
+      - practica_net
+    command: ["nginx", "-g", "daemon off;"]
+````
