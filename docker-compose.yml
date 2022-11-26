@@ -52,7 +52,6 @@ services:
     networks:
       - practica_net
     command: npm start
-
   nginx_loadbalancer:
     image: nginx:stable
     container_name: nginx_loadbalancer_container
@@ -65,7 +64,6 @@ services:
     networks:
       - practica_net
     command: ["nginx", "-g", "daemon off;"]
-
 
 networks:
   practica_net:
