@@ -74,75 +74,48 @@ EXPOSE 3000
 ````
 
 __index.js__:
+
 Añadimos configuración al index.js que es el usuario y la contraseña para poder entrar en la base de datos y añadimos otra configuración que es el `authSource` que es donde mirará los permisos del usuario y demás.
+Creamos una constante, `client`, importando el paquete `prom-client` de la cual crearemos una variable, `collectDefaultMetrics`,  en esta le pondremos de timeout `5000`. Una vez creada la contante creamos una función que se encargará de hacer de contador de una ruta llamada `endpoint`
+la cual la pondremos como `middleware` en las rutas que queramos y crearemos otra ruta llamada `metrics` la cual devolverá todas las métricas del servidor incluyendo la nueva creada por nosotros.
 Y como ultimo modificamos el `app.use` de las rutas y le añadimos un `/api` tal y como está para mas adelante con el `nginx` poder hacerle peticiones. 
 ````javascript
-const  express  =  require("express");
-const  mongoose  =  require('mongoose')
+// Imports
+const express = require("express");
+const mongoose = require('mongoose')
 require('dotenv').config()
 
-const  app  =  express();
-const  port  =  3000;
+let client = require('prom-client');
+const app = express();
+const port = 3000;
+
+const counterPracticaEndpoint = new client.Counter({
+    name: `_endpoint`,
+    help: `Total de peticiones para el endpoint`
+})
+
+const collectDefaultMetrics = client.collectDefaultMetrics;
+collectDefaultMetrics({ timeout: 5000 });
 
 app.use('/api', require('./src/routers'))
 
+app.use('/metrics', (req, res) => {
+    res.set('Content-Type', client.register.contentType);
+    client.register.metrics().then(data => res.send(data))
+});
+
 mongoose.connect(`mongodb://mongodb:27017/buyIT`, {
-	useNewUrlParser: true,
-	authSource: "admin",
-	user: process.env.USERNAME,// gfmois
-	pass: process.env.PASSWORD // 1234
+    useNewUrlParser: true,
+    authSource: "admin",
+    user: process.env.USERNAME,
+    pass: process.env.PASSWORD
 }).then(() => {
-	console.log('Connected to MongoDB');
-}).catch(err  =>  console.log(err));
+    console.log('Connected to MongoDB');
+}).catch(err => console.log(err));
 
 app.listen(port, () => {
-	console.log(`Server Listening on http://localhost:${port} 🚀`)
+    console.log(`Server Listening on http://localhost:${port} 🚀`)
 })
-````
-
-__index.js__ de la carpeta __routes__:
-Creamos una constante, `client`, importando el paquete `prom-client` de la cual crearemos una variable, `collectDefaultMetrics`,  en esta le pondremos de timeout `5000`. Una vez creada la contante creamos una función que se encargará de hacer de contador de una ruta llamada `endpoint`
-la cual la pondremos como `middleware` en las rutas que queramos y crearemos otra ruta llamada `metrics` la cual devolverá todas las métricas del servidor incluyendo la nueva creada por nosotros.
-````js
-const cors = require('cors');
-const morgan = require('morgan')
-const bodyParser = require('body-parser')
-const router = require('express').Router()
-
-let client = require('prom-client');
-const collectDefaultMetrics = client.collectDefaultMetrics;
-
-collectDefaultMetrics({ timeout: 5000 });
-
-const counterPracticaEndpoint = new client.Counter({
-	name:`_endpoint`,
-	help:`Total de peticiones para el endpoint`
-})
-
-router.use(function (req, res, next) {
-	res.header("Access-Control-Allow-Origin", "*");
-	res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-	next();
-});
-
-router.use(cors());
-router.use(bodyParser.urlencoded({ extended: true }))
-router.use(bodyParser.json())
-router.use(morgan('dev'))
-
-router.use('/metrics', (req, res) => {
-	res.set('Content-Type', client.register.contentType);
-	client.register.metrics().then(data  =>  res.send(data))
-});
-
-router.use('/products', (req, res, next) => { counterPracticaEndpoint.inc(); next() }, require('./product.route'))
-router.use('/categories', (req, res, next) => { counterPracticaEndpoint.inc(); next() }, require('./category.route'))
-router.use('/productsXcategory', (req, res, next) => { counterPracticaEndpoint.inc(); next() }, require('./productsXcategory.route'))
-router.use('/auth', (req, res, next) => { counterPracticaEndpoint.inc(); next() }, require('./user.routes'))
-router.use('/profile', (req, res, next) => { counterPracticaEndpoint.inc(); next() }, require('./profile.routes'))
-router.use('/comments', (req, res, next) => { counterPracticaEndpoint.inc(); next() }, require('./comments.routes'))
-
-module.exports  =  router;
 ````
 
 __docker-compose__ del servicio backend:
